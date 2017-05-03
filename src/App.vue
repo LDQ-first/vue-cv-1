@@ -1,9 +1,12 @@
 <template>
-  <div>
-    <p>{{ text }}</p>
-    <Topbar/>
-    <ResumeEditor/>
-    <ResumePreview/>
+  <div class="page">
+    <header>
+      <Topbar/>
+    </header>
+    <main>
+      <ResumeEditor/>
+      <ResumePreview/>
+    </main>
   </div>
 </template>
 <script>
@@ -25,7 +28,34 @@
     components: {Topbar, ResumeEditor, ResumePreview}
   }
 </script>
-<style>
- 
+<style lang="scss">
+  .page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #EAEBEC;
+    main {
+      flex-grow: 1;
+      min-width: 1024px;
+      max-width: 1440px;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 16px;
+      width: 100%;
+      align-self: center;
+    }
+  }
+  #resumeEditor {
+      width: 35%;
+      background: #444;
+    }
+  #resumePreview {
+    width: 61.66667%;
+    background: #777;
+    flex-grow: 1;
+    margin-left: 16px;
+  }
 </style>
 
