@@ -1,8 +1,11 @@
 <template>
     <div id="topbar">
-        I am topbar
         <div class="wrapper">
             <span class="logo">Resumer</span>
+            <div class="actions">
+                <button class="primary">保存</button>
+                <button>预览</button>
+            </div>
         </div>
     </div>
 </template>
@@ -13,7 +16,7 @@
     }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
     #topbar {
         color: lightseagreen;
         background: #FFF;
@@ -32,6 +35,22 @@
         .logo {
             font-size: 24px;
             color: #000;
+        }
+        button {
+            width: 72px;
+            height: 32px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            background: #DDD;
+            color: #222;
+            &:hover {
+                box-shadow: 1px 1px 1px hsla(0, 0, 0, 0.50);
+            }
+            &.primary {
+                background: #02af5f;
+                color: #FFF;
+            }
         }
     }
 </style>
