@@ -23,7 +23,7 @@
             </ol>
         </section>
 
-        <srction data-name="education" v-show="resume.education">
+        <section data-name="education" v-show="resume.education">
             <h2>毕业院校</h2>
             <ol>
                 <li v-for="item in resume.education">
@@ -33,7 +33,7 @@
                     </h3>
                 </li>
             </ol>
-        </srction>
+        </section>
 
         <section data-name="awards" v-show="resume.awards">
         <h2>获奖情况</h2>
