@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="page">
     <header>
       <Topbar/>
@@ -8,6 +9,7 @@
       <ResumePreview/>
     </main>
   </div>
+</div>
 </template>
 <script>
   import 'normalize.css/normalize.css'
