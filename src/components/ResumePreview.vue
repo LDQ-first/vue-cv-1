@@ -9,7 +9,7 @@
             </h2>
             <p>
                 <small>{{resume.profile.city}}</small>
-                <small>{{resume.profile.brithday}}</small>
+                <small>{{resume.profile.birthday}}</small>
             </p>
         </section>
 
@@ -33,6 +33,16 @@
                     </h3>
                 </li>
             </ol>
+        </section>
+
+        <section data-name="projects" v-show="resume.projects">
+        <h2>项目情况</h2>
+        <ol>
+            <li v-for="item in resume.projects">
+                <h3>{{item.name}}</h3>
+                <p v-show="item.content"> {{item.content}} </p>
+            </li>
+        </ol>
         </section>
 
         <section data-name="awards" v-show="resume.awards">
