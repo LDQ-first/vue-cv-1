@@ -57,9 +57,14 @@ export default new Vuex.Store({
     mutations: {
         switchTab(state, playload) {
             state.selected = playload;
+            localStorage.setItem('state', JSON.stringify(state));
         },
         updateResume(state, {path, value}) {
             objectPath.set(state.resume, path, value);
+            localStorage.setItem('state', JSON.stringify(state));
+        },
+        initState(state, playload) {
+            Object.assign(state, playload);
         }
     }
 })
