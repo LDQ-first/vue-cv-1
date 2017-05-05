@@ -63,7 +63,7 @@ export default new Vuex.Store({
         switchTab(state, playload) {
             state.selected = playload;
         },
-       /* initState(state, playload) {
+        /*initState(state, playload) {
             Object.assign(state, playload);
         },*/
         setUser(state, playload) {
@@ -71,7 +71,6 @@ export default new Vuex.Store({
             console.log(state.user);
         },
         saveResume(state, {path, value}) {
-            
             objectPath.set(state, path, value);
             var SaveObject = AV.Object.extend('SaveObject');
             var saveObject = new SaveObject();
@@ -92,7 +91,6 @@ export default new Vuex.Store({
             })
         },
         updateResume(state, {path, value}) {
-            console.log(path);
             objectPath.set(state, path, value);
             var todo = AV.Object.createWithoutData('SaveObject', state.id);
             todo.set('content', state);
@@ -103,7 +101,6 @@ export default new Vuex.Store({
             });
         },
         fetchResume(state) {
-            console.log(state.user.id);
             if (state.user.id) {
                 var query = new AV.Query('SaveObject');
                 query.find().then((todo) => {
@@ -114,9 +111,11 @@ export default new Vuex.Store({
                 })
             }
         },
-        removeResume(state) {
+        removeResume(state, defaultState) {
+            Object.assign(state, defaultState);
             state.user.id = '';
-            state.user.username = '';
+            state.user.username = '';  
+            localStorage.setItem('user', '');
         },
     }
 })

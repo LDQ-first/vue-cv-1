@@ -2,7 +2,7 @@
 <div>
   <div class="page">
     <header>
-      <Topbar/>
+      <Topbar :defaultState="this.defaultState"/>
     </header>
     <main>
       <ResumeEditor/>
@@ -26,21 +26,22 @@
 
   export default {
     name: 'app',
-    /*data: function() {
+    data() {
       return {
-        text: '你好'
+        defaultState: {},
       }
-    },*/
+    },
     store,
     components: {Topbar, ResumeEditor, ResumePreview},
     created(){
       document.body.insertAdjacentHTML('afterbegin', icons);
-      /*let state = localStorage.getItem('state');
-      if(state) {
-        state = JSON.parse(state);
+      Object.assign(this.defaultState , this.$store.state);
+      let user = localStorage.getItem('user');
+      if(user) {
+        user = JSON.parse(user);
+        this.$store.commit('setUser', user);
+        this.$store.commit('fetchResume');
       }
-      this.$store.commit('initState', state);*/
-     // this.$store.commit('setUser', getAVUser());
     }
   }
 </script>

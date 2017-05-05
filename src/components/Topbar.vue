@@ -11,8 +11,6 @@
                     <a href="#" class="button primary" @click.prevent="signUpDialogVisible = true">注册</a>
                     <a href="#" class="button" @click.prevent="signInDialogVisible = true">登录</a>
                 </div>
-                <button class="button primary">保存</button>
-                <button class="button">预览</button>
             </div>
             <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
                 <SignUpForm @success="signIn($event)" />
@@ -32,19 +30,15 @@
 
     export default {
         name: 'Topbar',
+        props: ['defaultState'],
         data() {
             return {
+                default: this.defaultState,
                 signUpDialogVisible: false,
                 signInDialogVisible: false
             }
         },
         computed: {
-            /*user: {
-                get() {
-                    console.log(this.$store.state.user);
-                    return this.$store.state.user;
-                }    
-            },*/
             user() {
                 return this.$store.state.user;     
             },
@@ -58,10 +52,11 @@
                 this.signInDialogVisible = false;
                 this.$store.commit('setUser', user);
                 this.$store.commit('fetchResume');
+                localStorage.setItem('user', JSON.stringify(user));
             },
             signOut() {
                 AV.User.logOut();
-                this.$store.commit('removeResume');
+                this.$store.commit('removeResume', this.default);
             }
         },
         components: {
