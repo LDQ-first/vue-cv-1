@@ -17,9 +17,7 @@
                             <label>{{key}}</label>
                             <input type="text" :value="value" @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
                         </div>
-                        <div class="edit">
-                            <button class="button delete" @click="deleteResumeField(`${item.field}`, `${i}`)">删除</button>
-                        </div>
+                        <button class="button delete" @click="deleteResumeField(`${item.field}`, `${i}`)">删除</button>
                     </div>
                 </div>
                 <div v-else class="resumeField" v-for="(value, key) in resume[item.field]">
