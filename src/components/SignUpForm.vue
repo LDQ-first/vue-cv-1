@@ -40,6 +40,7 @@
                 user.setUsername(username);
                 user.setPassword(password);
                 user.signUp().then(() => {
+                    console.log(this.name);
                     this.$emit('success', getAVUser());
                 }, (error) => {
                     this.errorMessage = getErrorMessage(error);

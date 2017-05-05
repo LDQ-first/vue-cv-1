@@ -48,6 +48,7 @@
         },
         methods: {
             signIn(user) {
+                this.signUpDialogVisible = false;
                 this.signInDialogVisible = false;
                 this.$store.commit('setUser', user);
             },
