@@ -61,11 +61,11 @@ export default new Vuex.Store({
     mutations: {
         switchTab(state, playload) {
             state.selected = playload;
-            localStorage.setItem('state', JSON.stringify(state));
+           /* localStorage.setItem('state', JSON.stringify(state));*/
         },
         updateResume(state, {path, value}) {
             objectPath.set(state.resume, path, value);
-            localStorage.setItem('state', JSON.stringify(state));
+            /*localStorage.setItem('state', JSON.stringify(state));*/
         },
         initState(state, playload) {
             Object.assign(state, playload);
@@ -77,6 +77,7 @@ export default new Vuex.Store({
         removeUser(state) {
             console.log(state.user.id);
             state.user.id = '';
+            state.user.username = '';
         }
     }
 })

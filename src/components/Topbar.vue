@@ -39,8 +39,14 @@
             }
         },
         computed: {
+            /*user: {
+                get() {
+                    console.log(this.$store.state.user);
+                    return this.$store.state.user;
+                }    
+            },*/
             user() {
-                return this.$store.state.user;
+                return this.$store.state.user;     
             },
             logined() {
                 return this.user.id;
