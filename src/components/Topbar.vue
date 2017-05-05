@@ -3,12 +3,18 @@
         <div class="wrapper">
             <span class="logo">Resumer</span>
             <div class="actions">
-                <a href="#" class="button primary" 
-                @click.prevent="signUpDialogVisible = true">注册</a>
-                <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
-                    我是slot内容
-                </MyDialog>
-                <a href="#" class="button">登录</a>
+                <div v-if="logined" class="userActions">
+                    <span>你好, {{user.username}}</span>
+                    <a href="#" class="button">登出</a>
+                </div>
+                <div v-else class="userActions">
+                    <a href="#" class="button primary" @click.prevent="signUpDialogVisible = true">注册</a>
+                    <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
+                        <SignUpForm @success="login($event)" />
+                    </MyDialog>
+                    <a href="#" class="button">登录</a>
+                </div>
+
                 <button class="button primary">保存</button>
                 <button class="button">预览</button>
             </div>
@@ -17,7 +23,9 @@
 </template>
 
 <script>
-    import MyDialog from './MyDialog.vue'
+    import MyDialog from './MyDialog.vue';
+    import SignUpForm from './SignUpForm';
+
     export default {
         name: 'Topbar',
         data() {
@@ -25,18 +33,31 @@
                 signUpDialogVisible: false
             }
         },
+        computed: {
+            user() {
+                return this.$store.state.user;
+            },
+            logined() {
+                return this.user.id;
+            }
+        },
+        methods: {
+            login(user) {
+                this.signUpDialogVisible = fase;
+                this.$store.commit('setUser', user);
+            }
+        },
         components: {
-            MyDialog
+            MyDialog,
+            SignUpForm
         }
     }
 </script>
 
 <style scoped lang="scss">
-    #topbar {
-        color: lightseagreen;
+#topbar {
         background: #FFF;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
-        height: 64px;
         .wrapper {
             min-width: 1024px;
             max-width: 1440px;
@@ -71,5 +92,11 @@
                 color: #FFF;
             }
         }
-    }
+        .actions {
+            display: flex;
+            .userActions {
+                margin-right: 3em;
+            }
+        }
+}  
 </style>

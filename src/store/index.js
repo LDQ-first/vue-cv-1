@@ -7,6 +7,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         selected: 'profile',
+        user: {
+            id: '',
+            username: ''
+        },
         resume: {
             config: [
                 { field: 'profile', icon: 'id' },
@@ -65,6 +69,10 @@ export default new Vuex.Store({
         },
         initState(state, playload) {
             Object.assign(state, playload);
+        },
+        setUser(state, playload) {
+            Object.assign(state.user, playload);
+            console.log(state.user);
         }
     }
 })
