@@ -15,7 +15,7 @@
                     <div class="subitem" v-for="(subitem, i) in resume[item.field]">
                         <div class="resumeField" v-for="(value, key) in subitem">
                             <label>{{key}}</label>
-                            <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`,$event.target.value)">
+                            <input type="text" :value="value" @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
                         </div>
                         <hr>
                     </div>
@@ -23,7 +23,7 @@
                 <div v-else class="resumeField" v-for="(value, key) in resume[item.field]">
                     <label>{{key}}</label>
                     <!--<input type="text" v-model="resume[item.field][key]">-->
-                    <input type="text" :value="value" @input="changeResumeField(`${item.field}.${key}`, $event.target.value)">
+                    <input type="text" :value="value" @input="changeResumeField(`resume.${item.field}.${key}`, $event.target.value)">
                 </div>
             </li>
         </ol>
@@ -39,6 +39,7 @@
                     return this.$store.state.selected;
                 },
                 set(value) {
+                    this.changeResumeField('selected', value);
                     return this.$store.commit('switchTab', value);
                 }
             },
@@ -48,10 +49,17 @@
         },
         methods: {
             changeResumeField(path, value) {
+                console.log(this.$store.state.user.id);
+                console.log(this.$store.state.id);
+                this.$store.state.id ? 
                 this.$store.commit('updateResume', {
                     path,
                     value
-                })
+                }):
+                this.$store.commit('saveResume', {
+                    path,
+                    value
+                });
             }
         }
     }

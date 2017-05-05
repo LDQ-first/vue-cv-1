@@ -57,10 +57,11 @@
                 this.signUpDialogVisible = false;
                 this.signInDialogVisible = false;
                 this.$store.commit('setUser', user);
+                this.$store.commit('fetchResume');
             },
             signOut() {
                 AV.User.logOut();
-                this.$store.commit('removeUser');
+                this.$store.commit('removeResume');
             }
         },
         components: {
