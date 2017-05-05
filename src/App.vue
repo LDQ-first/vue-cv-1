@@ -50,7 +50,7 @@
     display: flex;
     flex-direction: column;
     background: #EAEBEC;
-    main {
+    >main {
       flex-grow: 1;
       min-width: 1024px;
       max-width: 1440px;
