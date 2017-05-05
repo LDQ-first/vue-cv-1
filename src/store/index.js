@@ -117,5 +117,8 @@ export default new Vuex.Store({
             state.user.username = '';  
             localStorage.setItem('user', '');
         },
+        deleteResumeField(state,{ field, i }) {
+            objectPath.get(state.resume,field).splice(i,1);
+        }
     }
 })

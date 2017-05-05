@@ -17,7 +17,9 @@
                             <label>{{key}}</label>
                             <input type="text" :value="value" @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
                         </div>
-                        <hr>
+                        <div class="edit">
+                            <button class="button delete" @click="deleteResumeField(`${item.field}`, `${i}`)">删除</button>
+                        </div>
                     </div>
                 </div>
                 <div v-else class="resumeField" v-for="(value, key) in resume[item.field]">
@@ -49,8 +51,9 @@
         },
         methods: {
             changeResumeField(path, value) {
-                console.log(this.$store.state.user.id);
-                console.log(this.$store.state.id);
+               /* console.log(this.$store.state.user.id);
+                console.log(this.$store.state.id);*/
+
                 this.$store.state.user.id ?  (
                 this.$store.state.id ? 
                 this.$store.commit('updateResume', {
@@ -61,7 +64,14 @@
                     path,
                     value
                 })) : '';
-
+            },
+            deleteResumeField(field, i) {
+                console.log(field);
+                console.log(i);
+                this.$store.commit('deleteResumeField', { field, i });
+                console.log(`resume.${field}`, this.$store.state.resume[field]);
+                this.changeResumeField(`resume.${field}`, this.$store.state.resume[field]);
+                
             }
         }
     }
@@ -102,6 +112,23 @@
             flex-grow: 1;
             li {
                 padding: 24px;
+                .subitem {
+                    padding: 10px 0;
+                    border-bottom: 2px solid #000;
+                    .button {
+                        width: 72px;
+                        height: 32px;
+                        border: none;
+                        cursor: pointer;
+                        font-size: 18px;
+                        background: #DDD;
+                        color: #222;
+                        display: inline-flex;
+                        justify-content: center;
+                        align-items: center;
+                        vertical-align: center;
+                    }
+                }
                 .resumeField {
                     label {
                         display: block;
