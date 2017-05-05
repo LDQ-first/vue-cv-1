@@ -73,6 +73,9 @@ export default new Vuex.Store({
         setUser(state, playload) {
             Object.assign(state.user, playload);
             console.log(state.user);
+        },
+        removeUser(state) {
+            state.user.id = null;
         }
     }
 })
