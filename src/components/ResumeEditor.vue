@@ -25,6 +25,7 @@
                     <!--<input type="text" v-model="resume[item.field][key]">-->
                     <input type="text" :value="value" @input="changeResumeField(`resume.${item.field}.${key}`, $event.target.value)">
                 </div>
+                <button class="button add" @click="addResumeField(`${item.field}`)">增加</button>
             </li>
         </ol>
     </div>
@@ -70,6 +71,9 @@
                 console.log(`resume.${field}`, this.$store.state.resume[field]);
                 this.changeResumeField(`resume.${field}`, this.$store.state.resume[field]);
                 
+            },
+            addResumeField(field) {
+                this.$store.commit('addResumeField', field);
             }
         }
     }
@@ -81,7 +85,6 @@
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
         display: flex;
         flex-direction: row;
-        overflow: auto;
         nav {
             width: 80px;
             background: black;
@@ -108,24 +111,13 @@
         }
         .panels {
             flex-grow: 1;
+            overflow: auto;
             li {
                 padding: 24px;
                 .subitem {
                     padding: 10px 0;
+                    margin: 10px 0;
                     border-bottom: 2px solid #000;
-                    .button {
-                        width: 72px;
-                        height: 32px;
-                        border: none;
-                        cursor: pointer;
-                        font-size: 18px;
-                        background: #DDD;
-                        color: #222;
-                        display: inline-flex;
-                        justify-content: center;
-                        align-items: center;
-                        vertical-align: center;
-                    }
                 }
                 .resumeField {
                     label {
@@ -138,6 +130,22 @@
                         width: 100%;
                         height: 40px;
                         padding: 0 8px;
+                    }
+                }
+                .button {
+                    width: 72px;
+                    height: 32px;
+                    border: none;
+                    cursor: pointer;
+                    font-size: 18px;
+                    background: #DDD;
+                    color: #222;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    vertical-align: center;
+                    &.add {
+                        background: #1390E6;
                     }
                 }
             }

@@ -114,11 +114,30 @@ export default new Vuex.Store({
         removeResume(state, defaultState) {
             Object.assign(state, defaultState);
             state.user.id = '';
-            state.user.username = '';  
+            state.user.username = '';
             localStorage.setItem('user', '');
         },
-        deleteResumeField(state,{ field, i }) {
-            objectPath.get(state.resume,field).splice(i,1);
+        deleteResumeField(state, { field, i }) {
+            objectPath.get(state.resume, field).splice(i, 1);
+        },
+        addResumeField(state, field) {
+            console.log(objectPath.get(state.resume, field));
+            const resumeField = objectPath.get(state.resume, field);
+            if (resumeField instanceof Array) {
+                let newField = JSON.parse(JSON.stringify(resumeField[0]));
+                console.log(newField);
+                for (let i in newField) {
+                    newField[i] = '';
+                }
+                console.log(newField);
+                resumeField.push(newField);
+            }
+            else {
+                console.log(resumeField[0]);
+            }
+
+
+
         }
     }
 })
