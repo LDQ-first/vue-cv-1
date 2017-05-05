@@ -51,6 +51,7 @@
             changeResumeField(path, value) {
                 console.log(this.$store.state.user.id);
                 console.log(this.$store.state.id);
+                this.$store.state.user.id ?  (
                 this.$store.state.id ? 
                 this.$store.commit('updateResume', {
                     path,
@@ -59,7 +60,8 @@
                 this.$store.commit('saveResume', {
                     path,
                     value
-                });
+                })) : '';
+
             }
         }
     }
