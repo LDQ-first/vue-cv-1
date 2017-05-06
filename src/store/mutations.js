@@ -77,6 +77,9 @@ export default () => {
                 console.log(newField);
                 resumeField.push(newField);
             }
+        },
+        changeSkinColor(state, color) {
+            state.skinColor = color;
         }
     }
 }

@@ -1,8 +1,9 @@
 <template>
     <div id="resumeEditor">
-        <nav>
+        <nav :style="{background: skinColor}">
             <ol>
-                <li v-for="(item, index) in resume.config" :class="{active: item.field === selected}" @click="selected = item.field">
+                <li v-for="(item, index) in resume.config" :class="{active: item.field === selected}" 
+                @click="selected = item.field" :style="{color: (skinColor === '#FFF' ? '#000': '')}">
                     <svg class="icon">
                         <use :xlink:href="`#icon-${item.icon}`"></use>
                     </svg>
@@ -11,8 +12,8 @@
         </nav>
         <ol class="panels">
             <li v-for="item in resume.config" v-show="item.field === selected">
-                <div class="resumeFieldTitle-ct">
-                    <div class="resumeFieldTitle" >   
+                <div class="resumeFieldTitle-ct" :style="{background: skinColor}">
+                    <div class="resumeFieldTitle" :style="{color: (skinColor === '#FFF' ? '#000': '')}">   
                             {{item.field}}
                     </div>
                 </div>
@@ -40,6 +41,9 @@
     export default {
         name: 'resumeEditor',
         computed: {
+            skinColor() { 
+                return this.$store.state.skinColor;
+            },
             selected: {
                 get() {
                     return this.$store.state.selected;
@@ -93,7 +97,7 @@
         flex-direction: row;
         nav {
             width: 80px;
-            background: black;
+            /*background: black;*/
             color: white;
             ol {
                 li {
@@ -104,6 +108,9 @@
                     margin-top: 16px;
                     margin-bottom: 16px;
                     cursor: pointer;
+                    &.coloWhite {
+                        color: black;
+                    }
                     &.active {
                         background: #FFF;
                         color: black;
@@ -119,11 +126,15 @@
             flex-grow: 1;
             overflow: auto;
             li {
-               .resumeFieldTitle-ct {       
-                    height: 60px;
+               .resumeFieldTitle-ct {     
+                    padding-top: 16px;  
+                    margin-bottom: 15px;
+                    height: 64px;
+                   /* background: #42b983;*/
                    .resumeFieldTitle {
-                        background: #42b983;
-                        padding: 20px 10px;
+                        line-height: 64px;
+                        margin-top: -16px;
+                        padding: 0 24px;
                         color: #FFF;
                     }     
                }
@@ -132,12 +143,14 @@
                     margin: 10px 0;
                     border-bottom: 2px solid #000;
                     margin: 0px 24px;
+                    &:first-child {
+                        padding-top: 0;
+                    }
                 }
                 .profile {
                     margin: 0px 24px;
                 }
                 .resumeField {
-                    
                     label {
                         display: block;
                     }

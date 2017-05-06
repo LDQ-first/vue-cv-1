@@ -1,5 +1,12 @@
 <template>
-    <div id="resumePreview">
+    <div id="resumePreview" :style="{background:skinColor}">
+        <nav class="skin">
+            <span class="text">背景</span>
+            <ol class="clearfix">
+                <li v-for="(color, key) in skinColors" @click="changeSkinColor(skinColor,color)" 
+                :style="{background: color}"></li>
+            </ol>
+        </nav>
         <section data-name="profile" v-show="resume.profile">
             <h1>
                 {{resume.profile.name}}
@@ -68,15 +75,41 @@
 </template>
 
 <script>
+    /*import '../theme/theme_00.css'*/
+    
     export default {
         name: 'resumePreview',
         computed: {
+            skinColor() { 
+
+                return this.$store.state.skinColor;
+            },
+            skinColors() {
+                return this.$store.state.skinColors;
+            },
             resume() {
               return this.$store.state.resume;  
             }
         },
         created() {
-            console.log(this.resume)
+            console.log(this.resume);
+        },
+        methods: {
+            changeSkinColor(skinColor, color){
+                console.log(color);
+                console.log(this.skinColor);
+                this.$store.commit('changeSkinColor', color);
+                this.$store.state.user.id ?  (
+                this.$store.state.id ? 
+                this.$store.commit('updateResume', {
+                    skinColor,
+                    color
+                }):
+                this.$store.commit('saveResume', {
+                    skinColor,
+                    color
+                })) : '';
+            }
         }
     }
 </script>
@@ -94,6 +127,23 @@
             box-sizing: border-box;
             font-variant: normal;
             font-weight: normal;
+        }
+        .skin {
+            margin: 10px 0;
+            .text {
+                float: left;
+                margin-right: 20px;
+                line-height: 30px;
+            }
+            li {
+                float:left;
+                cursor: pointer;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                border: 2px solid #000;
+                margin: 0 10px;
+            }
         }
         section + section {
             margin-top: 2em;
