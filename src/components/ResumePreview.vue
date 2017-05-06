@@ -16,7 +16,7 @@
         <section data-name="workHistory" v-show="resume.workHistory">
             <h2>工作经历</h2>
             <ol>
-                <li v-for="item in resume.workHistory">
+                <li v-for="item in resume.workHistory" v-show="item.company">
                     <h3>{{item.company}}</h3>
                     <p v-show="item.content">{{item.content}}</p>
                 </li>
@@ -26,7 +26,7 @@
         <section data-name="education" v-show="resume.education">
             <h2>毕业院校</h2>
             <ol>
-                <li v-for="item in resume.education">
+                <li v-for="item in resume.education" v-show="item.school">
                     <h3>
                         {{item.school}}
                         <span v-show="item.content"> - {{item.content}}</span>
@@ -38,17 +38,17 @@
         <section data-name="projects" v-show="resume.projects">
         <h2>项目情况</h2>
         <ol>
-            <li v-for="item in resume.projects">
+            <li v-for="item in resume.projects" v-show="item.name">
                 <h3>{{item.name}}</h3>
                 <p v-show="item.content"> {{item.content}} </p>
             </li>
         </ol>
         </section>
 
-        <section data-name="awards" v-show="resume.awards">
+        <section data-name="awards" v-show="resume.awards" >
         <h2>获奖情况</h2>
         <ol>
-            <li v-for="item in resume.awards">
+            <li v-for="item in resume.awards" v-show="item.name">
                 <h3>{{item.name}}</h3>
                 <p v-show="item.content"> {{item.content}} </p>
             </li>
@@ -58,7 +58,7 @@
         <section data-name="contacts" v-show="resume.contacts">
             <h2>联系方式</h2>
             <table>
-                <tr v-for="item in resume.contacts">
+                <tr v-for="item in resume.contacts" v-show="item.contact">
                     <td>{{item.contact}}</td>
                     <td v-show="item.content"> {{item.content}} </td>
                 </tr>

@@ -11,6 +11,11 @@
         </nav>
         <ol class="panels">
             <li v-for="item in resume.config" v-show="item.field === selected">
+                <div class="resumeFieldTitle-ct">
+                    <div class="resumeFieldTitle" >   
+                            {{item.field}}
+                    </div>
+                </div>
                 <div v-if="resume[item.field] instanceof Array">
                     <div class="subitem" v-for="(subitem, i) in resume[item.field]">
                         <div class="resumeField" v-for="(value, key) in subitem">
@@ -19,13 +24,13 @@
                         </div>
                         <button class="button delete" @click="deleteResumeField(`${item.field}`, `${i}`)">删除</button>
                     </div>
+                    <button class="button add" @click="addResumeField(`${item.field}`)">增加</button>
                 </div>
-                <div v-else class="resumeField" v-for="(value, key) in resume[item.field]">
+                <div v-else class="resumeField profile" v-for="(value, key) in resume[item.field]">
                     <label>{{key}}</label>
                     <!--<input type="text" v-model="resume[item.field][key]">-->
                     <input type="text" :value="value" @input="changeResumeField(`resume.${item.field}.${key}`, $event.target.value)">
                 </div>
-                <button class="button add" @click="addResumeField(`${item.field}`)">增加</button>
             </li>
         </ol>
     </div>
@@ -46,7 +51,7 @@
             },
             resume() {
                 return this.$store.state.resume;
-            }
+            },
         },
         methods: {
             changeResumeField(path, value) {
@@ -70,10 +75,11 @@
                 this.$store.commit('deleteResumeField', { field, i });
                 console.log(`resume.${field}`, this.$store.state.resume[field]);
                 this.changeResumeField(`resume.${field}`, this.$store.state.resume[field]);
-                
             },
             addResumeField(field) {
                 this.$store.commit('addResumeField', field);
+                console.log(this.$store.state.resume[field]);
+                this.changeResumeField(`resume.${field}`, this.$store.state.resume[field]);
             }
         }
     }
@@ -113,13 +119,25 @@
             flex-grow: 1;
             overflow: auto;
             li {
-                padding: 24px;
+               .resumeFieldTitle-ct {       
+                    height: 60px;
+                   .resumeFieldTitle {
+                        background: #42b983;
+                        padding: 20px 10px;
+                        color: #FFF;
+                    }     
+               }
                 .subitem {
                     padding: 10px 0;
                     margin: 10px 0;
                     border-bottom: 2px solid #000;
+                    margin: 0px 24px;
+                }
+                .profile {
+                    margin: 0px 24px;
                 }
                 .resumeField {
+                    
                     label {
                         display: block;
                     }
@@ -146,6 +164,7 @@
                     vertical-align: center;
                     &.add {
                         background: #1390E6;
+                        margin: 10px 24px;
                     }
                 }
             }

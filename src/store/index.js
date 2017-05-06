@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import Vue from 'vue'
 import objectPath from 'object-path'
 import AV from '../lib/leancloud'
+import mutations from './mutations'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -59,13 +60,10 @@ export default new Vuex.Store({
             ],
         }
     },
-    mutations: {
+    /*mutations: {
         switchTab(state, playload) {
             state.selected = playload;
         },
-        /*initState(state, playload) {
-            Object.assign(state, playload);
-        },*/
         setUser(state, playload) {
             Object.assign(state.user, playload);
             console.log(state.user);
@@ -135,9 +133,7 @@ export default new Vuex.Store({
             else {
                 console.log(resumeField[0]);
             }
-
-
-
         }
-    }
+    }*/
+    mutations: mutations()
 })
