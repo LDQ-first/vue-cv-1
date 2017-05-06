@@ -37,19 +37,25 @@
         justify-content: center;
         align-items: center;
         .dialog {
-            background: white;
+            background: #EEE;
             min-height: 4em;
             min-width: 10em;
+            border: 4px solid #BFE2FA;
             header {
-                padding: 16px;
+                padding: 20px;
                 display: flex;
                 justify-content: space-between;
                 .close {
                     cursor: pointer;
+                    transition: all 0.8s ease-in-out;
+                    &:hover {
+                        transform: rotate(360deg);
+                    }
                 }
             }
             main {
-                padding: 16px;
+                padding: 20px;
+                padding-top: 0;
             }
         }
     }

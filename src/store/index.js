@@ -21,6 +21,7 @@ export default new Vuex.Store({
                 { field: 'projects', icon: 'heart' },
                 { field: 'awards', icon: 'cup' },
                 { field: 'contacts', icon: 'phone' },
+                { field: 'others', icon: 'add' }
             ],
             profile: {
                 name: '刘某某',
@@ -58,9 +59,22 @@ export default new Vuex.Store({
                 { contact: 'phone', content: '13812345678' },
                 { contact: 'qq', content: '12345678' },
             ],
+            others: [
+                { replenish: '' }
+            ]
         },
+        showSkin: false,
         skinColor: '#42B983',
-        skinColors: ['#FFF','#6CBCF3','#FFB771', '#42B983'],
+        skinColors: ['#FFF',
+        '#6CBCF3 linear-gradient(135deg, #6CBCF3, #0093F8)',
+        '#FFB771 linear-gradient(135deg, #FFB771, #FF7E00)', 
+        '#5BDEA3 linear-gradient(135deg, #5BDEA3, #42B983)', 
+        '#E4637D linear-gradient(135deg, #E4637D, #E4002E)',
+        '#A86DE4 linear-gradient(135deg, #A86DE4, #8D36E4)',
+        '#F381ED linear-gradient(135deg, #F381ED, #F33AE9)',
+        '#F6CB60 linear-gradient(135deg, #F6CB60, #F7AF00)',
+        '#4CB9B5 linear-gradient(135deg, #4CB9B5, #399CA0)',
+        ],
     },
     mutations: mutations()
 })

@@ -73,7 +73,7 @@
 <style scoped lang="scss">
     #topbar {
         background: #FFF;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
         .wrapper {
             min-width: 1024px;
             max-width: 1440px;

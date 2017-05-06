@@ -50,7 +50,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background: #EAEBEC;
+    background: #BED7E4;
     >main {
       flex-grow: 1;
       min-width: 1024px;

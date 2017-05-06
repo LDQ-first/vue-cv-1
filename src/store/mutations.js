@@ -3,21 +3,18 @@ import AV from '../lib/leancloud'
 import objectPath from 'object-path'
 
 
-/*export default function mutations() {*/
 export default () => {
     return {
         switchTab(state, playload) {
             state.selected = playload;
         },
-        /*initState(state, playload) {
-            Object.assign(state, playload);
-        },*/
         setUser(state, playload) {
             Object.assign(state.user, playload);
             console.log(state.user);
         },
         saveResume(state, {path, value}) {
             objectPath.set(state, path, value);
+            console.log(state);
             var SaveObject = AV.Object.extend('SaveObject');
             var saveObject = new SaveObject();
 
@@ -38,6 +35,7 @@ export default () => {
         },
         updateResume(state, {path, value}) {
             objectPath.set(state, path, value);
+            console.log(state);
             var todo = AV.Object.createWithoutData('SaveObject', state.id);
             todo.set('content', state);
             todo.save().then(() => {
@@ -80,6 +78,9 @@ export default () => {
         },
         changeSkinColor(state, color) {
             state.skinColor = color;
+        },
+        showSkin(state) {
+            state.showSkin = !state.showSkin;
         }
     }
 }

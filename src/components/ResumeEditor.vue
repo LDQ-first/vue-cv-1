@@ -3,7 +3,8 @@
         <nav :style="{background: skinColor}">
             <ol>
                 <li v-for="(item, index) in resume.config" :class="{active: item.field === selected}" 
-                @click="selected = item.field" :style="{color: (skinColor === '#FFF' ? '#000': '')}">
+                @click="selected = item.field" 
+                :style="{color: (skinColor === '#FFF' ? '#000': ''), borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}">
                     <svg class="icon">
                         <use :xlink:href="`#icon-${item.icon}`"></use>
                     </svg>
@@ -19,12 +20,14 @@
                 </div>
                 <div v-if="resume[item.field] instanceof Array">
                     <div class="subitem" v-for="(subitem, i) in resume[item.field]" 
-                    :style="{borderColor: (skinColor === '#FFF' ? '' : skinColor)}">
+                    :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}">
                         <div class="resumeField" v-for="(value, key) in subitem">
                             <label>{{key}}</label>
-                            <input type="text" :value="value" v-show="selected != 'workHistory'" @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
-                            <textarea type="text" :value="value" v-show="selected == 'workHistory'"  @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
+                            <textarea type="text" :value="value"
+                             v-if="selected=='workHistory'&&key=='content' || selected=='education'&&key=='content' || selected=='projects'&&key=='content' || selected=='awards'&&key=='content' || selected=='others'"  
+                             @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
                             </textarea>
+                            <input type="text" :value="value" v-else @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
                         </div>
                         <button class="button delete" @click="deleteResumeField(`${item.field}`, `${i}`)">删除</button>
                     </div>
@@ -74,11 +77,14 @@
                 })) : '';
             },
             deleteResumeField(field, i) {
-                console.log(field);
-                console.log(i);
-                this.$store.commit('deleteResumeField', { field, i });
-                console.log(`resume.${field}`, this.$store.state.resume[field]);
-                this.changeResumeField(`resume.${field}`, this.$store.state.resume[field]);
+                if(this.$store.state.resume[field].length != 1) {
+                    this.$store.commit('deleteResumeField', { field, i });
+                    console.log(`resume.${field}`, this.$store.state.resume[field]);
+                    this.changeResumeField(`resume.${field}`, this.$store.state.resume[field]);
+                }
+                else {
+                    console.log('最后一个不可删');
+                }
             },
             addResumeField(field) {
                 this.$store.commit('addResumeField', field);
@@ -91,8 +97,8 @@
 
 <style lang="scss" scoped>
     #resumeEditor {
-        background: #FFF;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+        background: #EFE8DE;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
         display: flex;
         flex-direction: row;
         nav {
@@ -109,11 +115,12 @@
                     margin-bottom: 16px;
                     cursor: pointer;
                     &.coloWhite {
-                        color: black;
+                        color: black; 
                     }
                     &.active {
-                        background: #FFF;
+                        background: rgba(255, 255, 255, 0.4);
                         color: black;
+                         border-right: 6px solid;
                     }
                     svg.icon {
                         width: 24px;
@@ -143,6 +150,7 @@
                     margin: 10px 14px;
                     border-left: 6px solid;
                     box-shadow: 0 0 2px 0px rgba(0,0,0,0.5);
+                    background: #EEE;
                     &:hover {
                         box-shadow: 0 2px 10px 0px rgba(0,0,0,0.5);
                     }
@@ -157,6 +165,13 @@
                     label {
                         display: block;
                     }
+                    textarea {
+                        resize: vertical;
+                        height: 150px;
+                        width: 100%;
+                        margin: 16px 0;
+                        padding: 8px;
+                    }
                     input[type=text] {
                         margin: 16px 0;
                         border: 1px solid #DDD;
@@ -165,6 +180,7 @@
                         height: 40px;
                         padding: 0 8px;
                     }
+
                 }
                 .button {
                     width: 72px;

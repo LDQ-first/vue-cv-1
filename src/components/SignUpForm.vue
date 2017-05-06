@@ -10,8 +10,8 @@
                 <input type="password" v-model="formData.password" required>
             </div> 
             <div class="actions">
-                <input type="submit" value="提交">
                 <span class="errorMessage">{{errorMessage}}</span>
+                <input type="submit" class="submit" value="提交">
             </div>    
         </form>
     </div>
@@ -21,6 +21,7 @@
     import AV from '../lib/leancloud'
     import getErrorMessage from '../lib/getErrorMessage'
     import getAVUser from '../lib/getAVUser'
+    import '../assets/dialog.css'
 
     export default {
         name: 'SignUpForm',
@@ -49,3 +50,4 @@
         }
     }
 </script>
+
