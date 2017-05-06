@@ -18,10 +18,13 @@
                     </div>
                 </div>
                 <div v-if="resume[item.field] instanceof Array">
-                    <div class="subitem" v-for="(subitem, i) in resume[item.field]">
+                    <div class="subitem" v-for="(subitem, i) in resume[item.field]" 
+                    :style="{borderColor: (skinColor === '#FFF' ? '' : skinColor)}">
                         <div class="resumeField" v-for="(value, key) in subitem">
                             <label>{{key}}</label>
-                            <input type="text" :value="value" @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
+                            <input type="text" :value="value" v-show="selected != 'workHistory'" @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
+                            <textarea type="text" :value="value" v-show="selected == 'workHistory'"  @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
+                            </textarea>
                         </div>
                         <button class="button delete" @click="deleteResumeField(`${item.field}`, `${i}`)">删除</button>
                     </div>
@@ -59,9 +62,6 @@
         },
         methods: {
             changeResumeField(path, value) {
-               /* console.log(this.$store.state.user.id);
-                console.log(this.$store.state.id);*/
-
                 this.$store.state.user.id ?  (
                 this.$store.state.id ? 
                 this.$store.commit('updateResume', {
@@ -97,8 +97,8 @@
         flex-direction: row;
         nav {
             width: 80px;
-            /*background: black;*/
             color: white;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
             ol {
                 li {
                     height: 48px;
@@ -130,7 +130,7 @@
                     padding-top: 16px;  
                     margin-bottom: 15px;
                     height: 64px;
-                   /* background: #42b983;*/
+                    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
                    .resumeFieldTitle {
                         line-height: 64px;
                         margin-top: -16px;
@@ -139,16 +139,19 @@
                     }     
                }
                 .subitem {
-                    padding: 10px 0;
-                    margin: 10px 0;
-                    border-bottom: 2px solid #000;
-                    margin: 0px 24px;
-                    &:first-child {
-                        padding-top: 0;
+                    padding: 10px;
+                    margin: 10px 14px;
+                    border-left: 6px solid;
+                    box-shadow: 0 0 2px 0px rgba(0,0,0,0.5);
+                    &:hover {
+                        box-shadow: 0 2px 10px 0px rgba(0,0,0,0.5);
                     }
                 }
                 .profile {
                     margin: 0px 24px;
+                }
+                .card {
+                    
                 }
                 .resumeField {
                     label {
@@ -169,15 +172,24 @@
                     border: none;
                     cursor: pointer;
                     font-size: 18px;
-                    background: #DDD;
+                    background: #6DCBA0;
                     color: #222;
                     display: inline-flex;
                     justify-content: center;
                     align-items: center;
                     vertical-align: center;
+                    box-shadow: 1px 1px 2px hsla(0, 0, 0, 0.50);
                     &.add {
                         background: #1390E6;
                         margin: 10px 24px;
+                        &:hover {
+                            box-shadow: 1px 1px 10px hsla(0, 0, 0, 0.50);
+                        }
+                    }
+                    &.delete {
+                        &:hover {
+                            box-shadow: 1px 1px 10px hsla(0, 0, 0, 0.50);
+                        }
                     }
                 }
             }

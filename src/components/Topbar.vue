@@ -1,6 +1,6 @@
 <template>
     <div id="topbar">
-        <div class="wrapper">
+        <div class="wrapper" :style="{background:skinColor}">
             <span class="logo">Resumer</span>
             <div class="actions">
                 <div v-if="logined" class="userActions">
@@ -44,6 +44,9 @@
             },
             logined() {
                 return this.user.id;
+            },
+            skinColor() {
+                return this.$store.state.skinColor;
             }
         },
         methods: {
@@ -91,14 +94,15 @@
             border: none;
             cursor: pointer;
             font-size: 18px;
-            background: #DDD;
+            background: #6DCBA0;
             color: #222;
             display: inline-flex;
             justify-content: center;
             align-items: center;
             vertical-align: center;
+            box-shadow: 1px 1px 2px hsla(0, 0, 0, 0.50);
             &:hover {
-                box-shadow: 1px 1px 1px hsla(0, 0, 0, 0.50);
+                box-shadow: 1px 1px 10px hsla(0, 0, 0, 0.50);
             }
             &.primary {
                 background: #02af5f;

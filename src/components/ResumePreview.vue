@@ -7,7 +7,8 @@
                 :style="{background: color}"></li>
             </ol>
         </nav>
-        <section data-name="profile" v-show="resume.profile">
+        <section :style="{borderColor: (skinColor === '#FFF' ? '' : skinColor)}"
+         data-name="profile" v-show="resume.profile" >
             <h1>
                 {{resume.profile.name}}
             </h1>
@@ -20,7 +21,8 @@
             </p>
         </section>
 
-        <section data-name="workHistory" v-show="resume.workHistory">
+        <section :style="{borderColor: (skinColor === '#FFF' ? '' : skinColor)}"
+         data-name="workHistory" v-show="resume.workHistory">
             <h2>工作经历</h2>
             <ol>
                 <li v-for="item in resume.workHistory" v-show="item.company">
@@ -30,7 +32,8 @@
             </ol>
         </section>
 
-        <section data-name="education" v-show="resume.education">
+        <section :style="{borderColor: (skinColor === '#FFF' ? '' : skinColor)}"
+         data-name="education" v-show="resume.education">
             <h2>毕业院校</h2>
             <ol>
                 <li v-for="item in resume.education" v-show="item.school">
@@ -42,7 +45,8 @@
             </ol>
         </section>
 
-        <section data-name="projects" v-show="resume.projects">
+        <section :style="{borderColor: (skinColor === '#FFF' ? '' : skinColor)}"
+         data-name="projects" v-show="resume.projects">
         <h2>项目情况</h2>
         <ol>
             <li v-for="item in resume.projects" v-show="item.name">
@@ -52,7 +56,8 @@
         </ol>
         </section>
 
-        <section data-name="awards" v-show="resume.awards" >
+        <section :style="{borderColor: (skinColor === '#FFF' ? '' : skinColor)}"
+         data-name="awards" v-show="resume.awards" >
         <h2>获奖情况</h2>
         <ol>
             <li v-for="item in resume.awards" v-show="item.name">
@@ -62,7 +67,8 @@
         </ol>
         </section>
 
-        <section data-name="contacts" v-show="resume.contacts">
+        <section :style="{borderColor: (skinColor === '#FFF' ? '' : skinColor)}"
+         data-name="contacts" v-show="resume.contacts">
             <h2>联系方式</h2>
             <table>
                 <tr v-for="item in resume.contacts" v-show="item.contact">
@@ -81,7 +87,6 @@
         name: 'resumePreview',
         computed: {
             skinColor() { 
-
                 return this.$store.state.skinColor;
             },
             skinColors() {
@@ -96,8 +101,6 @@
         },
         methods: {
             changeSkinColor(skinColor, color){
-                console.log(color);
-                console.log(this.skinColor);
                 this.$store.commit('changeSkinColor', color);
                 this.$store.state.user.id ?  (
                 this.$store.state.id ? 
@@ -152,6 +155,13 @@
             white-space: pre-line;
         }
         section {
+            background: #FFF;
+            border-left: 6px solid;
+            box-shadow: 0 0 2px 0px rgba(0,0,0,0.5);
+            padding: 15px;
+            &:hover {
+                 box-shadow: 0 2px 10px 0px rgba(0,0,0,0.5);
+            }
             h2:first-child {
                 background: #DDD;
                 display: inline-block;
