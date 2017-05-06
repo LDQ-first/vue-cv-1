@@ -1,7 +1,7 @@
 <template>
     <div id="resumePreview" :style="{background:skinColor}">
         <nav class="skin">
-            <span class="text">背景</span>
+            <span class="text">皮肤</span>
             <ol class="clearfix">
                 <li v-for="(color, key) in skinColors" @click="changeSkinColor(skinColor,color)" 
                 :style="{background: color}"></li>
