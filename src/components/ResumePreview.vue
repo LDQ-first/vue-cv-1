@@ -1,22 +1,24 @@
 <template>
     <div id="resumePreview" :style="{background:skinColor}">
         <nav class="skin clearfix">
-            <span class="text" @click="changeShowSkin(showSkin, !showSkin)">皮肤</span>
-            <ol class="clearfix" v-show="showSkin==true">
-                <li v-for="(color, key) in skinColors" @click="changeSkinColor(skinColor, color)" :style="{background: color}"></li>
-            </ol>
+            <span class="text" @click="changeShowSkin(showSkin, !showSkin)" title="点击展示">皮肤</span>
+            <transition name="skin-show">
+                <ol class="clearfix" v-show="showSkin==true">
+                    <li v-for="(color, key) in skinColors" @click="changeSkinColor(skinColor, color)" :style="{background: color}"></li>
+                </ol>
+            </transition>
         </nav>
         <section :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}" 
         data-name="profile" v-show="resume.profile">
-            <h1>
+            <h1 v-html="resume.profile.name">
                 {{resume.profile.name}}
             </h1>
-            <h2>
+            <h2 v-html="resume.profile.title">
                 {{resume.profile.title}}
             </h2>
             <p>
-                <small>{{resume.profile.city}}</small>
-                <small>{{resume.profile.birthday}}</small>
+                <small v-html="resume.profile.city">{{resume.profile.city}}</small>
+                <small v-html="resume.profile.birthday">{{resume.profile.birthday}}</small>
             </p>
         </section>
 
@@ -25,8 +27,8 @@
             <h2 :style="{background:skinColor}">工作经历</h2>
             <ol>
                 <li v-for="item in resume.workHistory" v-show="item.company">
-                    <h3>{{item.company}}</h3>
-                    <p v-show="item.content">{{item.content}}</p>
+                    <h3 v-html="item.company">{{item.company}}</h3>
+                    <p v-show="item.content" v-html="item.content">{{item.content}}</p>
                 </li>
             </ol>
         </section>
@@ -36,10 +38,9 @@
             <h2 :style="{background:skinColor}">毕业院校</h2>
             <ol>
                 <li v-for="item in resume.education" v-show="item.school">
-                    <h3>
-                        {{item.school}}
-                        <span v-show="item.content"> - {{item.content}}</span>
-                    </h3>
+                    <h3 v-html="item.school">{{item.school}}</h3>
+                    <h3 v-show="item.content">-</h3>
+                    <h3 v-show="item.content" v-html="item.content">{{item.content}}</h3>
                 </li>
             </ol>
         </section>
@@ -49,8 +50,8 @@
             <h2 :style="{background:skinColor}">项目情况</h2>
             <ol>
                 <li v-for="item in resume.projects" v-show="item.name">
-                    <h3>{{item.name}}</h3>
-                    <p v-show="item.content"> {{item.content}} </p>
+                    <h3 v-html="item.name">{{item.name}}</h3>
+                    <p v-show="item.content" v-html="item.content"> {{item.content}} </p>
                 </li>
             </ol>
         </section>
@@ -60,8 +61,8 @@
             <h2 :style="{background:skinColor}">获奖情况</h2>
             <ol>
                 <li v-for="item in resume.awards" v-show="item.name">
-                    <h3>{{item.name}}</h3>
-                    <p v-show="item.content"> {{item.content}} </p>
+                    <h3 v-html="item.name">{{item.name}}</h3>
+                    <p v-show="item.content" v-html="item.content"> {{item.content}} </p>
                 </li>
             </ol>
         </section>
@@ -71,15 +72,15 @@
             <h2 :style="{background:skinColor}">联系方式</h2>
             <table>
                 <tr v-for="item in resume.contacts" v-show="item.contact">
-                    <td>{{item.contact}}</td>
-                    <td v-show="item.content"> {{item.content}} </td>
+                    <td v-html="item.contact">{{item.contact}}</td>
+                    <td v-show="item.content" v-html="item.content"> {{item.content}} </td>
                 </tr>
             </table>
         </section>
         <section :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}" 
         data-name="others" v-show="resume.others">
             <h2 :style="{background:skinColor}">补充说明</h2>
-            <p v-for="(item, key) in resume.others">{{item.replenish}}</p>
+            <p v-for="(item, key) in resume.others" v-html="item.replenish">{{item.replenish}}</p>
         </section>
     </div>
 </template>
@@ -172,6 +173,16 @@
                 margin: 0 10px;
 
             }
+            .skin-show-enter-active {
+                transition: all .5s ease;
+            }
+            .skin-show-leave-active {
+                transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+            }
+            .skin-show-enter, .skin-show-leave-active {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
         }
         section + section {
             margin-top: 2em;
@@ -216,6 +227,9 @@
         section[data-name="education"] {
             li {
                 line-height: 1.5;
+                h3 {
+                    display: inline-block;
+                }
             }
         }
         section[data-name="contacts"] {

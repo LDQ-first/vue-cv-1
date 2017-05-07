@@ -42,6 +42,12 @@
         this.$store.commit('setUser', user);
         this.$store.commit('fetchResume');
       }
+      /*let state = localStorage.getItem('state');
+      if(state) {
+        state = JSON.parse(state);
+        this.$store.commit('initState', state);
+      }*/
+      
     }
   }
 </script>
@@ -59,7 +65,6 @@
       margin-bottom: 16px;
       display: flex;
       justify-content: space-between;
-      padding: 0 16px;
       width: 100%;
       align-self: center;
     }
