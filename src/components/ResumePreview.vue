@@ -150,6 +150,10 @@
             font-variant: normal;
             font-weight: normal;
         }
+        img {
+            border: 5px solid #74BBFF;
+            box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.5);
+        }
         .skin {
             margin: 10px 0;
             .text {

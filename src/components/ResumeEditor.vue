@@ -10,8 +10,8 @@
             </ol>
         </nav>
         <ol class="panels">
-            <transition-group name="panels-show" tag="div">
-                <li v-for="item in resume.config" :key="item" v-show="item.field === selected">
+            <transition-group name="panels-show" class="panels-show" tag="div">
+                <li v-for="(item, n) in resume.config" :key="item" v-show="item.field === selected">
                     <div class="resumeFieldTitle-ct" :style="{background: skinColor}">
                         <div class="resumeFieldTitle" :style="{color: (skinColor === '#FFF' ? '#000': '')}">
                             {{item.field}}
@@ -20,15 +20,22 @@
                     <div v-if="resume[item.field] instanceof Array">
                         <div class="subitem" v-for="(subitem, i) in resume[item.field]" :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}">
                             <div class="resumeField" v-for="(value, key) in subitem">
-                                <label>{{key}}</label>
-                                <textarea class="textarea" type="text" :value="value" v-if="selected=='workHistory'&&key=='content' || selected=='education'&&key=='content' || selected=='projects'&&key=='content' || selected=='awards'&&key=='content' || selected=='others'"
+                                <label>{{key}}{{n}}{{i}}</label>
+                                <textarea class="textarea" type="text" :value="value" v-if="check(selected, key)"
                                     @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)" name="textarea">
                                 </textarea>
                                 <input type="text" :value="value" v-else @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
-                                <a href="javascript:;"  class="uploadImg" v-show="selected=='others'">上传图片
-                                    <input id="photoFileUpload" type="file" accept="image/jpg, image/png, image/jpeg, image/gif" 
-                                     @change="uploadImg($event.target)">
-                                </a>
+                                <div class="imgCt">
+                                    <a href="javascript:;"  class="uploadImg" v-show="check(selected, key)">上传图片
+                                        <input id="photoFileUpload" type="file" accept="image/jpg, image/png, image/jpeg, image/gif" 
+                                        @change="uploadImg($event.target, `resume.${item.field}.${i}.${key}`, n, i)" @click="reset(n,i)">
+                                    </a>
+                                    <span class="loader"  v-show="check(selected, key)">
+                                        <span class="loading">
+                                            <span class="loading-value"></span>
+                                        </span>
+                                    </span>
+                                </div>
                             </div>
                             <button class="button delete" @click="deleteResumeField(`${item.field}`, `${i}`)">删除</button>
                         </div>
@@ -66,24 +73,41 @@
             },
         },
         methods: {
-            uploadImg(input){
+            check(selected, key){
+                return selected=='workHistory'&&key=='content' || selected=='education'&&key=='content' 
+                || selected=='projects'&&key=='content' || selected=='awards'&&key=='content' || selected=='others'
+            },
+            reset(n, i){
+                 const subitem = document.querySelectorAll(".panels li")[n]
+                                    .querySelectorAll('.subitem')[i];
+                const loader =  subitem.querySelector('.loader');
+                    loader.style.display = 'none';
+                const loading = subitem.querySelector('.loading');
+                const loadingValue = subitem.querySelector('.loading-value');
+                loading.style.width = 0;
+                loadingValue.innerText = 0;
+            },
+            uploadImg(input, path, n, i){
                 if (input.files.length > 0) {
-                    console.log(input);
-                    console.log(input.files);
-                    console.log(input.files[0].name);
-                    this.$store.commit('uploadImg', input);
+                    if(input.files[0].type === "image/jpg" ||
+                    input.files[0].type === "image/png" ||
+                    input.files[0].type === "image/jpeg" ||
+                    input.files[0].type === "image/gif") {
+                        console.log(input.files);
+                        console.log(input.files[0].name);
+                        this.$store.dispatch('uploadImg', {input, path, n, i});
+                    }
                 }
-
             },
             changeResumeField(path, value) {
                 const imgReg = /<img[^>]+>/g;
-                if(!value.match(imgReg)) {
+
+                if(typeof value === 'string' && !value.match(imgReg)) {
                     const linkReg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
                     value = value.replace(linkReg, "<a href='$1$2' target='new'>$1$2</a>");
                 }
                 
-                /**/
-              
+                
                 this.$store.state.user.id ?  (
                 this.$store.state.id ? 
                 this.$store.commit('updateResume', {
@@ -119,6 +143,14 @@
 </script>
 
 <style lang="scss" scoped>
+    @mixin keyframes($animatioinName) {
+        @-webkit-keyframes #{$animatioinName} {
+            @content;
+        }
+        @keyframes #{$animatioinName} {
+            @content;
+        }
+    }
     #resumeEditor {
         background: #EFE8DE;
         box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
@@ -155,23 +187,27 @@
         .panels {
             flex-grow: 1;
             overflow: auto;
+            .panels-show {
+                height: 100%;
+            }
             .panels-show-enter-active {
                 transition: all 0.8s cubic-bezier(1.0, 0.5, 0.8, 1.0) 0.6s;
-                transform: translateY(0);
+                transform: translateX(0);
                 opacity: 1;
             }
             .panels-show-leave-active {
                 transition: all 0.6s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-                transform: translateY(-100%);
+                transform: translateX(-100%);
                 opacity: 0;
             }
             .panels-show-enter {
-                transform: translateY(100%);
+                transform: translateX(100%);
             }
             .panels-show-leave {
-               transform: translateY(0);
+               transform: translateX(0);
             }
             li {
+                height: 100%;
                 .resumeFieldTitle-ct {
                     padding-top: 16px;
                     margin-bottom: 15px;
@@ -197,9 +233,12 @@
                 .profile {
                     margin: 0px 24px;
                 }
+/*                .imgCt {
+
+                }*/
                 .uploadImg {
-                    z-index: -1;
-                    margin: 10px 0;
+                    /*z-index: -1;*/
+                    margin: 10px;
                     cursor: pointer;
                     padding: 4px 10px;
                     display: inline-block;
@@ -216,12 +255,64 @@
                         position: absolute;
                         top: 0;
                         left: 0;
-                        width: 120px;
+                        width: 86px;
                         height: 28px;
                         opacity: 0;
                         font-size: 0;
                         cursor: pointer;
                     }
+                }
+                .loader {
+                    display: none;
+                    /*display: inline-block;*/
+                    vertical-align: middle;
+                    width: 200px;
+                    height: 10px;
+                    border-radius: 5px;
+                    background: #000;
+                    .loading {
+                        display: block;
+                        width: 0%;
+                        height: 100%;
+                        border-radius: inherit;
+                        background: #5bc0de linear-gradient(45deg,rgba(255,255,255,.35) 25%,
+                        transparent 25%,transparent 50%,
+                        rgba(255,255,255,.35) 50%,rgba(255,255,255,.35) 75%,
+                        transparent 75%,transparent);
+                        background-size: 20px  20px; 
+                        position: relative;
+                        animation:  reverse progress-bar-stripes 0.40s linear infinite;
+                        @include keyframes(progress-bar-stripes) {
+                            0% {
+                                background-position: 20px 0;
+                            }
+                            100% {
+                                background-position: 0 0;
+                            }
+                        }
+                        .loading-value {
+                            font-size: 14px;
+                            display: block;
+                            padding: 3px 7px;
+                            border-radius: 4px;
+                            color: #FFF;
+                            background: #000;
+                            position: absolute;
+                            top: -30px;
+                            right: -5px;
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                border-top: 5px solid #000;
+                                border-left: 5px solid transparent;
+                                border-right: 5px solid transparent;
+                                position: absolute;
+                                bottom: -5px;
+                                left: 13%;
+                            }
+                        }
+                    }
+
                 }
                 .resumeField {
                     label {
