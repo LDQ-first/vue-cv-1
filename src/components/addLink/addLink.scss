@@ -1,0 +1,58 @@
+#addLink {
+    .btn{
+        cursor: pointer;
+        margin: 10px;
+        padding: 4px 10px;
+        display: inline-block;   
+        border-radius: 4px;
+        position: relative; 
+    }
+    .link {
+        background: #D0EEFF;
+        border: 1px solid #99D3F5;
+        color: #0C69CD;
+    }
+    #LinkDialog {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #FFF;
+        padding: 10px 20px;
+        z-index: 10;
+        width: 90%;
+        h3 {
+            margin: 10px;
+        }
+        input[type=text] {
+            margin: 10px 0;
+            padding: 5px 20px;
+            width: 98%;
+        }
+        .controls {
+            display: flex;
+            justify-content: flex-end;
+            .confirm {
+                 background: rgb(255, 183, 113);
+                 border: 1px solid rgb(255, 126, 0);
+                 color: #FFF;
+            }
+            .cancle {
+                 background: #F7707E;
+                 border: 1px solid #ff5722;
+                 color: #FFF;
+            }
+        }
+
+    }
+    .link-mark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9;
+    }
+
+}

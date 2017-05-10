@@ -26,7 +26,7 @@ export default () => {
             }).then(function(file) {
 
                 var url = file.thumbnailURL(300,400);
-                const textarea = subitem.querySelector('.textarea');;
+                const textarea = subitem.querySelector('.textarea');
                 // 文件保存成功
                 console.log(file.url());
                 console.log(file.id);

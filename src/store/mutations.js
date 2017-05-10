@@ -89,5 +89,8 @@ export default () => {
         showSkin(state) {
             state.showSkin = !state.showSkin;
         },
+        addLink(state, {path, value}){
+            
+        }
     }
 }

@@ -21,10 +21,11 @@
                         <div class="subitem" v-for="(subitem, i) in resume[item.field]" :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}">
                             <div class="resumeField" v-for="(value, key) in subitem">
                                 <label>{{key}}</label>
-                                <textarea class="textarea" type="text" :value="value" v-if="check(selected, key)"
+                                <AddLink :selected="selected" :ikey="key" :field="item.field" :n="n" :i="i"></AddLink>
+                                <textarea :class="{textarea:true, text:check(selected, key)==true}" type="text" :value="value" v-if="check(selected, key)"
                                     @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)" name="textarea">
                                 </textarea>
-                                <input type="text" :value="value" v-else @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
+                                <input type="text" :class="{text:check(selected, key)==false}" :value="value" v-else @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
                                 <UploadImg :selected="selected" :ikey="key" :field="item.field" :n="n" :i="i" v-if="check(selected, key)"></UploadImg>
                             </div>
                             <button class="button delete" @click="deleteResumeField(`${item.field}`, `${i}`)">删除</button>

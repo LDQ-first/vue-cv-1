@@ -1,4 +1,6 @@
 import UploadImg from '../uploadImg/uploadImg.vue'
+import AddLink from '../addLink/addLink.vue'
+
 export default {
     name: 'resumeEditor',
     computed: {
@@ -19,7 +21,8 @@ export default {
         },
     },
     components: {
-        UploadImg
+        UploadImg,
+        AddLink
     },
     methods: {
         check(selected, key){
@@ -27,7 +30,7 @@ export default {
             || selected=='projects'&&key=='content' || selected=='awards'&&key=='content' || selected=='others'
         },
         changeResumeField(path, value) {
-            const linkReg = /^(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)$/g;
+            const linkReg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
             const imgReg = /<img[^>]+>/g;
             const aReg = /<a[^>]+>/g
 
