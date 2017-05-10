@@ -11,8 +11,9 @@ export default {
         confirm(n, i){
             const subitem = document.querySelectorAll(".panels li")[n]
                                     .querySelectorAll('.subitem')[i];
-            const addArea = subitem.querySelector('.text');
+            const addArea = subitem.querySelector(`.text-${this.ikey}`);
             console.log(addArea);
+            
         },
         addLink(){
             this.$store.state.user.id ?  (

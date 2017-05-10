@@ -22,10 +22,10 @@
                             <div class="resumeField" v-for="(value, key) in subitem">
                                 <label>{{key}}</label>
                                 <AddLink :selected="selected" :ikey="key" :field="item.field" :n="n" :i="i"></AddLink>
-                                <textarea :class="{textarea:true, text:check(selected, key)==true}" type="text" :value="value" v-if="check(selected, key)"
-                                    @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)" name="textarea">
+                                <textarea :class="`text-${key}`" :name="`text-${key}`" type="text" :value="value" v-if="check(selected, key)"
+                                    @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
                                 </textarea>
-                                <input type="text" :class="{text:check(selected, key)==false}" :value="value" v-else @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
+                                <input type="text" class="text" :name="key" :value="value" v-else @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
                                 <UploadImg :selected="selected" :ikey="key" :field="item.field" :n="n" :i="i" v-if="check(selected, key)"></UploadImg>
                             </div>
                             <button class="button delete" @click="deleteResumeField(`${item.field}`, `${i}`)">删除</button>
