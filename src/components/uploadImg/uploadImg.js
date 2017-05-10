@@ -13,7 +13,7 @@ export default {
             const subitem = document.querySelectorAll(".panels li")[n]
                                 .querySelectorAll('.subitem')[i];
             const loader =  subitem.querySelector('.loader');
-               /* loader.style.display = 'none';*/
+                loader.style.display = 'none';
             const loading = subitem.querySelector('.loading');
             const loadingValue = subitem.querySelector('.loading-value');
             loading.style.width = 0;

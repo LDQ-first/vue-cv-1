@@ -10,28 +10,22 @@ export default () => {
             const file = new AV.File(localFile.name, localFile);
             const subitem = document.querySelectorAll(".panels li")[n]
                                     .querySelectorAll('.subitem')[i];
-            console.log(subitem.querySelector('.imgCt'));
             const loader =  subitem.querySelector('.loader');
             loader.style.display = 'inline-block';
-            console.log(loader);
+            /*console.log(loader);*/
             file.save({
                 onprogress:function (e)  {
                     /*console.log(e);
-                    console.log(e.loaded, e.total, e.percent);*/
-                    // { loaded: 1234, total: 2468, percent: 50 }                    
+                    console.log(e.loaded, e.total, e.percent);*/                
                     const loading = subitem.querySelector('.loading');
                     const loadingValue = subitem.querySelector('.loading-value');
-                   /* console.log(window.getComputedStyle(loader).width.replace(/px/,''));         
-                    console.log((e.percent / 100).toFixed(2)) ;
-                    console.log(loading.style.width);*/
-                    loading.style.width = (e.percent / 100).toFixed(2) * window.getComputedStyle(loader).width.replace(/px/,'') + 'px';
+                      loading.style.width = (e.percent / 100).toFixed(2) * window.getComputedStyle(loader).width.replace(/px/,'') + 'px';
                     loadingValue.innerText = e.percent.toFixed(2) + '%';
 
                 },
             }).then(function(file) {
 
                 var url = file.thumbnailURL(300,400);
-               // const textarea = input.parentNode.previousSibling.previousSibling;
                 const textarea = subitem.querySelector('.textarea');;
                 // 文件保存成功
                 console.log(file.url());
@@ -44,8 +38,8 @@ export default () => {
 
 
                 let value = textarea.value;
-                console.log(path);
-                console.log(value);
+               /* console.log(path);
+                console.log(value);*/
                 context.state.user.id ? (
                     context.state.id ? 
                     context.commit('updateResume', {
@@ -60,6 +54,9 @@ export default () => {
                         path,
                         value
                 })
+                setTimeout(()=>{
+                    loader.style.display = 'none';
+                },3000)
 
 
             }, function(error) {
