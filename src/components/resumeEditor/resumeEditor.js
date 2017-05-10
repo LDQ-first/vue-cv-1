@@ -30,7 +30,7 @@ export default {
             || selected=='projects'&&key=='content' || selected=='awards'&&key=='content' || selected=='others'
         },
         changeResumeField(path, value) {
-            const linkReg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
+            /*const linkReg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
             const imgReg = /<img[^>]+>/g;
             const aReg = /<a[^>]+>/g
 
@@ -39,7 +39,7 @@ export default {
                 if(!value.match(imgReg) || !value.match(aReg)) {
                     value = value.replace(linkReg, "\n<a href='$1$2' target='new'>$1$2</a>\n");
                 }
-            }
+            }*/
             
             
             this.$store.state.user.id ?  (

@@ -44,10 +44,10 @@ body {
 }
 
 a {
-    display: block;
+    display: inline-block;
     font-size: 16px;
     color: #0C69CD;
-    margin: 10px 0;
+    margin: 2px 0;
 }
 
 a:hover {
