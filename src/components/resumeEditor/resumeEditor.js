@@ -30,17 +30,6 @@ export default {
             || selected=='projects'&&key=='content' || selected=='awards'&&key=='content' || selected=='others'
         },
         changeResumeField(path, value) {
-            /*const linkReg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
-            const imgReg = /<img[^>]+>/g;
-            const aReg = /<a[^>]+>/g
-
-            if(typeof value === 'string' && value.match(linkReg)) {
-                console.log(value.replace(linkReg));
-                if(!value.match(imgReg) || !value.match(aReg)) {
-                    value = value.replace(linkReg, "\n<a href='$1$2' target='new'>$1$2</a>\n");
-                }
-            }*/
-            
             
             this.$store.state.user.id ?  (
             this.$store.state.id ? 

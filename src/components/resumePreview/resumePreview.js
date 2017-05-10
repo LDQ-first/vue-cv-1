@@ -1,3 +1,5 @@
+import SkinColor from '../skinColor/skinColor.vue'
+
 export default {
     name: 'resumePreview',
     computed: {
@@ -17,32 +19,10 @@ export default {
     created() {
         console.log(this.resume);
     },
+    components:{
+        SkinColor
+    },
     methods: {
-        changeShowSkin(showSkin, value) {
-            this.$store.commit('showSkin');
-            this.$store.state.user.id ?  (
-            this.$store.state.id ? 
-            this.$store.commit('updateResume', {
-                showSkin,
-                value
-            }):
-            this.$store.commit('saveResume', {
-                showSkin,
-                value
-            })) : '';
-        },
-        changeSkinColor(skinColor, color){
-            this.$store.commit('changeSkinColor', color);
-            this.$store.state.user.id ?  (
-            this.$store.state.id ? 
-            this.$store.commit('updateResume', {
-                skinColor,
-                color
-            }):
-            this.$store.commit('saveResume', {
-                skinColor,
-                color
-            })) : '';
-        }
+        
     }
 }
