@@ -20,22 +20,12 @@
                     <div v-if="resume[item.field] instanceof Array">
                         <div class="subitem" v-for="(subitem, i) in resume[item.field]" :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}">
                             <div class="resumeField" v-for="(value, key) in subitem">
-                                <label>{{key}}{{n}}{{i}}</label>
+                                <label>{{key}}</label>
                                 <textarea class="textarea" type="text" :value="value" v-if="check(selected, key)"
                                     @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)" name="textarea">
                                 </textarea>
                                 <input type="text" :value="value" v-else @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
-                                <div class="imgCt">
-                                    <a href="javascript:;"  class="uploadImg" v-show="check(selected, key)">上传图片
-                                        <input id="photoFileUpload" type="file" accept="image/jpg, image/png, image/jpeg, image/gif" 
-                                        @change="uploadImg($event.target, `resume.${item.field}.${i}.${key}`, n, i)" @click="reset(n,i)">
-                                    </a>
-                                    <span class="loader"  v-show="check(selected, key)">
-                                        <span class="loading">
-                                            <span class="loading-value"></span>
-                                        </span>
-                                    </span>
-                                </div>
+                                <UploadImg :selected="selected" :ikey="key" :field="item.field" :n="n" :i="i" v-show="check(selected, key)"></UploadImg>
                             </div>
                             <button class="button delete" @click="deleteResumeField(`${item.field}`, `${i}`)">删除</button>
                         </div>
@@ -53,6 +43,7 @@
 </template>
 
 <script>
+    import UploadImg from './uploadImg/uploadImg.vue'
     export default {
         name: 'resumeEditor',
         computed: {
@@ -72,32 +63,13 @@
                 return this.$store.state.resume;
             },
         },
+        components: {
+            UploadImg
+        },
         methods: {
             check(selected, key){
                 return selected=='workHistory'&&key=='content' || selected=='education'&&key=='content' 
                 || selected=='projects'&&key=='content' || selected=='awards'&&key=='content' || selected=='others'
-            },
-            reset(n, i){
-                 const subitem = document.querySelectorAll(".panels li")[n]
-                                    .querySelectorAll('.subitem')[i];
-                const loader =  subitem.querySelector('.loader');
-                    loader.style.display = 'none';
-                const loading = subitem.querySelector('.loading');
-                const loadingValue = subitem.querySelector('.loading-value');
-                loading.style.width = 0;
-                loadingValue.innerText = 0;
-            },
-            uploadImg(input, path, n, i){
-                if (input.files.length > 0) {
-                    if(input.files[0].type === "image/jpg" ||
-                    input.files[0].type === "image/png" ||
-                    input.files[0].type === "image/jpeg" ||
-                    input.files[0].type === "image/gif") {
-                        console.log(input.files);
-                        console.log(input.files[0].name);
-                        this.$store.dispatch('uploadImg', {input, path, n, i});
-                    }
-                }
             },
             changeResumeField(path, value) {
                 const imgReg = /<img[^>]+>/g;
@@ -232,87 +204,6 @@
                 }
                 .profile {
                     margin: 0px 24px;
-                }
-/*                .imgCt {
-
-                }*/
-                .uploadImg {
-                    /*z-index: -1;*/
-                    margin: 10px;
-                    cursor: pointer;
-                    padding: 4px 10px;
-                    display: inline-block;
-                    /*height: 20px;
-                    line-height: 20px;*/
-                    background: #D0EEFF;
-                    border: 1px solid #99D3F5;
-                    border-radius: 4px;
-                    position: relative;
-                    &:hover {
-                        text-decoration: none;
-                    }
-                    input[type=file] {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 86px;
-                        height: 28px;
-                        opacity: 0;
-                        font-size: 0;
-                        cursor: pointer;
-                    }
-                }
-                .loader {
-                    display: none;
-                    /*display: inline-block;*/
-                    vertical-align: middle;
-                    width: 200px;
-                    height: 10px;
-                    border-radius: 5px;
-                    background: #000;
-                    .loading {
-                        display: block;
-                        width: 0%;
-                        height: 100%;
-                        border-radius: inherit;
-                        background: #5bc0de linear-gradient(45deg,rgba(255,255,255,.35) 25%,
-                        transparent 25%,transparent 50%,
-                        rgba(255,255,255,.35) 50%,rgba(255,255,255,.35) 75%,
-                        transparent 75%,transparent);
-                        background-size: 20px  20px; 
-                        position: relative;
-                        animation:  reverse progress-bar-stripes 0.40s linear infinite;
-                        @include keyframes(progress-bar-stripes) {
-                            0% {
-                                background-position: 20px 0;
-                            }
-                            100% {
-                                background-position: 0 0;
-                            }
-                        }
-                        .loading-value {
-                            font-size: 14px;
-                            display: block;
-                            padding: 3px 7px;
-                            border-radius: 4px;
-                            color: #FFF;
-                            background: #000;
-                            position: absolute;
-                            top: -30px;
-                            right: -5px;
-                            &::after {
-                                content: '';
-                                position: absolute;
-                                border-top: 5px solid #000;
-                                border-left: 5px solid transparent;
-                                border-right: 5px solid transparent;
-                                position: absolute;
-                                bottom: -5px;
-                                left: 13%;
-                            }
-                        }
-                    }
-
                 }
                 .resumeField {
                     label {

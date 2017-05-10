@@ -10,14 +10,15 @@ export default () => {
             const file = new AV.File(localFile.name, localFile);
             const subitem = document.querySelectorAll(".panels li")[n]
                                     .querySelectorAll('.subitem')[i];
-
+            console.log(subitem.querySelector('.imgCt'));
+            const loader =  subitem.querySelector('.loader');
+            loader.style.display = 'inline-block';
+            console.log(loader);
             file.save({
                 onprogress:function (e)  {
                     /*console.log(e);
                     console.log(e.loaded, e.total, e.percent);*/
-                    // { loaded: 1234, total: 2468, percent: 50 }
-                    const loader =  subitem.querySelector('.loader');
-                    loader.style.display = 'inline-block';
+                    // { loaded: 1234, total: 2468, percent: 50 }                    
                     const loading = subitem.querySelector('.loading');
                     const loadingValue = subitem.querySelector('.loading-value');
                    /* console.log(window.getComputedStyle(loader).width.replace(/px/,''));         

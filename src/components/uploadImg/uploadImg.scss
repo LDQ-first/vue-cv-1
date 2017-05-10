@@ -1,0 +1,82 @@
+@mixin keyframes($animatioinName) {
+    @-webkit-keyframes #{$animatioinName} {
+        @content;
+    }
+    @keyframes #{$animatioinName} {
+        @content;
+    }
+}
+.uploadImg {
+    margin: 10px;
+    cursor: pointer;
+    padding: 4px 10px;
+    display: inline-block;
+    background: #D0EEFF;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    position: relative;
+    &:hover {
+        text-decoration: none;
+    }
+    input[type=file] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 86px;
+        height: 28px;
+        opacity: 0;
+        font-size: 0;
+        cursor: pointer;
+    }
+}
+.loader {
+    display: none;
+    vertical-align: middle;
+    width: 200px;
+    height: 10px;
+    border-radius: 5px;
+    background: #000;
+    .loading {
+        display: block;
+        width: 0%;
+        height: 100%;
+        border-radius: inherit;
+        background: #5bc0de linear-gradient(45deg,rgba(255,255,255,.35) 25%,
+        transparent 25%,transparent 50%,
+        rgba(255,255,255,.35) 50%,rgba(255,255,255,.35) 75%,
+        transparent 75%,transparent);
+        background-size: 20px  20px; 
+        position: relative;
+        animation:  reverse progress-bar-stripes 0.40s linear infinite;
+        @include keyframes(progress-bar-stripes) {
+            0% {
+                background-position: 20px 0;
+            }
+            100% {
+                background-position: 0 0;
+            }
+        }
+        .loading-value {
+            font-size: 14px;
+            display: block;
+            padding: 3px 7px;
+            border-radius: 4px;
+            color: #FFF;
+            background: #000;
+            position: absolute;
+            top: -30px;
+            right: -5px;
+            &::after {
+                content: '';
+                position: absolute;
+                border-top: 5px solid #000;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                position: absolute;
+                bottom: -5px;
+                right: 10%;
+            }
+        }
+    }
+
+}
