@@ -2,7 +2,7 @@
     <div>
         <form @submit.prevent="signIn">
             <div class="row">
-                <label>用户名</label>
+                <label>用户名/邮箱</label>
                 <input type="text" v-model="formData.username" required>
             </div>
             <div class="row">

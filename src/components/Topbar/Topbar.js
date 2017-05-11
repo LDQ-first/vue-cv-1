@@ -1,6 +1,7 @@
 import MyDialog from '../MyDialog/MyDialog.vue'
 import SignUpForm from '../SignUpForm/SignUpForm.vue'
 import SignInForm from '../SignInForm/SignInForm.vue'
+import EmailVerify from '../emailVerify/emailVerify.vue'
 import AV from '../../lib/leancloud'
 
 
@@ -11,7 +12,8 @@ export default {
         return {
             default: this.defaultState,
             signUpDialogVisible: false,
-            signInDialogVisible: false
+            signInDialogVisible: false,
+            emailVerifyVisible: false,
         }
     },
     computed: {
@@ -26,6 +28,14 @@ export default {
         }
     },
     methods: {
+        signUp(user) {
+            this.signUpDialogVisible = false;
+            this.signInDialogVisible = false;
+            this.emailVerifyVisible = true;
+          /*  this.$store.commit('setUser', user);
+            this.$store.commit('fetchResume');
+            localStorage.setItem('user', JSON.stringify(user));*/
+        },
         signIn(user) {
             this.signUpDialogVisible = false;
             this.signInDialogVisible = false;
@@ -41,6 +51,7 @@ export default {
     components: {
         MyDialog,
         SignUpForm,
-        SignInForm
+        SignInForm,
+        EmailVerify
     }
 }

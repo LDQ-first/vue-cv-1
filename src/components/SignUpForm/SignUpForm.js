@@ -1,7 +1,7 @@
 import AV from '../../lib/leancloud'
 import getErrorMessage from '../../lib/getErrorMessage'
 import getAVUser from '../../lib/getAVUser'
-
+import bus from '../../lib/bus.js'
 
 export default {
     name: 'SignUpForm',
@@ -9,6 +9,7 @@ export default {
         return {
             formData: {
                 username: '',
+                email: '',
                 password: ''
             },
             errorMessage: ''
@@ -16,13 +17,15 @@ export default {
     },
     methods: {
         signUp() {
-            let {username, password} = this.formData;
+            let {username, password, email} = this.formData;
             var user = new AV.User();
             user.setUsername(username);
             user.setPassword(password);
-            user.signUp().then(() => {
-                console.log(this.name);
-                this.$emit('success', getAVUser());
+            user.setEmail(email);
+            user.signUp().then((loginedUser) => {
+                const user = Object.assign(getAVUser(), {  email: loginedUser._serverData.email });               
+                this.$emit('success', user);
+                bus.$emit('email', email);
             }, (error) => {
                 this.errorMessage = getErrorMessage(error);
             })

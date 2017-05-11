@@ -6,6 +6,10 @@
                 <input type="text" v-model="formData.username" required>
             </div>
             <div class="row">
+                <label>邮箱</label>
+                <input type="text" v-model="formData.email" required params="1">
+            </div>
+            <div class="row">
                 <label>密码</label>
                 <input type="password" v-model="formData.password" required>
             </div> 

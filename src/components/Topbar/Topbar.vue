@@ -13,10 +13,13 @@
                 </div>
             </div>
             <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
-                <SignUpForm @success="signIn($event)" />
+                <SignUpForm @success="signUp($event)" />
             </MyDialog>
             <MyDialog title="登录" :visible="signInDialogVisible" @close="signInDialogVisible = false">
                 <SignInForm @success="signIn($event)"/>
+            </MyDialog>
+            <MyDialog title="邮箱验证" :visible="emailVerifyVisible" @close="emailVerifyVisible = false">
+                <EmailVerify></EmailVerify>
             </MyDialog>
         </div>
     </div>

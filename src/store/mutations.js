@@ -15,8 +15,8 @@ export default () => {
         switchTab(state, playload) {
             state.selected = playload;
         },
-        setUser(state, playload) {
-            Object.assign(state.user, playload);
+        setUser(state, user) {
+            Object.assign(state.user, user);
             console.log(state.user);
         },
         saveResume(state, {path, value}) {

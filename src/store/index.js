@@ -12,7 +12,8 @@ export default new Vuex.Store({
         selected: 'profile',
         user: {
             id: '',
-            username: ''
+            username: '',
+            email: ''
         },
         resume: {
             config: [
