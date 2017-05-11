@@ -5,11 +5,11 @@
             <div class="actions">
                 <div v-if="logined" class="userActions">
                     <span class="welcome">你好, {{user.username}}</span>
-                    <a href="#" class="button" @click.prevent="signOut">登出</a>
+                    <a href="javascript:;" class="button" @click.prevent="signOut">登出</a>
                 </div>
                 <div v-else class="userActions">
-                    <a href="#" class="button primary" @click.prevent="signUpDialogVisible = true">注册</a>
-                    <a href="#" class="button" @click.prevent="signInDialogVisible = true">登录</a>
+                    <a href="javascript:;" class="button primary" @click.prevent="signUpDialogVisible = true">注册</a>
+                    <a href="javascript:;" class="button" @click.prevent="signInDialogVisible = true">登录</a>
                 </div>
             </div>
             <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
