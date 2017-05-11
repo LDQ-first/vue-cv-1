@@ -15,14 +15,12 @@ export default {
     },
     methods: {
         changeShowSkin(showSkin, value) {
-           // this.$store.commit('showSkin');
            console.log(showSkin);
            console.log(value);
 
             changeState('showSkin', value);
         },
         changeSkinColor(skinColor, color){
-           // this.$store.commit('changeSkinColor', color);
             changeState('skinColor', color);
             
         }

@@ -53,7 +53,6 @@ export default {
         deleteResumeField(field, i) {
             if(this.$store.state.resume[field].length != 1) {
                 this.$store.commit('deleteResumeField', { field, i });
-                console.log(`resume.${field}`, this.$store.state.resume[field]);
                 changeState(`resume.${field}`, this.$store.state.resume[field]);
             }
             else {
@@ -62,7 +61,6 @@ export default {
         },
         addResumeField(field) {
             this.$store.commit('addResumeField', field);
-            console.log(this.$store.state.resume[field]);
             changeState(`resume.${field}`, this.$store.state.resume[field]);
         }
     }

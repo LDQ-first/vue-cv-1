@@ -83,11 +83,5 @@ export default () => {
                 resumeField.push(newField);
             }
         },
-        changeSkinColor(state, color) {
-            state.skinColor = color;
-        },
-        showSkin(state) {
-            state.showSkin = !state.showSkin;
-        }
     }
 }

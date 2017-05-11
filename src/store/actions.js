@@ -16,9 +16,7 @@ export default () => {
                     bus.$emit('imgLoading', e.percent, field, i, ikey);
                 },
             }).then(function(file) {
-
                 var url = file.thumbnailURL(300,400);
-               // const textarea = subitem.querySelector('textarea');
                 const textarea = document.querySelector(`.text-${field}-${i}-${ikey}`);
                 // 文件保存成功
                 console.log(file.url());
