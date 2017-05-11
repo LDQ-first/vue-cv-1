@@ -1,5 +1,7 @@
 import UploadImg from '../uploadImg/uploadImg.vue'
 import AddLink from '../addLink/addLink.vue'
+import bus from '../../lib/bus.js'
+import changeState from '../../lib/changeState.js'
 
 export default {
     name: 'resumeEditor',
@@ -12,13 +14,29 @@ export default {
                 return this.$store.state.selected;
             },
             set(value) {
-                this.changeResumeField('selected', value);
+                changeState('selected', value);
                 return this.$store.commit('switchTab', value);
             }
         },
         resume() {
             return this.$store.state.resume;
         },
+    },
+    created() {
+        bus.$on('addLink', (data, key, field, i) => {
+            const addArea = document.querySelector(`.text-${field}-${i}-${key}`);
+            addArea.value += data;
+            console.log(addArea);
+            changeState(`resume.${field}.${i}.${key}`, addArea.value);
+        })
+        bus.$on('imgLoading', (percent, field, i, key) => {
+            const loader = document.querySelector(`.loader-${field}-${i}-${key}`);
+            const loading = loader.querySelector('.loading');
+            const loadingValue = loader.querySelector('.loading-value');
+            loading.style.width = (percent / 100).toFixed(2) * window.getComputedStyle(loader).width.replace(/px/,'') + 'px';
+            loadingValue.innerText = percent.toFixed(2) + '%';
+        })
+        
     },
     components: {
         UploadImg,
@@ -30,27 +48,13 @@ export default {
             || selected=='projects'&&key=='content' || selected=='awards'&&key=='content' || selected=='others'
         },
         changeResumeField(path, value) {
-            
-            this.$store.state.user.id ?  (
-            this.$store.state.id ? 
-            this.$store.commit('updateResume', {
-                path,
-                value
-            }):
-            this.$store.commit('saveResume', {
-                path,
-                value
-            })) : 
-            this.$store.commit('editResume', {
-                path,
-                value
-            });
+            changeState(path, value)
         },
         deleteResumeField(field, i) {
             if(this.$store.state.resume[field].length != 1) {
                 this.$store.commit('deleteResumeField', { field, i });
                 console.log(`resume.${field}`, this.$store.state.resume[field]);
-                this.changeResumeField(`resume.${field}`, this.$store.state.resume[field]);
+                changeState(`resume.${field}`, this.$store.state.resume[field]);
             }
             else {
                 console.log('最后一个不可删');
@@ -59,7 +63,7 @@ export default {
         addResumeField(field) {
             this.$store.commit('addResumeField', field);
             console.log(this.$store.state.resume[field]);
-            this.changeResumeField(`resume.${field}`, this.$store.state.resume[field]);
+            changeState(`resume.${field}`, this.$store.state.resume[field]);
         }
     }
 }

@@ -2,24 +2,22 @@
 
 export default {
     name: 'uploadImg',
-    props: ["selected", "ikey", "field", "n", "i"],
+    props: ["ikey", "field", "i"],
     computed:{
         resume(){
             return this.$store.state.resume;
         }
     },
     methods: {
-        reset(n, i){
-            const subitem = document.querySelectorAll(".panels li")[n]
-                                .querySelectorAll('.subitem')[i];
-            const loader =  subitem.querySelector('.loader');
+        reset(i, field, ikey){
+            const loader =  document.querySelector(`.loader-${field}-${i}-${ikey}`);
                 loader.style.display = 'none';
-            const loading = subitem.querySelector('.loading');
-            const loadingValue = subitem.querySelector('.loading-value');
+            const loading = loader.querySelector('.loading');
+            const loadingValue = loader.querySelector('.loading-value');
             loading.style.width = 0;
             loadingValue.innerText = 0;
         },
-        uploadImg(input, path, n, i){
+        uploadImg(input, path, field, i, ikey){
             if (input.files.length > 0) {
                 if(input.files[0].type === "image/jpg" ||
                 input.files[0].type === "image/png" ||
@@ -27,7 +25,7 @@ export default {
                 input.files[0].type === "image/gif") {
                     console.log(input.files);
                     console.log(input.files[0].name);
-                    this.$store.dispatch('uploadImg', {input, path, n, i});
+                    this.$store.dispatch('uploadImg', {input, path, field, i, ikey});
                 }
             }
         }

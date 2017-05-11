@@ -21,12 +21,12 @@
                         <div class="subitem" v-for="(subitem, i) in resume[item.field]" :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}">
                             <div class="resumeField" v-for="(value, key) in subitem">
                                 <label>{{key}}</label>
-                                <AddLink :selected="selected" :ikey="key" :field="item.field" :n="n" :i="i"></AddLink>
-                                <textarea :class="key" type="text" :value="value" v-if="check(selected, key)"
+                                <AddLink :ikey="key" :field="item.field" :i="i"></AddLink>
+                                <textarea :class="`text-${item.field}-${i}-${key}`" type="text" :value="value" v-if="check(selected, key)"
                                     @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
                                 </textarea>
-                                <input type="text" :class="key" :name="key" :value="value" v-else @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
-                                <UploadImg :selected="selected" :ikey="key" :field="item.field" :n="n" :i="i" v-if="check(selected, key)"></UploadImg>
+                                <input type="text" :class="`text-${item.field}-${i}-${key}`" :name="`text-${item.field}-${i}-${key}`" :value="value" v-else @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
+                                <UploadImg :ikey="key" :field="item.field" :i="i" v-if="check(selected, key)"></UploadImg>
                             </div>
                             <button class="button delete" @click="deleteResumeField(`${item.field}`, `${i}`)">删除</button>
                         </div>
