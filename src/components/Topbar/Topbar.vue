@@ -16,11 +16,19 @@
                 <SignUpForm @success="signUp($event)" />
             </MyDialog>
             <MyDialog title="登录" :visible="signInDialogVisible" @close="signInDialogVisible = false">
-                <SignInForm @success="signIn($event)"/>
+                <SignInForm @success="signIn($event)" @resetPassword="resetPassword()" @verifyEmail="verifyEmail()"/>
             </MyDialog>
             <MyDialog title="邮箱验证" :visible="emailVerifyVisible" @close="emailVerifyVisible = false">
                 <EmailVerify></EmailVerify>
             </MyDialog>
+            <MyDialog title="重置密码" :visible="resetPasswordVisible" @close="resetPasswordVisible = false">
+                <ResetPassword />
+            </MyDialog>
+            <MyDialog title="验证邮箱" :visible="verifyEmailVisible" @close="verifyEmailVisible = false">
+                <VerifyEmail />
+            </MyDialog>
+
+
         </div>
     </div>
 </template>

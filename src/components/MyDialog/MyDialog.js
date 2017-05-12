@@ -1,4 +1,4 @@
-
+import bus from '../../lib/bus.js'
 
 
 export default {
@@ -7,6 +7,7 @@ export default {
     methods: {
         close(){
             this.$emit('close');
+            bus.$emit('clearData');
         }
     }
 }

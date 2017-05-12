@@ -7,7 +7,7 @@
             </div>
             <div class="row">
                 <label>邮箱</label>
-                <input type="text" v-model="formData.email" required params="1">
+                <input type="text" v-model="formData.email" required>
             </div>
             <div class="row">
                 <label>密码</label>

@@ -2,6 +2,8 @@ import AV from '../../lib/leancloud'
 import getErrorMessage from '../../lib/getErrorMessage'
 import getAVUser from '../../lib/getAVUser'
 import bus from '../../lib/bus.js'
+import clearData from '../../lib/clearData.js'
+
 
 export default {
     name: 'SignUpForm',
@@ -15,6 +17,11 @@ export default {
             errorMessage: ''
         }
     },
+     created() {
+        bus.$on('clearData', ()=> {
+             clearData(this._data);
+        })
+    },
     methods: {
         signUp() {
             let {username, password, email} = this.formData;
@@ -26,9 +33,11 @@ export default {
                 const user = Object.assign(getAVUser(), {  email: loginedUser._serverData.email });               
                 this.$emit('success', user);
                 bus.$emit('email', email);
+                clearData(this._data);
             }, (error) => {
                 this.errorMessage = getErrorMessage(error);
-            })
+            });
+            console.log(this._data);
         }
     }
 }
