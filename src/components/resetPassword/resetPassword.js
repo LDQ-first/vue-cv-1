@@ -41,5 +41,8 @@ export default {
             clearData(this._data);
             emailMap(target, email);      
         },
+        returnSignIn(){
+            this.$emit('returnSignIn');
+        }
     }
 }

@@ -5,11 +5,12 @@
                 <label>邮箱</label>
                 <input type="text" v-model="email" required>
             </div>
-            <div class="actions">
-                <span v-show="isSendSuccess"><a href="javascript:;" target="new" class="email" @click="skip($event.target, email)">{{email}}</a></span>
-                <span class="message">{{message}}</span>
+            <div class="actions">    
+                <span class="btn" @click="returnSignIn">返回登录</span>
                 <input type="submit" class="submit" value="提交">
             </div>
+            <span class="message">{{message}}</span>
+            <span class="email" v-show="isSendSuccess"><a href="javascript:;" target="new"  @click="skip($event.target, email)">{{email}}</a></span>
         </form>
     </div>
 </template>

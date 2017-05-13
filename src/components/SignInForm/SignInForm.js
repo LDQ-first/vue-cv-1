@@ -58,8 +58,8 @@ export default {
                     console.log('用户名和密码不匹配');
                     return true;
                 break;
-                case '登录失败次数超过限制，请稍候再试，或者通过忘记密码重设密码':
-                    console.log('登录失败次数超过限制，请稍候再试，或者通过忘记密码重设密码');
+                case '登录失败次数超过限制，请稍候再试':
+                    console.log('登录失败次数超过限制，请稍候再试');
                     return true;
                 break;
                 default:

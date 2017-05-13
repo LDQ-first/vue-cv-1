@@ -1,6 +1,6 @@
 .dialogWrapper {
     position: fixed;
-    background: hsla(0, 0%, 0%, 0.25);
+    background: hsla(0, 0%, 0%, 0.4);
     top: 0;
     left: 0;
     bottom: 0;
@@ -10,11 +10,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    #leftSide {
+       width: 250px;
+       background: url('./img/002.jpg') no-repeat, url('./img/001.jpg') no-repeat;
+       background-size: cover;
+       position: relative;
+       overflow: hidden; 
+       .leftSideImg {
+           margin: 0px;
+           height: 100%;
+       }
+        &::before {
+            content: '';
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(144, 185, 208, .5),
+             rgba(165, 145, 207, .5));
+            filter: blur(6px) saturate(1.5) contrast(2);
+            margin: -30px;
+        }     
+    }
+    #rightSide {
+        background: #2C3868;
+        padding: 20px 0;
+    }   
     .dialog {
-        background: #EEE;
-        min-height: 4em;
-        min-width: 10em;
-        border: 4px solid #BFE2FA;
+        color: #FFF;
+        display: flex;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
         header {
             padding: 20px;
             display: flex;
@@ -22,8 +49,41 @@
             .close {
                 cursor: pointer;
                 transition: all 0.8s ease-in-out;
+                position: relative;
+                width: 20px;
+                height: 20px;
                 &:hover {
-                    transform: rotate(360deg);
+                    &::before,
+                    &::after {
+                        background: #ee5715;
+                    }
+                    &::before {
+                        transform: rotateZ(405deg);
+                    }
+                    &::after {
+                        transform: rotateZ(315deg);
+                    }
+                }
+                &::before,
+                &::after {
+                    content: '';
+                    display: inline-block;
+                    width: 5px;
+                    height: 20px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    margin-left: -2.5px;
+                    margin-top: -10px;
+                    background: #FFF;
+                    transition: all 0.8s ease-in-out;
+                    border-radius: 10px;
+                }
+                &::before {
+                    transform: rotateZ(45deg);
+                }
+                &::after {
+                    transform: rotateZ(-45deg);
                 }
             }
         }

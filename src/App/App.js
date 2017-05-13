@@ -6,30 +6,35 @@ import icons from '../assets/icons'
 import store from '../store/index'
 import AV from '../lib/leancloud'
 import getAVUser from '../lib/getAVUser'
+import getRadomImg from '../lib/getRadomImg.js'
 
 export default {
-name: 'app',
-data() {
-    return {
-    defaultState: {},
+    name: 'app',
+    data() {
+        return {
+        defaultState: {},
+        }
+    },
+    store,
+    components: {Topbar, ResumeEditor, ResumePreview},
+    created(){
+        document.body.insertAdjacentHTML('afterbegin', icons);
+        Object.assign(this.defaultState , this.$store.state);
+        let user = localStorage.getItem('user');
+        if(user) {
+            user = JSON.parse(user);
+            this.$store.commit('setUser', user);
+            this.$store.commit('fetchResume');
+        }
+       
+        /*let state = localStorage.getItem('state');
+        if(state) {
+        state = JSON.parse(state);
+        this.$store.commit('initState', state);
+        }*/
+        
+    },
+    mounted() {
+         getRadomImg();
     }
-},
-store,
-components: {Topbar, ResumeEditor, ResumePreview},
-created(){
-    document.body.insertAdjacentHTML('afterbegin', icons);
-    Object.assign(this.defaultState , this.$store.state);
-    let user = localStorage.getItem('user');
-    if(user) {
-    user = JSON.parse(user);
-    this.$store.commit('setUser', user);
-    this.$store.commit('fetchResume');
-    }
-    /*let state = localStorage.getItem('state');
-    if(state) {
-    state = JSON.parse(state);
-    this.$store.commit('initState', state);
-    }*/
-    
-}
 }

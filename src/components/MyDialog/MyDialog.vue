@@ -1,13 +1,18 @@
 <template>
     <div class="dialogWrapper" v-show="visible">
         <div class="dialog">
-            <header>
-                {{title}}
-                <span class="close" @click="close">X</span>
-            </header>
-            <main>
-                <slot></slot>
-            </main>
+            <div id="leftSide">
+                 
+            </div>
+            <div id="rightSide">
+                 <header>
+                    {{title}}
+                    <span class="close" @click="close"></span>
+                </header>
+                <main>
+                    <slot></slot>
+                </main>
+            </div>
         </div>
     </div>
 </template>

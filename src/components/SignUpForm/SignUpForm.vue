@@ -14,9 +14,9 @@
                 <input type="password" v-model="formData.password" required>
             </div> 
             <div class="actions">
-                <span class="errorMessage">{{errorMessage}}</span>
                 <input type="submit" class="submit" value="提交">
             </div>    
+             <span class="errorMessage">{{errorMessage}}</span>
         </form>
     </div>
 </template>

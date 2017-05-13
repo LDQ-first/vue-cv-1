@@ -36,6 +36,7 @@ export default {
             this.signUpDialogVisible = false;
             this.signInDialogVisible = false;
             this.emailVerifyVisible = true;
+
         },
         signIn(user) {
             this.signUpDialogVisible = false;
@@ -57,6 +58,11 @@ export default {
             console.log('verifyEmail');
             this.signInDialogVisible = false;
             this.verifyEmailVisible = true;
+        },
+        returnSignIn() {
+            this.signInDialogVisible = true;
+            this.verifyEmailVisible = false;
+            this.resetPasswordVisible = false;
         }
     },
     components: {
