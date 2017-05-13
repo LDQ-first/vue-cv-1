@@ -2,9 +2,15 @@ import UploadImg from '../uploadImg/uploadImg.vue'
 import AddLink from '../addLink/addLink.vue'
 import bus from '../../lib/bus.js'
 import changeState from '../../lib/changeState.js'
+import UploadAvatar from '../uploadAvatar/uploadAvatar.vue'
 
 export default {
     name: 'resumeEditor',
+    data() {
+        return {
+            uploadAvatarvisible: false
+        }
+    },
     computed: {
         skinColor() { 
             return this.$store.state.skinColor;
@@ -40,7 +46,8 @@ export default {
     },
     components: {
         UploadImg,
-        AddLink
+        AddLink,
+        UploadAvatar
     },
     methods: {
         check(selected, key){
@@ -62,6 +69,12 @@ export default {
         addResumeField(field) {
             this.$store.commit('addResumeField', field);
             changeState(`resume.${field}`, this.$store.state.resume[field]);
+        },
+        uploadAvatar() {
+            this.uploadAvatarvisible = true;
+        },
+        closeAvatar() {
+            this.uploadAvatarvisible = false;
         }
     }
 }

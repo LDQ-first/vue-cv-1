@@ -1,6 +1,6 @@
 <template>
      <div class="imgCt">
-        <a href="javascript:;"  class="uploadImg">上传图片
+        <a href="javascript:;"  class="uploadImg">{{text}}
             <input id="photoFileUpload" type="file" accept="image/jpg, image/png, image/jpeg, image/gif" 
             @change="uploadImg($event.target, `resume.${field}.${i}.${ikey}`,field, i, ikey)" @click="reset(i, field, ikey)">
         </a>

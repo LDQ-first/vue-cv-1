@@ -11,6 +11,8 @@ export default () => {
             const file = new AV.File(localFile.name, localFile);
             const loader =  document.querySelector(`.loader-${field}-${i}-${ikey}`);
             loader.style.display = 'inline-block';
+            console.log(localFile);
+            console.log(file);
             file.save({
                 onprogress:function (e)  {             
                     bus.$emit('imgLoading', e.percent, field, i, ikey);

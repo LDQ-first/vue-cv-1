@@ -1,0 +1,142 @@
+.AvatarWrapper {
+    position: fixed;
+    background: hsla(0, 0%, 0%, 0.4);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .avatar {
+        color: #FFF;
+        display: flex;
+        flex-wrap: wrap;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+        width: 650px;
+        padding: 20px;
+        background: #331C48;
+        header {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            .close {
+                cursor: pointer;
+                transition: all 0.8s ease-in-out;
+                position: relative;
+                width: 20px;
+                height: 20px;
+                &:hover {
+                    &::before,
+                    &::after {
+                        background: #ee5715;
+                    }
+                    &::before {
+                        transform: rotateZ(405deg);
+                    }
+                    &::after {
+                        transform: rotateZ(315deg);
+                    }
+                }
+                &::before,
+                &::after {
+                    content: '';
+                    display: inline-block;
+                    width: 5px;
+                    height: 20px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    margin-left: -2.5px;
+                    margin-top: -10px;
+                    background: #FFF;
+                    transition: all 0.8s ease-in-out;
+                    border-radius: 10px;
+                }
+                &::before {
+                    transform: rotateZ(45deg);
+                }
+                &::after {
+                    transform: rotateZ(-45deg);
+                }
+            }
+        }
+        #imgSide {
+            flex-grow: 1;
+            .control{
+                width: 300px;
+                height: 300px;
+                border: 2px solid #E6AC71;
+                position: relative;
+                #getImg {
+                    position:absolute;
+                }
+                #cover {
+                    position:absolute;
+                    z-index: 9999;
+                    display:none;
+                    top: 0px;
+                    left: 0px;
+                }
+                #edit {
+                    position:absolute;
+                    display:none;
+                   // background:#000;
+                }
+            }
+            .upload{
+                .uploadImg {
+                    margin: 10px;
+                    cursor: pointer;
+                    padding: 4px 10px;
+                    display: inline-block;
+                    background: #D0EEFF;
+                    border: 1px solid #99D3F5;
+                    border-radius: 4px;
+                    position: relative;
+                    &:hover {
+                        text-decoration: none;
+                    }
+                    input[type=file] {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 86px;
+                        height: 28px;
+                        opacity: 0;
+                        font-size: 0;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        #avatarSide {
+            flex-grow: 1;
+            .showEdit {
+                 display: block; 
+            }
+            .showPic{
+                height:100px;
+                width:100px;
+                border:2px solid #000;
+                overflow:hidden;
+                margin:0 auto;
+                display:inline-block; 
+            }
+            .saveAvatar {
+                margin: 10px;
+                cursor: pointer;
+                padding: 4px 10px;
+                display: inline-block;
+                background: #D0EEFF;
+                border: 1px solid #99D3F5;
+                border-radius: 4px;
+                color: #0C69CD;
+            }
+        }
+        
+    }
+}

@@ -26,7 +26,7 @@
                                     @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
                                 </textarea>
                                 <input type="text" :class="`text-${item.field}-${i}-${key}`" :name="`text-${item.field}-${i}-${key}`" :value="value" v-else @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
-                                <UploadImg :ikey="key" :field="item.field" :i="i" v-if="check(selected, key)"></UploadImg>
+                                <UploadImg :ikey="key" :field="item.field" :i="i" v-if="check(selected, key)" text="上传图片"></UploadImg>
                             </div>
                             <button class="button delete" @click="deleteResumeField(`${item.field}`, `${i}`)">删除</button>
                         </div>
@@ -37,6 +37,8 @@
                         <!--<input type="text" v-model="resume[item.field][key]">-->
                         <input type="text" :value="value" @input="changeResumeField(`resume.${item.field}.${key}`, $event.target.value)">
                     </div>
+                    <button class="uploadAvatar" v-show="selected === 'profile'" @click="uploadAvatar">上传头像</button>
+                    <UploadAvatar :visible="uploadAvatarvisible" @close="closeAvatar"></UploadAvatar>
                 </li>
             </transition-group>
         </ol>

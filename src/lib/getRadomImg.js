@@ -4,7 +4,7 @@ export default () => {
     const leftSide = document.querySelectorAll('#leftSide');
    
    
-   console.log(leftSide.length);
+ //  console.log(leftSide.length);
     
     const LoadImageAscync = (url) => {
         let promise = new Promise((resolve, reject) => {
@@ -23,10 +23,10 @@ export default () => {
         const now = Date.now();
         LoadImageAscync(`https://unsplash.it/250/400?random&time=${now})`)
             .then( img => {
-                console.log(img);
+               // console.log(img);
                 img.classList.add('leftSideImg');
                 i.appendChild(img);
-                 console.log(i);
+               //  console.log(i);
             })
     }
 

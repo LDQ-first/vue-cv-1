@@ -2,7 +2,7 @@
 
 export default {
     name: 'uploadImg',
-    props: ["ikey", "field", "i"],
+    props: ["ikey", "field", "i", "text"],
     computed:{
         resume(){
             return this.$store.state.resume;

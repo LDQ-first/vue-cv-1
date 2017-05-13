@@ -1,9 +1,7 @@
 <template>
     <div class="dialogWrapper" v-show="visible">
         <div class="dialog">
-            <div id="leftSide">
-                 
-            </div>
+            <div id="leftSide"></div>
             <div id="rightSide">
                  <header>
                     {{title}}
