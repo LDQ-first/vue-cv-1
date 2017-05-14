@@ -28,16 +28,16 @@ export default {
     computed:{
          getImgStyleObject() {
              return {
-                width: this.getImgWidth + 'px',
-                height: this.getImgHeight + 'px',
+              /*  width: this.getImgWidth + 'px',
+                height: this.getImgHeight + 'px',*/
                 left: this.px + 'px',
                 top: this.py + 'px'
              }
         },
         editStyleObject() {
             return {
-                width: this.getImgWidth + 'px',
-                height: this.getImgHeight + 'px',
+                /*width: this.getImgWidth + 'px',
+                height: this.getImgHeight + 'px',*/
                 display: this.editDisplay,
                 left: this.px + 'px',
                 top: this.py + 'px'
@@ -99,22 +99,26 @@ export default {
                 console.log(img.width);
                 console.log(img.height);
                 if(this.imgWidth < this.controlClientWidth && this.imgHeight < this.controlClientHeight) {
-                    this.getImgWidth = this.mgWidth;
+                    this.getImgWidth = this.imgWidth;
                     this.getImgHeight = this.imgHeight;
                 }
                 else {
-                    const pWidth = this.imgWidth / (this.imgHeight / this.controlClientHeight);
-                    const pHeight = this.imgHeight / (this.imgWidth / this.controlClientWidth);
+                    const pWidth = this.imgWidth *  this.controlClientHeight / this.imgHeight ;
+                    const pHeight = this.imgHeight * this.controlClientWidth / this.imgWidth ;
+
                     this.getImgWidth = this.imgWidth > this.imgHeight ? this.controlClientWidth : pWidth;
                     this.getImgHeight = this.imgHeight > this.imgWidth ? this.controlClientHeight: pHeight;
-                }
-                console.log('this.getImgWidth: ', this.getImgWidth);
-                console.log('this.getImgHeight: ', this.getImgHeight);
+                }        
                 this.px = (this.controlClientWidth - this.getImgWidth) / 2 ;
                 this.py = (this.controlClientHeight - this.getImgHeight) / 2;
-                console.log('this.px: ', this.px);
-                console.log('this.py: ', this.py);
+                console.log('this.getImgWidth: ', this.getImgWidth);
+                console.log('this.getImgHeight: ', this.getImgHeight);
+
+                getImg.width = this.getImgWidth;
+                getImg.height = this.getImgHeight;
                 canvas.drawImage(img, 0, 0, this.getImgWidth, this.getImgHeight);
+              /*  canvas.drawImage(img, 0, 0, this.imgWidth, this.imgHeight, 
+                0, 0, this.getImgWidth, this.getImgHeight);*/
                 this.imgUrl = getImg.toDataURL();
                 this.cutImg();
             }
@@ -123,6 +127,8 @@ export default {
             this.editDisplay = 'block';
             let edit = document.querySelector('#edit');
             let editCanvas = edit.getContext('2d');
+            edit.width = this.getImgWidth;
+            edit.height = this.getImgHeight;
             editCanvas.clearRect(0, 0, this.getImgWidth, this.getImgHeight);
             editCanvas.fillStyle='rgba(0, 0, 0, 0.5)';
             editCanvas.fillRect(0, 0, this.getImgWidth, this.getImgHeight);
@@ -172,9 +178,6 @@ export default {
                         else {
                             this.sy = clipY;
                         }
-                       /* console.log('clipY: ', clipY);
-                        console.log('this.getImgHeight: ', this.getImgHeight);*/
-                        
 
                         this.cutImg();
                     }
