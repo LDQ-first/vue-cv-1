@@ -19,11 +19,10 @@ export default {
             editDisplay: 'none',
             imgUrl: '',
             draging: false,
-            startX: 0,
-            startY: 0,
             imgWidth: 0,
             imgHeight: 0,
             scale: 1.0,
+            change: false
         }
     },
     computed: {
@@ -90,7 +89,7 @@ export default {
         paintImage(url) {
             const getImg = document.querySelector('#getImg');
             const canvas = getImg.getContext("2d");
-            canvas.clearRect(0, 0, this.getImgWidth, this.getImgHeight);
+            canvas.clearRect(0, 0, this.controlClientWidth, this.controlClientHeight);
             const img = new Image();
             img.src = url;
             const control = document.querySelector('.control');
@@ -103,8 +102,14 @@ export default {
                 this.drawImg(img,canvas,getImg,this.scale);
                 const changeScale = document.querySelector('.changeScale');
                 changeScale.onmousedown = ()=> {
+                    this.change = true;
                     changeScale.onmousemove = (e)=> {
-                        this.changeScale(e, img, canvas, getImg);
+                        if(this.change) {
+                            this.changeScale(e, img, canvas, getImg);
+                        }
+                    }
+                    document.onmouseup = () => {
+                        this.change = false;
                     }
                 }
             }
