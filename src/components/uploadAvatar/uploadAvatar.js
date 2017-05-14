@@ -23,20 +23,13 @@ export default {
             startY: 0,
             imgWidth: 0,
             imgHeight: 0,
+            scale: 1.0,
         }
     },
     computed: {
-        getImgStyleObject() {
-            return {
-                /* left: this.px + 'px',
-                 top: this.py + 'px'*/
-            }
-        },
         editStyleObject() {
             return {
-                display: this.editDisplay,
-                /* left: this.px + 'px',
-                 top: this.py + 'px'*/
+                display: this.editDisplay
             }
         },
         showEditStyleObject() {
@@ -84,8 +77,6 @@ export default {
                     input.files[0].type === "image/png" ||
                     input.files[0].type === "image/jpeg" ||
                     input.files[0].type === "image/gif") {
-                    console.log(input.files);
-                    console.log(input.files[0].name);
                     const localFile = input.files[0];
                     const oFReader = new FileReader();
                     oFReader.readAsDataURL(localFile);
@@ -102,23 +93,29 @@ export default {
             canvas.clearRect(0, 0, this.getImgWidth, this.getImgHeight);
             const img = new Image();
             img.src = url;
-
             const control = document.querySelector('.control');
             this.controlClientHeight = control.clientHeight;
             this.controlClientWidth = control.clientWidth;
-
+            this.sx = (this.controlClientWidth - this.sWidth) / 2;
+            this.sy = (this.controlClientHeight - this.sHeight) / 2;
 
             img.onload = () => {
-                let scale = 1;
-                this.drawImg(img,canvas,getImg,scale);
-               
+                this.drawImg(img,canvas,getImg,this.scale);
+                const changeScale = document.querySelector('.changeScale');
+                changeScale.onmousedown = ()=> {
+                    changeScale.onmousemove = (e)=> {
+                        this.changeScale(e, img, canvas, getImg);
+                    }
+                }
             }
+        },
+        changeScale(e, img, canvas, getImg) {
+           this.scale = e.target.value;
+           this.drawImg(img,canvas,getImg,this.scale);
         },
         drawImg(img,canvas,getImg,scale) {
             this.imgWidth = img.width;
             this.imgHeight = img.height;
-            console.log(img.width);
-            console.log(img.height);
             if (this.imgWidth < this.controlClientWidth && this.imgHeight < this.controlClientHeight) {
                 this.getImgWidth = this.imgWidth;
                 this.getImgHeight = this.imgHeight;
@@ -130,8 +127,6 @@ export default {
                 this.getImgWidth = this.imgWidth > this.imgHeight ? this.controlClientWidth : pWidth;
                 this.getImgHeight = this.imgHeight > this.imgWidth ? this.controlClientHeight : pHeight;
             }
-            /* getImg.width = this.getImgWidth;
-             getImg.height = this.getImgHeight;  */
             getImg.width = this.controlClientWidth;
             getImg.height = this.controlClientHeight;
 
@@ -141,29 +136,18 @@ export default {
             this.px = (this.controlClientWidth - this.getImgWidth) / 2;
             this.py = (this.controlClientHeight - this.getImgHeight) / 2;
 
-            this.sx = (this.controlClientWidth - this.sWidth) / 2;
-            this.sy = (this.controlClientHeight - this.sHeight) / 2;
-
-            console.log('this.getImgWidth: ', this.getImgWidth);
-            console.log('this.getImgHeight: ', this.getImgHeight);
-
-
-
             canvas.drawImage(img, this.px, this.py, this.getImgWidth, this.getImgHeight);
             this.imgUrl = getImg.toDataURL();
             this.cutImg();
         },
         cutImg() {
             this.editDisplay = 'block';
-            let edit = document.querySelector('#edit');
-            let editCanvas = edit.getContext('2d');
-            /*edit.width = this.getImgWidth;
-            edit.height = this.getImgHeight;*/
+            const edit = document.querySelector('#edit');
+            const editCanvas = edit.getContext('2d');
             edit.width = this.controlClientWidth;
             edit.height = this.controlClientHeight;
             editCanvas.clearRect(0, 0, this.getImgWidth, this.getImgHeight);
             editCanvas.fillStyle = 'rgba(158, 187, 244, 0.5)';
-            //  editCanvas.fillRect(0, 0, this.getImgWidth, this.getImgHeight);
             editCanvas.fillRect(0, 0, this.controlClientWidth, this.controlClientHeight);
             editCanvas.clearRect(this.sx, this.sy, this.sWidth, this.sHeight);
         },

@@ -7,7 +7,7 @@
             </header>
             <div id="imgSide">
                 <div class="control">
-                    <canvas id="getImg" :style="getImgStyleObject"></canvas>
+                    <canvas id="getImg"></canvas>
                     <p>
                         <canvas id="edit" :style="editStyleObject"
                          @mousedown="dragDown"></canvas>
@@ -20,7 +20,10 @@
                         @change="uploadImg($event.target) ">
                     </a>
                 </div>
-                 <button class="saveAvatar" @click="savaAvatar">保存</button>
+                <div class="operate">
+                    <button class="saveAvatar" @click="savaAvatar">保存</button>
+                    <input type="range"  value="1.0" min="0.5" max="3.0" step="0.01" class="changeScale">
+                </div>
             </div>
             <div id="avatarSide">
                 <p>
