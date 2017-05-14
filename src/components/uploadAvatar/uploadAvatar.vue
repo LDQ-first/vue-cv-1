@@ -10,7 +10,7 @@
                     <canvas id="getImg" :style="getImgStyleObject"></canvas>
                     <p>
                         <canvas id="edit" :style="editStyleObject"
-                         @mousemove="dragMove($event)" @mousedown="dragDown"></canvas>
+                         @mousedown="dragDown"></canvas>
                         <canvas id="cover" ></canvas> 
                     </p>
                 </div>

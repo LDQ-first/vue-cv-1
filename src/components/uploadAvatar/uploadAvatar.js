@@ -8,13 +8,13 @@ export default {
             py: 0,
             sx: 15,
             sy: 15,
-            sHeight: 150,
-            sWidth: 150,
+            sHeight: 100,
+            sWidth: 100,
             getImgWidth: 0,
             getImgHeight: 0,
            
-            controlOffsetHeight: 0,
-            controlOffsetWidth: 0,
+            controlClientHeight: 0,
+            controlClientWidth: 0,
             controlOffsetLeft: 0,
             controlOffsetTop: 0,
             
@@ -26,7 +26,9 @@ export default {
             imgUrl: '',
             draging: false,
             startX: 0,
-            startY: 0
+            startY: 0,
+            imgWidth: 0,
+            imgHeight: 0,
         }
     },
     computed:{
@@ -86,28 +88,31 @@ export default {
             img.src = url;
             
             const control = document.querySelector('.control');
-            this.controlOffsetHeight = control.offsetHeight;
-            this.controlOffsetWidth = control.offsetWidth;
+            this.controlClientHeight = control.clientHeight;
+            this.controlClientWidth = control.clientWidth;
+            
             img.onload = () => {
-                const imgWidth = img.width;
-                const imgHeight = img.height;
+                this.imgWidth = img.width;
+                this.imgHeight = img.height;
                 console.log(img.width);
                 console.log(img.height);
-                if(imgWidth < this.controlOffsetWidth && imgHeight < this.controlOffsetHeight) {
-                    this.getImgWidth = imgWidth;
-                    this.getImgHeight = imgHeight;
+                if(this.imgWidth < this.controlClientWidth && this.imgHeight < this.controlClientHeight) {
+                    this.getImgWidth = this.mgWidth;
+                    this.getImgHeight = this.imgHeight;
                 }
                 else {
-                    const pWidth = imgWidth / (imgHeight / this.controlOffsetHeight);
-                    const pHeight = imgHeight / (imgWidth / this.controlOffsetWidth);
-                    this.getImgWidth = imgWidth > imgHeight ? this.controlOffsetWidth : pWidth;
-                    this.getImgHeight = imgHeight > imgWidth ? this.controlOffsetHeight: pHeight;
+                    const pWidth = this.imgWidth / (this.imgHeight / this.controlClientHeight);
+                    const pHeight = this.imgHeight / (this.imgWidth / this.controlClientWidth);
+                    this.getImgWidth = this.imgWidth > this.imgHeight ? this.controlClientWidth : pWidth;
+                    this.getImgHeight = this.imgHeight > this.imgWidth ? this.controlClientHeight: pHeight;
                 }
                 console.log('this.getImgWidth: ', this.getImgWidth);
-                this.px = (this.controlOffsetWidth - imgWidth) / 2 ;
-                this.py = (this.controlOffsetHeight - imgHeight) / 2;
+                console.log('this.getImgHeight: ', this.getImgHeight);
+                this.px = (this.controlClientWidth - this.getImgWidth) / 2 ;
+                this.py = (this.controlClientHeight - this.getImgHeight) / 2;
                 console.log('this.px: ', this.px);
-                canvas.drawImage(img, 0, 0, imgWidth, imgHeight);
+                console.log('this.py: ', this.py);
+                canvas.drawImage(img, 0, 0, this.getImgWidth, this.getImgHeight);
                 this.imgUrl = getImg.toDataURL();
                 this.cutImg();
                 this.drag();
@@ -115,25 +120,75 @@ export default {
         },
         cutImg() {
             this.editDisplay = 'block';
-            const edit = document.querySelector('#edit');
-            const editCanvas = edit.getContext('2d');
+            let edit = document.querySelector('#edit');
+            let editCanvas = edit.getContext('2d');
+            editCanvas.clearRect(0, 0, this.getImgWidth, this.getImgHeight);
             editCanvas.fillStyle='rgba(0, 0, 0, 0.5)';
             editCanvas.fillRect(0, 0, this.getImgWidth, this.getImgHeight);
-            editCanvas.clearRect(this.sx, this.sy, this.sHeight, this.sWidth);
-
-
+            editCanvas.clearRect(this.sx, this.sy, this.sWidth, this.sHeight);
+            console.log(editCanvas);
         },
         drag() {
             
         },
-        dragMove(e) {
-            console.log(e);
+        dragDown(e) {
+                console.log(e);
+                console.log(e.target);
             const control = document.querySelector('.control');
             this.controlOffsetLeft = control.offsetLeft;
             this.controlOffsetTop = control.offsetTop;
-          //  const pageX = e.pageX - (this.controlOffsetLeft + )
-        },
-        dragDown() {
+            const ex = e.clientX;
+            const ey = e.clientY;
+            const objX = e.target.offsetLeft;
+            const objY = e.target.offsetTop;
+            const pageX = ex - (this.controlOffsetLeft + objX);
+            const pageY = ey - (this.controlOffsetTop + objY);
+                console.log(pageX); 
+                console.log(pageY); 
+            
+            if(pageX > this.sx && pageX < this.sx + this.sWidth && pageY > this.sy && pageY < this.sy + this.sHeight) {
+                this.draging = true;
+                e.target.style.cursor = "move";
+                const tsx = this.sx;
+                const tsy = this.sy;
+                e.target.addEventListener('mousemove', (ev)=> {
+                    if(this.draging) {
+                        const evx = ev.clientX;
+                        const evy = ev.clientY;
+                        const clipX = tsx + evx - ex;
+                        const clipY = tsy + evy - ey;
+                    
+                        if(clipX < 0) {
+                             this.sx = 0; 
+                        }
+                        else if(clipX + this.sWidth >  this.getImgWidth) {
+                            this.sx = this.getImgWidth - this.sWidth;
+                        }
+                        else {
+                            this.sx = clipX;
+                        }
+                        
+                        if(clipY < 0) {
+                             this.sy = 0; 
+                        }
+                        else if(clipY + this.sHeight > this.getImgHeight) {
+                            this.sy = this.getImgHeight - this.sHeight;
+                        }
+                        else {
+                            this.sy = clipY;
+                        }
+                    
+
+                        this.cutImg();
+                    }
+
+                }) ;
+
+                document.onmouseup = () => {
+                     this.draging = false;
+                     e.target.style.cursor = "auto";
+                }
+            }
 
         },
 

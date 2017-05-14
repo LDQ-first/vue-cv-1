@@ -69,10 +69,18 @@
             .control{
                 width: 300px;
                 height: 300px;
+                box-sizing: content-box;
                 border: 2px solid #E6AC71;
                 position: relative;
+                background: #1C5FE6;
                 #getImg {
                     position:absolute;
+                    box-sizing: content-box;
+                }
+                #edit {
+                    position:absolute;
+                    display:none;
+                   // background:#000;
                 }
                 #cover {
                     position:absolute;
@@ -80,11 +88,6 @@
                     display:none;
                     top: 0px;
                     left: 0px;
-                }
-                #edit {
-                    position:absolute;
-                    display:none;
-                   // background:#000;
                 }
             }
             .upload{
