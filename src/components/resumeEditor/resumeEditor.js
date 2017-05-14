@@ -70,8 +70,10 @@ export default {
             this.$store.commit('addResumeField', field);
             changeState(`resume.${field}`, this.$store.state.resume[field]);
         },
-        uploadAvatar() {
+        uploadAvatar(selected) {
             this.uploadAvatarvisible = true;
+             console.log(selected);
+            bus.$emit('readSelected', selected);
         },
         closeAvatar() {
             this.uploadAvatarvisible = false;

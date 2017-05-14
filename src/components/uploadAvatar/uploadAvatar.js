@@ -61,13 +61,15 @@ export default {
        },
     },
     props: ['visible', 'parent'],
-    mounted() {
-        this.initS();
+    created() {
+        bus.$on('readSelected',(selected)=>{
+            this.initS(selected);
+        })
     },
     methods:{
-        initS(){
-           console.log(this.parent)
-           if(this.parent == 'profile') {
+        initS(selected){
+           console.log(selected);
+           if(selected == 'profile') {
                this.sHeight = 133;
                this.sWidth = 95;
            }

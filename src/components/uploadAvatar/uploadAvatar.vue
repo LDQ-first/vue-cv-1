@@ -15,7 +15,7 @@
                     </p>
                 </div>
                 <div class="upload">
-                    <a href="javascript:;" class="uploadImg" @click="initS">上传头像
+                    <a href="javascript:;" class="uploadImg">上传头像
                         <input id="photoFileUpload" type="file" accept="image/jpg, image/png, image/jpeg, image/gif"
                         @change="uploadImg($event.target) ">
                     </a>
