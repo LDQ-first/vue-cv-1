@@ -15,18 +15,17 @@
                     </p>
                 </div>
                 <div class="upload">
-                    <a href="javascript:;" class="uploadImg">上传头像
+                    <a href="javascript:;" class="uploadImg" @click="initS">上传头像
                         <input id="photoFileUpload" type="file" accept="image/jpg, image/png, image/jpeg, image/gif"
                         @change="uploadImg($event.target) ">
                     </a>
                 </div>
+                 <button class="saveAvatar" @click="savaAvatar">保存</button>
             </div>
             <div id="avatarSide">
                 <p>
                     <span class="showEdit" :style="showEditStyleObject"></span>
-                    <span class="showPic"><img src=""></span>
                 </p>
-                <button class="saveAvatar" @click="savaAvatar">保存</button>
             </div>
         </div>
     </div>

@@ -1,4 +1,6 @@
 import SkinColor from '../skinColor/skinColor.vue'
+import bus from '../../lib/bus.js'
+import changeState from '../../lib/changeState.js'
 
 export default {
     name: 'resumePreview',
@@ -14,10 +16,17 @@ export default {
         },
         resume() {
             return this.$store.state.resume;  
+        },
+        resumeAvatarSrc() {
+            return this.$store.state.resumeAvatarSrc;
         }
     },
     created() {
         console.log(this.resume);
+        bus.$on('resumeAvatar', (src) => {
+            console.log('resumeAvatar');
+            changeState('resumeAvatarSrc', src);
+        })
     },
     components:{
         SkinColor

@@ -17,7 +17,7 @@
         box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
         width: 650px;
         padding: 20px;
-        background: #331C48;
+        background: #875AD4;
         header {
             width: 100%;
             padding: 20px;
@@ -116,24 +116,6 @@
                     }
                 }
             }
-        }
-        #avatarSide {
-            flex-grow: 1;
-            .showEdit {
-                 display: block; 
-                 border:2px solid #E6AC71;
-            }
-            .showPic{
-                height:100px;
-                width:100px;
-                border:2px solid #E6AC71;
-                overflow:hidden;
-                margin: 20px auto;
-                display:inline-block; 
-                img {
-                    margin: 0;
-                }
-            }
             .saveAvatar {
                 margin: 10px;
                 cursor: pointer;
@@ -143,6 +125,13 @@
                 border: 1px solid #99D3F5;
                 border-radius: 4px;
                 color: #0C69CD;
+            }
+        }
+        #avatarSide {
+            flex-grow: 1;
+            .showEdit {
+                 display: block; 
+                 border:2px solid #E6AC71;
             }
         }
         

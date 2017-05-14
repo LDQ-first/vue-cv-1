@@ -21,6 +21,17 @@
     p {
         white-space: pre-line;
     }
+    .resumeAvatar {
+       width: 95px;
+       height: 133px;
+       position: absolute;
+       right: 200px;
+       overflow: hidden;
+       img {
+           border: none;
+           margin: 0;
+       }
+    }
     section {
         background: #EEE;
         border-left: 6px solid;
@@ -36,6 +47,7 @@
         }
     }
     section[data-name="profile"] {
+        position: relative;
         h1 {
             margin: 0.1em 0;
             font-size: 4em;

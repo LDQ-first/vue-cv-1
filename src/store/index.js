@@ -77,6 +77,7 @@ export default new Vuex.Store({
         '#F6CB60 linear-gradient(135deg, #F6CB60, #F7AF00)',
         '#4CB9B5 linear-gradient(135deg, #4CB9B5, #399CA0)',
         ],
+        resumeAvatarSrc: '',
     },
     mutations: mutations(),
     actions: actions()

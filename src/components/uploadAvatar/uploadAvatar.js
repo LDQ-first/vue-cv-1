@@ -1,4 +1,4 @@
-
+import bus from '../../lib/bus.js'
 
 export default {
     name: 'uploadAvatar',
@@ -26,18 +26,14 @@ export default {
         }
     },
     computed:{
-         getImgStyleObject() {
+        getImgStyleObject() {
              return {
-              /*  width: this.getImgWidth + 'px',
-                height: this.getImgHeight + 'px',*/
                 left: this.px + 'px',
                 top: this.py + 'px'
              }
         },
         editStyleObject() {
             return {
-                /*width: this.getImgWidth + 'px',
-                height: this.getImgHeight + 'px',*/
                 display: this.editDisplay,
                 left: this.px + 'px',
                 top: this.py + 'px'
@@ -47,20 +43,37 @@ export default {
             return {
                 width: this.sWidth + 'px',
                 height: this.sHeight + 'px',
-                background: `url(${this.imgUrl}) -${this.sx}px -${this.sy}px no-repeat`
+                background: `#1C5FE6 url(${this.imgUrl}) -${this.sx}px -${this.sy}px no-repeat`
             }        
        },
        clipStyleObject() {
            return {
-               width: this.sHeight + 'px',
-               height: this.sWidth + 'px',
-           }
-       }
+               width: this.sWidth + 'px',
+               height: this.sHeight + 'px',
 
+           }
+       },
+       showPicStyleObject() {
+           return {
+               width: this.sWidth + 'px',
+               height: this.sHeight + 'px',
+           }
+       },
     },
-    props: ['visible'],
+    props: ['visible', 'parent'],
+    mounted() {
+        this.initS();
+    },
     methods:{
+        initS(){
+           console.log(this.parent)
+           if(this.parent == 'profile') {
+               this.sHeight = 133;
+               this.sWidth = 95;
+           }
+       },
         close(){
+            this.imgUrl = '';
             this.$emit('close');
         },
         uploadImg(input){
@@ -85,7 +98,6 @@ export default {
             const getImg = document.querySelector('#getImg');
             const canvas = getImg.getContext("2d");
             canvas.clearRect(0, 0, this.getImgWidth, this.getImgHeight);
-            /*canvas.scale(2,2);*/
             const img = new Image();
             img.src = url;
             
@@ -116,9 +128,11 @@ export default {
 
                 getImg.width = this.getImgWidth;
                 getImg.height = this.getImgHeight;
+                /*canvas.scale(2,2);*/
                 canvas.drawImage(img, 0, 0, this.getImgWidth, this.getImgHeight);
               /*  canvas.drawImage(img, 0, 0, this.imgWidth, this.imgHeight, 
                 0, 0, this.getImgWidth, this.getImgHeight);*/
+                /* canvas.scale(2,2);*/
                 this.imgUrl = getImg.toDataURL();
                 this.cutImg();
             }
@@ -130,7 +144,7 @@ export default {
             edit.width = this.getImgWidth;
             edit.height = this.getImgHeight;
             editCanvas.clearRect(0, 0, this.getImgWidth, this.getImgHeight);
-            editCanvas.fillStyle='rgba(0, 0, 0, 0.5)';
+            editCanvas.fillStyle='rgba(158, 187, 244, 0.5)';
             editCanvas.fillRect(0, 0, this.getImgWidth, this.getImgHeight);
             editCanvas.clearRect(this.sx, this.sy, this.sWidth, this.sHeight);
         },
@@ -144,16 +158,13 @@ export default {
             const objY = e.target.offsetTop;
             const pageX = ex - (this.controlOffsetLeft + objX);
             const pageY = ey - (this.controlOffsetTop + objY);
-
-            // e.target.style.cursor = "move";
             if(pageX > this.sx && pageX < this.sx + this.sWidth && pageY > this.sy && pageY < this.sy + this.sHeight) {
                 this.draging = true;
-                 e.target.style.cursor = "move";
+                e.target.style.cursor = "move";
                 const tsx = this.sx;
                 const tsy = this.sy;
-                e.target.addEventListener('mousemove', (ev)=> {
+                e.target.onmousemove =  (ev)=> {
                     if(this.draging) {
-                        
                         const evx = ev.clientX;
                         const evy = ev.clientY;
                         const clipX = tsx + evx - ex;
@@ -182,10 +193,10 @@ export default {
                         this.cutImg();
                     }
 
-                });
+                };
                 document.onmouseup = () => {
                      this.draging = false;
-                     e.target.style.cursor = "default";
+                     e.target.style.cursor = "auto";
                 }
             }
         },
@@ -198,11 +209,8 @@ export default {
             image.onload  = () => {
                 clipContext.drawImage(image, this.sx, this.sy, this.sWidth, this.sHeight,
                  0, 0, this.sWidth, this.sHeight);
-                 document.querySelector('.showPic').querySelector('img').src = clip.toDataURL();
+                 bus.$emit('resumeAvatar', clip.toDataURL());
             }
         }
-
-
-
     }
 }
