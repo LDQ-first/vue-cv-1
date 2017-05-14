@@ -11,7 +11,7 @@
                     <p>
                         <canvas id="edit" :style="editStyleObject"
                          @mousedown="dragDown"></canvas>
-                        <canvas id="cover" ></canvas> 
+                        <canvas id="clip" :style="clipStyleObject"></canvas> 
                     </p>
                 </div>
                 <div class="upload">
@@ -24,9 +24,9 @@
             <div id="avatarSide">
                 <p>
                     <span class="showEdit" :style="showEditStyleObject"></span>
-                    <span class="showPic"><img src="" alt=""></span>
+                    <span class="showPic"><img src=""></span>
                 </p>
-                <button class="saveAvatar">保存</button>
+                <button class="saveAvatar" @click="savaAvatar">保存</button>
             </div>
         </div>
     </div>

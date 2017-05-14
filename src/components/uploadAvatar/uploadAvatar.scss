@@ -82,7 +82,7 @@
                     display:none;
                    // background:#000;
                 }
-                #cover {
+                #clip {
                     position:absolute;
                     z-index: 9999;
                     display:none;
@@ -120,14 +120,18 @@
             flex-grow: 1;
             .showEdit {
                  display: block; 
+                 border:2px solid #E6AC71;
             }
             .showPic{
                 height:100px;
                 width:100px;
-                border:2px solid #000;
+                border:2px solid #E6AC71;
                 overflow:hidden;
-                margin:0 auto;
+                margin: 20px auto;
                 display:inline-block; 
+                img {
+                    margin: 0;
+                }
             }
             .saveAvatar {
                 margin: 10px;

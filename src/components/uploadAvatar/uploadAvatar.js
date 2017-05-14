@@ -11,18 +11,12 @@ export default {
             sHeight: 100,
             sWidth: 100,
             getImgWidth: 0,
-            getImgHeight: 0,
-           
+            getImgHeight: 0,          
             controlClientHeight: 0,
             controlClientWidth: 0,
             controlOffsetLeft: 0,
             controlOffsetTop: 0,
-            
-            /*editHeight: 0,
-            editWidth: 0,*/
             editDisplay: 'none',
-            
-            /*showEditBackground: '',*/
             imgUrl: '',
             draging: false,
             startX: 0,
@@ -32,7 +26,7 @@ export default {
         }
     },
     computed:{
-         getImgStyleObject(){
+         getImgStyleObject() {
              return {
                 width: this.getImgWidth + 'px',
                 height: this.getImgHeight + 'px',
@@ -40,7 +34,7 @@ export default {
                 top: this.py + 'px'
              }
         },
-        editStyleObject(){
+        editStyleObject() {
             return {
                 width: this.getImgWidth + 'px',
                 height: this.getImgHeight + 'px',
@@ -49,13 +43,19 @@ export default {
                 top: this.py + 'px'
             }    
         },
-        showEditStyleObject(){
+        showEditStyleObject() {
             return {
                 width: this.sWidth + 'px',
                 height: this.sHeight + 'px',
                 background: `url(${this.imgUrl}) -${this.sx}px -${this.sy}px no-repeat`
             }        
        },
+       clipStyleObject() {
+           return {
+               width: this.sHeight + 'px',
+               height: this.sWidth + 'px',
+           }
+       }
 
     },
     props: ['visible'],
@@ -84,6 +84,8 @@ export default {
         paintImage(url) {
             const getImg = document.querySelector('#getImg');
             const canvas = getImg.getContext("2d");
+            canvas.clearRect(0, 0, this.getImgWidth, this.getImgHeight);
+            /*canvas.scale(2,2);*/
             const img = new Image();
             img.src = url;
             
@@ -115,7 +117,6 @@ export default {
                 canvas.drawImage(img, 0, 0, this.getImgWidth, this.getImgHeight);
                 this.imgUrl = getImg.toDataURL();
                 this.cutImg();
-                this.drag();
             }
         },
         cutImg() {
@@ -126,14 +127,8 @@ export default {
             editCanvas.fillStyle='rgba(0, 0, 0, 0.5)';
             editCanvas.fillRect(0, 0, this.getImgWidth, this.getImgHeight);
             editCanvas.clearRect(this.sx, this.sy, this.sWidth, this.sHeight);
-            console.log(editCanvas);
-        },
-        drag() {
-            
         },
         dragDown(e) {
-                console.log(e);
-                console.log(e.target);
             const control = document.querySelector('.control');
             this.controlOffsetLeft = control.offsetLeft;
             this.controlOffsetTop = control.offsetTop;
@@ -143,16 +138,16 @@ export default {
             const objY = e.target.offsetTop;
             const pageX = ex - (this.controlOffsetLeft + objX);
             const pageY = ey - (this.controlOffsetTop + objY);
-                console.log(pageX); 
-                console.log(pageY); 
-            
+
+            // e.target.style.cursor = "move";
             if(pageX > this.sx && pageX < this.sx + this.sWidth && pageY > this.sy && pageY < this.sy + this.sHeight) {
                 this.draging = true;
-                e.target.style.cursor = "move";
+                 e.target.style.cursor = "move";
                 const tsx = this.sx;
                 const tsy = this.sy;
                 e.target.addEventListener('mousemove', (ev)=> {
                     if(this.draging) {
+                        
                         const evx = ev.clientX;
                         const evy = ev.clientY;
                         const clipX = tsx + evx - ex;
@@ -177,20 +172,33 @@ export default {
                         else {
                             this.sy = clipY;
                         }
-                    
+                       /* console.log('clipY: ', clipY);
+                        console.log('this.getImgHeight: ', this.getImgHeight);*/
+                        
 
                         this.cutImg();
                     }
 
-                }) ;
-
+                });
                 document.onmouseup = () => {
                      this.draging = false;
-                     e.target.style.cursor = "auto";
+                     e.target.style.cursor = "default";
                 }
             }
-
         },
+        savaAvatar() {
+            const clip = document.querySelector('#clip');
+            const clipContext = clip.getContext('2d');
+            const image = new Image();
+            image.src = this.imgUrl;
+
+            image.onload  = () => {
+                clipContext.drawImage(image, this.sx, this.sy, this.sWidth, this.sHeight,
+                 0, 0, this.sWidth, this.sHeight);
+                 document.querySelector('.showPic').querySelector('img').src = clip.toDataURL();
+            }
+        }
+
 
 
     }
