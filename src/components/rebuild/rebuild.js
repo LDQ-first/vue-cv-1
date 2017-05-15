@@ -17,32 +17,45 @@ export default {
           /*  console.log(this.$store.state);*/
             const resume = this.$store.state.resume;
             const resumeConfig = resume.config;
+            this.traversalResume(resume, resumeConfig)
+        },
+        traversalResume(resume, resumeConfig) {
             for(let i = 0; i < resumeConfig.length; i++) {
                 const resumeField = resume[resumeConfig[i].field];
                 if(resumeField instanceof Array) {
-                    //console.log(resumeConfig[i].field);
+                    /*console.log(resumeConfig[i].field);*/
+                    let j = 0;
                     for(let k of resumeField) {
-                        console.log(k);
-                        /*if(k instanceof Array) {
-
-                        }*/
-                      /*  this.clearObj(k, resumeConfig[i].field);*/
+                        if(k instanceof Object) {
+                            console.log(j);
+                            this.clearObj(k, resumeConfig[i].field, j);
+                            j++;
+                            
+                        }
                     }
-                 //   this.clearObj(resumeField, resumeConfig[i].field);
                 }
                 else {                
                      this.clearObj(resumeField, resumeConfig[i].field);
                 }
             }
         },
-        clearObj(obj, field) {
+        clearObj(obj, field, i) {
             console.log(obj,field);
             /*let copyObj = JSON.parse(JSON.stringify(obj))
             console.log(copyObj);*/
+            let path ;
             for(let key in obj) {
-                console.log(key);
+             //   console.log(key);
+             if(isNaN(i)) {
                 console.log(`resume.${field}.${key}`);
-              //  this.changeResumeField(`resume.${field}.${key}`, '');
+                path = `resume.${field}.${key}`;
+             }
+             else {
+                console.log(`resume.${field}.${i}.${key}`);
+                path = `resume.${field}.${i}.${key}`;
+             }
+               
+                this.changeResumeField(path, '');
             }
         },
         changeResumeField(path, value) {
