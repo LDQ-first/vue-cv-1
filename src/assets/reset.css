@@ -59,3 +59,26 @@ img {
     margin: 10px;
 }
 
+input[type="range"] {
+   -webkit-appearance: none;
+   border-radius: 2px;
+   outline:none;
+   height: 4px;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+   /* -webkit-appearance: none;*/
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(4, 154, 12, 0.2);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+   -webkit-appearance: none;
+   border-radius: 50%;
+   height: 14px;
+   width: 14px;
+   margin-top: -5px;
+   background: #03a748;
+   box-shadow: 0 0 8px #ddd;
+}

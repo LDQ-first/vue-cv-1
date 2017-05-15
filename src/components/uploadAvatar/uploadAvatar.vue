@@ -22,7 +22,9 @@
                 </div>
                 <div class="operate">
                     <button class="saveAvatar" @click="savaAvatar">保存</button>
-                    <input type="range"  value="1.0" min="0.5" max="3.0" step="0.01" class="changeScale">
+                    <input type="range"  value="1.0" min="0" max="3.0" step="0.01" class="changeScale" 
+                    @mousemove="changeScale($event)" @mousedown="change = true" @mouseup="change = false"
+                    @input="changeRange($event)" :style="RangeStyle">
                 </div>
             </div>
             <div id="avatarSide">

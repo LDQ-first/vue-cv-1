@@ -22,7 +22,12 @@ export default {
             imgWidth: 0,
             imgHeight: 0,
             scale: 1.0,
-            change: false
+            max: 3.0,
+            change: false,
+            getImg: '',
+            canvas: '',
+            img: '',
+            url: '',
         }
     },
     computed: {
@@ -51,9 +56,17 @@ export default {
                 height: this.sHeight + 'px',
             }
         },
+        RangeStyle() {
+            return {
+                background: `linear-gradient(to right, #038653 0%,
+                 #038653 ${(this.scale/this.max*100).toFixed(2)}%,
+                 #8dfbd0 ${(this.scale/this.max*100).toFixed(2)}%, #8dfbd0)`
+            }
+        }
     },
     props: ['visible', 'parent'],
     created() {
+        console.log()
         bus.$on('readSelected', (selected) => {
             this.initS(selected);
         })
@@ -62,8 +75,12 @@ export default {
         initS(selected) {
             console.log(selected);
             if (selected == 'profile') {
-                this.sHeight = 133;
-                this.sWidth = 95;
+                /*this.sHeight = 133;
+                this.sWidth = 95;*/
+                
+                this.sHeight = 200;
+                this.sWidth = 133;
+
             }
         },
         close() {
@@ -80,45 +97,36 @@ export default {
                     const oFReader = new FileReader();
                     oFReader.readAsDataURL(localFile);
                     oFReader.onload = (e) => {
-                        console.log(e);
-                        this.paintImage(e.target.result);
+                        this.url = e.target.result;
+                        this.paintImage();
                     }
                 }
             }
         },
-        paintImage(url) {
-            const getImg = document.querySelector('#getImg');
-            const canvas = getImg.getContext("2d");
-            canvas.clearRect(0, 0, this.controlClientWidth, this.controlClientHeight);
-            const img = new Image();
-            img.src = url;
+        paintImage() {
+            this.getImg = document.querySelector('#getImg');
+            this.canvas = this.getImg.getContext("2d");
+            this.canvas.clearRect(0, 0, this.controlClientWidth, this.controlClientHeight);
+            this.img = new Image();
+            this.img.src = this.url;
             const control = document.querySelector('.control');
             this.controlClientHeight = control.clientHeight;
             this.controlClientWidth = control.clientWidth;
             this.sx = (this.controlClientWidth - this.sWidth) / 2;
             this.sy = (this.controlClientHeight - this.sHeight) / 2;
 
-            img.onload = () => {
-                this.drawImg(img,canvas,getImg,this.scale);
-                const changeScale = document.querySelector('.changeScale');
-                changeScale.onmousedown = ()=> {
-                    this.change = true;
-                    changeScale.onmousemove = (e)=> {
-                        if(this.change) {
-                            this.changeScale(e, img, canvas, getImg);
-                        }
-                    }
-                    document.onmouseup = () => {
-                        this.change = false;
-                    }
-                }
+            this.img.onload = () => {
+                this.drawImg(this.img, this.canvas, this.getImg, this.scale);
             }
         },
-        changeScale(e, img, canvas, getImg) {
-           this.scale = e.target.value;
-           this.drawImg(img,canvas,getImg,this.scale);
+        changeScale(e) {
+           if(this.change) {
+               this.scale = e.target.value;
+               this.drawImg(this.img, this.canvas, this.getImg, this.scale);
+           }
         },
         drawImg(img,canvas,getImg,scale) {
+            if(!img) return;
             this.imgWidth = img.width;
             this.imgHeight = img.height;
             if (this.imgWidth < this.controlClientWidth && this.imgHeight < this.controlClientHeight) {
@@ -197,7 +205,6 @@ export default {
                         else {
                             this.sy = clipY;
                         }
-
                         this.cutImg();
                     }
 
@@ -219,6 +226,9 @@ export default {
                     0, 0, this.sWidth, this.sHeight);
                 bus.$emit('resumeAvatar', clip.toDataURL());
             }
+        },
+        changeRange(e) {
+            this.scale = e.target.value;
         }
     }
 }
