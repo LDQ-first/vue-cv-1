@@ -1,6 +1,6 @@
 import Topbar from '../components/Topbar/Topbar.vue'
-import ResumeEditor from '../components/ResumeEditor/ResumeEditor.vue'
-import ResumePreview from '../components/ResumePreview/ResumePreview.vue'
+import ResumeEditor from '../components/resumeEditor/resumeEditor.vue'
+import ResumePreview from '../components/resumePreview/resumePreview.vue'
 import icons from '../assets/icons'
 import Rebuild from '../components/rebuild/rebuild.vue'
 

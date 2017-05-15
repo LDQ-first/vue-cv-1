@@ -3,6 +3,15 @@
         <div class="wrapper" :style="{background:skinColor}">
             <span class="logo">Resumer</span>
             <div class="actions">
+                <!--<div class="menu">
+                    <a class="button" v-link="{path: '/resumePreview'}">简历</a>
+                    <a class="button" v-link="{path: '/user'}">个人主页</a>
+                </div>-->
+                <div class="menu">
+                    <router-link class="button" to="{path: '/resumePreview'}">简历</router-link>
+                    <router-link class="button" to="{path: '/user'}">个人主页</router-link>
+                </div>
+
                 <div v-if="logined" class="userActions">
                     <span class="welcome">你好, {{user.username}}</span>
                     <a href="javascript:;" class="button" @click.prevent="signOut">登出</a>

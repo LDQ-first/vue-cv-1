@@ -7,6 +7,8 @@ import VerifyEmail from '../verifyEmail/verifyEmail.vue'
 import AV from '../../lib/leancloud'
 
 
+
+
 export default {
     name: 'Topbar',
     props: ['defaultState'],
