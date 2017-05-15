@@ -8,6 +8,7 @@
       <ResumeEditor/>
       <ResumePreview/>
     </main>
+      <Rebuild></Rebuild>
   </div>
 </div>
 </template>
