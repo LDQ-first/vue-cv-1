@@ -5,9 +5,9 @@ import EmailVerify from '../emailVerify/emailVerify.vue'
 import ResetPassword from '../resetPassword/resetPassword.vue'
 import VerifyEmail from '../verifyEmail/verifyEmail.vue'
 import AV from '../../lib/leancloud'
+import bus from '../../lib/bus.js'
 
-
-
+import {router, routes} from '../../router/index.js'
 
 export default {
     name: 'Topbar',
@@ -20,7 +20,13 @@ export default {
             emailVerifyVisible: false,
             resetPasswordVisible: false,
             verifyEmailVisible: false,
+            routes,
+            activeIndex: 1,
         }
+    },
+    created() {
+        this.defaultActiveIndex();
+         
     },
     computed: {
         user() {
@@ -65,7 +71,21 @@ export default {
             this.signInDialogVisible = true;
             this.verifyEmailVisible = false;
             this.resetPasswordVisible = false;
-        }
+        },
+        handleSelect(key) {
+            this.activeIndex = key;
+            bus.$emit('changeUrl', key);
+        },
+        defaultActiveIndex() {
+            const path = this.$route.path;
+            let i = 0;
+            for(let route of routes) {
+                if(path === route.path) {
+                    this.activeIndex = i;
+                }
+                i++;
+            }
+         }
     },
     components: {
         MyDialog,

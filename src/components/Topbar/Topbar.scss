@@ -30,6 +30,7 @@
         box-shadow: 1px 1px 2px hsla(0, 0, 0, 0.50);
         &:hover {
             box-shadow: 1px 1px 10px hsla(0, 0, 0, 0.50);
+            text-decoration: none;
         }
         &.primary {
             background: #02af5f;
@@ -38,6 +39,17 @@
     }
     .actions {
         display: flex;
+        .menu {
+            margin-right: 20px;
+            .button {
+                padding: 0 10px;
+                margin: 0 10px;
+                box-sizing: content-box;
+                &.active {
+                    background: #02af5f;
+                }
+            }
+        }
         .userActions {
             margin-right: 3em;
             .welcome {

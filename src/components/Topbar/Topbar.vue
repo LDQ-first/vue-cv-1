@@ -3,13 +3,15 @@
         <div class="wrapper" :style="{background:skinColor}">
             <span class="logo">Resumer</span>
             <div class="actions">
-                <!--<div class="menu">
-                    <a class="button" v-link="{path: '/resumePreview'}">简历</a>
-                    <a class="button" v-link="{path: '/user'}">个人主页</a>
-                </div>-->
                 <div class="menu">
-                    <router-link class="button" to="{path: '/resumePreview'}">简历</router-link>
-                    <router-link class="button" to="{path: '/user'}">个人主页</router-link>
+                   <!-- <router-link class="button" to="{path: '/resumePreview'}">简历</router-link>
+                    <router-link class="button" to="{path: '/user'}">个人主页</router-link>-->
+                    <span class="button" @click="handleSelect(index)" 
+                    v-for="(route, index) in routes" :key="index" v-if="index > 0" 
+                    :class="{active: activeIndex === index}">
+                        {{route.meta.title}}
+                    </span>
+                   <!-- <a class="button" @select="handleSelect">个人主页</a>-->
                 </div>
 
                 <div v-if="logined" class="userActions">

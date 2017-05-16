@@ -6,7 +6,8 @@
     </header>
     <main>
       <ResumeEditor/>
-      <ResumePreview/>
+     <!-- <ResumePreview/>-->
+     <router-view></router-view>
     </main>
       <Rebuild></Rebuild>
   </div>
