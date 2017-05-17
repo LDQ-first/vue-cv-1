@@ -32,7 +32,7 @@
             <MyDialog title="邮箱验证" :visible="emailVerifyVisible" @close="emailVerifyVisible = false">
                 <EmailVerify></EmailVerify>
             </MyDialog>
-            <MyDialog title="重置密码" :visible="resetPasswordVisible" @close="resetPasswordVisible = false">
+            <MyDialog title="重置密码" :visible="resetPasswordVisible" @close="resetPasswordVisible = false" >
                 <ResetPassword @returnSignIn="returnSignIn"/>
             </MyDialog>
             <MyDialog title="验证邮箱" :visible="verifyEmailVisible" @close="verifyEmailVisible = false">

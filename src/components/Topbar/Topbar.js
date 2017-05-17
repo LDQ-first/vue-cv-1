@@ -6,6 +6,7 @@ import ResetPassword from '../resetPassword/resetPassword.vue'
 import VerifyEmail from '../verifyEmail/verifyEmail.vue'
 import AV from '../../lib/leancloud'
 import bus from '../../lib/bus.js'
+import changeState from '../../lib/changeState.js'
 
 import {router, routes} from '../../router/index.js'
 
@@ -22,11 +23,15 @@ export default {
             verifyEmailVisible: false,
             routes,
             activeIndex: 1,
+            email: '',
         }
     },
     created() {
         this.defaultActiveIndex();
-         
+         bus.$on('showResetPassword', (email) => {
+             this.resetPassword();
+             bus.$emit('FillinEmail', email);
+         })
     },
     computed: {
         user() {
@@ -50,8 +55,10 @@ export default {
             this.signUpDialogVisible = false;
             this.signInDialogVisible = false;
             this.$store.commit('setUser', user);
-            this.$store.commit('fetchResume');
+            changeState('user', user );
             localStorage.setItem('user', JSON.stringify(user));
+            this.$store.commit('fetchResume');
+           
         },
         signOut() {
             AV.User.logOut();

@@ -22,6 +22,9 @@ export default {
         bus.$on('clearData', ()=> {
              clearData(this._data);
         })
+        bus.$on('FillinEmail', (email) => {
+            this.setEmail(email);
+        })
     },
     methods: {
         resetPassword(email) {
@@ -43,6 +46,10 @@ export default {
         },
         returnSignIn(){
             this.$emit('returnSignIn');
+        },
+        setEmail(email) {
+            console.log('setEmail');
+            this.email = email;
         }
     }
 }

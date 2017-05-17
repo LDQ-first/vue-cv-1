@@ -4,6 +4,7 @@ import getAVUser from '../../lib/getAVUser'
 import clearData from '../../lib/clearData.js'
 import bus from '../../lib/bus.js'
 
+
 export default {
     name: 'SignInForm',
     data() {
@@ -24,14 +25,15 @@ export default {
         signIn() {
            
             let {username, password} = this.formData;
-            AV.User.logIn(username, password).then(() => {
-                this.$emit('success', getAVUser());
+            AV.User.logIn(username, password).then((res) => {
+                const user = Object.assign(getAVUser(), {email: res._serverData.email});
+                this.$emit('success', user);
                  clearData(this._data);
             }, (error) => {
                 this.errorMessage = getErrorMessage(error);
             });
            
-            console.log(this._data);
+           // console.log(this._data);
         },
         resetPassword() {
             clearData(this._data);

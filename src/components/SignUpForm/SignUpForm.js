@@ -30,7 +30,8 @@ export default {
             user.setPassword(password);
             user.setEmail(email);
             user.signUp().then((loginedUser) => {
-                const user = Object.assign(getAVUser(), {  email: loginedUser._serverData.email });               
+                const user = Object.assign(getAVUser(), {  email: loginedUser._serverData.email });   
+                console.log(user);            
                 this.$emit('success', user);
                 bus.$emit('email', email);
                 clearData(this._data);

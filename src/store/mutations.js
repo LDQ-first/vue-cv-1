@@ -64,8 +64,9 @@ export default () => {
         },
         removeResume(state, defaultState) {
             Object.assign(state, defaultState);
-            state.user.id = '';
-            state.user.username = '';
+            for(let i in state.user) {
+                state.user[i] = '';
+            }
             localStorage.setItem('user', '');
         },
         deleteResumeField(state, { field, i }) {
