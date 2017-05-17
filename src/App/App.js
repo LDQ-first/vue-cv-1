@@ -3,6 +3,7 @@ import ResumeEditor from '../components/resumeEditor/resumeEditor.vue'
 import ResumePreview from '../components/resumePreview/resumePreview.vue'
 import icons from '../assets/icons'
 import Rebuild from '../components/rebuild/rebuild.vue'
+import Message from '../components/message/message.vue'
 
 
 import store from '../store/index'
@@ -11,6 +12,7 @@ import getAVUser from '../lib/getAVUser'
 import getRadomImg from '../lib/getRadomImg.js'
 import bus from '../lib/bus.js'
 
+
 import {router, routes} from '../router/index.js'
 
 export default {
@@ -18,12 +20,16 @@ export default {
     data() {
         return {
             defaultState: {},
-            routes
+            routes,
+            isShowMessage: false,
+            type: '',
+            message: '',
+            event: '',
         }
     },
     store,
     router,
-    components: {Topbar, ResumeEditor, ResumePreview, Rebuild},
+    components: {Topbar, ResumeEditor, ResumePreview, Rebuild, Message},
     created(){
         document.body.insertAdjacentHTML('afterbegin', icons);
         Object.assign(this.defaultState , this.$store.state);
@@ -36,6 +42,15 @@ export default {
         bus.$on('changeUrl', (key) => {
             console.log(key);
             this.$router.push(this.routes[key]);
+        })
+        bus.$on('showMessage', ({type, message, event}) => {
+            console.log(type);
+            console.log(message);
+            console.log(event);
+            this.isShowMessage = true;
+            this.type = type;
+            this.message = message;
+            this.event = event;
         })
        /* console.log(this.$route);*/
         

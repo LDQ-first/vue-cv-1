@@ -1,22 +1,32 @@
 import changeState from '../../lib/changeState.js'
+import Message from '../message/message.vue'
+import bus from '../../lib/bus.js'
+
 
 export default {
     name: 'rebuild',
     data() {
         return {
-            showRebuildText: false
+            showRebuildText: false,
+            message: '你确定要清空重建吗？'
         }
+    },
+    created() {
+        bus.$on('rebuild', ()=> {
+            const resume = this.$store.state.resume;
+            const resumeConfig = resume.config;
+            this.traversalResume(resume, resumeConfig);
+        })
     },
     computed: {
         skinColor() {
             return this.$store.state.skinColor;
         }
+        
     },
     methods: {
-        rebuild() {
-            const resume = this.$store.state.resume;
-            const resumeConfig = resume.config;
-            this.traversalResume(resume, resumeConfig)
+        rebuild(message) {
+            bus.$emit('showMessage', {type: 'confirm', message, event: 'rebuild' });
         },
         traversalResume(resume, resumeConfig) {
             for(let i of resumeConfig) {
@@ -51,5 +61,8 @@ export default {
         changeResumeField(path, value) {
             changeState(path, value)
         },
+    },
+    components: {
+        Message
     }
 }

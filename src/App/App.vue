@@ -13,6 +13,9 @@
      
     </main>
       <Rebuild></Rebuild>
+      <transition name="message">
+         <Message v-show="isShowMessage" :type="type" :message="message" :event="event" @close="isShowMessage = false"></Message>
+      </transition>
   </div>
 </div>
 </template>

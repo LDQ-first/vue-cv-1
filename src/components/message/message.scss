@@ -1,0 +1,110 @@
+#messageWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    .message {
+        width: 30%;
+        padding: 1em 2em;
+        border-radius: 10px;
+        background: #EEE;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        &.confirm {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        &.noConfirm {
+            top: 20%;
+            left: 50%;
+            margin-left: -15%;
+            z-index: 20;
+        }
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            height: 30px;
+            margin: 10px 0;
+            h3 {
+                
+            }
+        }
+        .close {
+            cursor: pointer;
+            transition: all 0.8s ease-in-out;
+            position: relative;
+            width: 20px;
+            height: 20px;
+            &:hover {
+                &::before,
+                &::after {
+                    background: #7E3FFF;
+                }
+                &::before {
+                    transform: translate(-50%, -50%) rotateZ(405deg);
+                }
+                &::after {
+                    transform: translate(-50%, -50%) rotateZ(315deg);
+                }
+            }
+            &::before,
+            &::after {
+                content: '';
+                display: inline-block;
+                width: 5px;
+                height: 20px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: #FFF;
+                transition: all 0.8s ease-in-out;
+                border-radius: 10px;
+            }
+            &::before {
+                transform: translate(-50%, -50%) rotateZ(45deg);
+            }
+            &::after {
+                transform: translate(-50%, -50%) rotateZ(-45deg);
+            }
+        }
+        p{
+             margin: 10px 0;
+             color: #B9F4FF;
+        }
+        .messageControl {
+            width: 100%;
+            margin: 10px 0;
+            display: flex;
+            justify-content: flex-end;
+            .button {
+                width: 72px;
+                height: 32px;
+                margin: 0 10px;
+                border-radius: 4px;
+                border: none;
+                cursor: pointer;
+                font-size: 18px;
+                background: #6DCBA0;
+                color: #222;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                vertical-align: center;
+                 color: #FFF;
+                &:hover {
+                    
+                }
+                &.confirm {
+                    background: #EB3200;
+                }
+            }
+        }
+    }
+    
+
+}
