@@ -20,6 +20,13 @@
            </span>
        </section>
 
+       <section class="info">
+           <span class="infoTitle">头像</span>
+           <span class="infoContent">
+               <button class="button" @click="uploadAvatar(selected)">上传用户头像</button>
+               <UploadAvatar :visible="uploadAvatarvisible" @close="closeAvatar" :parent="selected"></UploadAvatar>
+           </span>
+       </section>
 
     </div>
 </template>

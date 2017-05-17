@@ -28,6 +28,7 @@ export default {
             canvas: '',
             img: '',
             url: '',
+            selected: ''
         }
     },
     computed: {
@@ -40,7 +41,8 @@ export default {
             return {
                 width: this.sWidth + 'px',
                 height: this.sHeight + 'px',
-                background: `#1C5FE6 url(${this.imgUrl}) -${this.sx}px -${this.sy}px no-repeat`
+                background: `#1C5FE6 url(${this.imgUrl}) -${this.sx}px -${this.sy}px no-repeat`,
+                borderRadius: this.selected == 'user'? '50%': '',
             }
         },
         clipStyleObject() {
@@ -74,13 +76,16 @@ export default {
     methods: {
         initS(selected) {
             console.log(selected);
+            this.selected = selected;
             if (selected == 'profile') {
-                /*this.sHeight = 133;
-                this.sWidth = 95;*/
-                
                 this.sHeight = 200;
                 this.sWidth = 133;
-
+            }
+            else if(selected == 'user') {
+                 /*this.sHeight = 54;
+                 this.sWidth = 54;*/
+                 this.sHeight = 120;
+                 this.sWidth = 120;
             }
         },
         close() {

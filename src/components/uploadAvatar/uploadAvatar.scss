@@ -138,6 +138,10 @@
         }
         #avatarSide {
             flex-grow: 1;
+            height: 304px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             .showEdit {
                  display: block; 
                  margin: 0 auto;
