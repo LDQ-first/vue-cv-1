@@ -12,7 +12,8 @@
     align-items: center;
     #leftSide {
        width: 250px;
-       background: url('./img/002.jpg') no-repeat, url('./img/001.jpg') no-repeat;
+       min-height: 400px;
+       background: url('./img/001.jpg') no-repeat, url('./img/002.jpg') no-repeat;
        background-size: cover;
        position: relative;
        overflow: hidden; 
