@@ -41,25 +41,23 @@
     }
     .panels {
         flex-grow: 1;
-        overflow: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
         .panels-show {
             height: 100%;
         }
         .panels-show-enter-active {
             transition: all 0.8s cubic-bezier(1.0, 0.5, 0.8, 1.0) 0.6s;
-            transform: translateX(0);
             opacity: 1;
         }
         .panels-show-leave-active {
             transition: all 0.6s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-            transform: translateX(-100%);
             opacity: 0;
         }
         .panels-show-enter {
-            transform: translateX(100%);
+            opacity: 0;
         }
         .panels-show-leave {
-            transform: translateX(0);
         }
         li {
             height: 100%;

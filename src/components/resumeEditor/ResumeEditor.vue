@@ -10,7 +10,7 @@
             </ol>
         </nav>
         <ol class="panels">
-            <transition-group name="panels-show" class="panels-show" tag="div">
+            <transition-group name="panels-show" class="panels-show" tag="div" mode="in-out">
                 <li v-for="(item, n) in resume.config" :key="item" v-show="item.field === selected">
                     <div class="resumeFieldTitle-ct" :style="{background: skinColor}">
                         <div class="resumeFieldTitle" :style="{color: (skinColor === '#FFF' ? '#000': '')}">
