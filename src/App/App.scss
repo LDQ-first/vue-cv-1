@@ -37,15 +37,25 @@
      transform: translateX(0);
      opacity: 1;
   }
+  .fade-enter{
+     transition: all 0.8s ease-in-out;
+     transform: translateX(-100%);
+     opacity: 0;
+  }
   .fade-leave-active {
     transition: all 0.8s ease-in-out;
     transform: translateX(-100%);
     opacity: 0;
   }
-  .message-enter{
+  .message-enter-active{
     transition: all 0.8s ease-in-out;
     transform: translateY(0);
     opacity: 1;
+  }
+  .message-enter{
+    transition: all 0.8s ease-in-out;
+    transform: translateY(-100%);
+    opacity: 0;
   }
   .message-leave-active {
     transition: all 0.8s ease-in-out;
