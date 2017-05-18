@@ -29,6 +29,29 @@
            </span>
        </section>
 
+       <section class="info">
+           <span class="infoTitle">个人博客/网站</span>
+           <span class="infoContent">
+               <input type="text"  :value="userSite" @input="changeUserSite('userSite',$event.target.value)">
+           </span>
+       </section>
+
+       <section class="info">
+           <span class="infoTitle">联系方式</span>
+           <span class="infoContent contacts" v-for="(contact, index) in resume.contacts">
+               <span class="contact">{{contact.contact}}</span>
+               <span class="content">{{contact.content}}</span>
+           </span>
+       </section>
+
+
+       <section class="info">
+           <span class="infoTitle">补充</span>
+           <span class="infoContent">
+               <textarea class="replenish" :value="resume.others.replenish"></textarea>
+           </span>
+       </section>
+
     </div>
 </template>
 

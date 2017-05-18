@@ -31,6 +31,9 @@ export default {
         },
         userAvatarSrc() {
             return this.$store.state.userAvatarSrc;
+        },
+        userSite() {
+            return this.user.userSite;
         }
     },
     methods: {
@@ -44,6 +47,9 @@ export default {
         closeAvatar() {
             this.uploadAvatarvisible = false;
         },
+        changeUserSite(path, value) {
+            changeState(path, value);
+        }
 
     },
     components: {

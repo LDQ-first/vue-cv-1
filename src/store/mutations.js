@@ -55,6 +55,7 @@ export default () => {
             if (state.user.id) {
                 var query = new AV.Query('SaveObject');
                 query.find().then((todo) => {
+                    console.log(todo);
                     Object.assign(state, todo[0].attributes.content);
                     state.id = todo[0].id;
                 }, (error) => {

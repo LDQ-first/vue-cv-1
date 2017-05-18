@@ -13,7 +13,8 @@ export default new Vuex.Store({
         user: {
             id: '',
             username: '',
-            email: ''
+            email: '',
+            userSite: '',
         },
         resume: {
             config: [
@@ -78,7 +79,7 @@ export default new Vuex.Store({
         '#4CB9B5 linear-gradient(135deg, #4CB9B5, #399CA0)',
         ],
         resumeAvatarSrc: '',
-        userAvatarSrc: ''
+        userAvatarSrc: '',
     },
     mutations: mutations(),
     actions: actions()

@@ -13,7 +13,7 @@
                     </span>
                    <!-- <a class="button" @select="handleSelect">个人主页</a>-->
                 </div>
-                <img :src="userAvatarSrc" class="userAvatarSrc">
+                <img :src="userAvatarSrc" class="userAvatarSrc" v-show="userAvatarSrc">
                 <div v-if="logined" class="userActions">
                     <span class="welcome">你好, {{user.username}}</span>
                     <a href="javascript:;" class="button" @click.prevent="signOut">登出</a>

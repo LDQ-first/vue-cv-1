@@ -12,7 +12,7 @@
         .infoTitle {
             display: inline-flex;
             justify-content: flex-end;
-            width: 80px;
+            width: 120px;
             font-weight: bold;
         }
         .infoContent {
@@ -23,6 +23,37 @@
                 border-radius: 50%;
                 margin: 0 30px;
                 border: 2px solid  #E6AC71;
+            }
+            input {
+                margin: 4px 0;
+                border: 1px solid #DDD;
+                box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+                width: 50%;
+                height: 30px;
+                padding: 0 8px;
+            }
+            &.contacts {
+               display: block;
+               margin-left: 170px;
+               margin-bottom: 5px;
+               .contact {
+                    display: inline-flex;
+                    justify-content: flex-end;
+                    width: 60px;
+                    font-weight: bold;
+               }
+               .content {
+                   margin-left: 30px;
+               }
+            }
+            .replenish {
+                resize: vertical;
+                height: 150px;
+                width: 50%;
+                margin: 4px 0;
+                padding: 8px;
+                display: inline-block;
+                vertical-align: top;
             }
         }
         .button {
