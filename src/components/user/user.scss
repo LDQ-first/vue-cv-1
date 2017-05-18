@@ -17,6 +17,13 @@
         }
         .infoContent {
             margin-left: 50px;
+            .userAvatarSrc {
+                display: inline-block;
+                vertical-align: middle;
+                border-radius: 50%;
+                margin: 0 30px;
+                border: 2px solid  #E6AC71;
+            }
         }
         .button {
             padding: 5px 10px;

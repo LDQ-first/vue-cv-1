@@ -4,7 +4,7 @@
         <section :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}" 
         data-name="profile" v-show="resume.profile">
             <div v-if="true" class="resumeAvatar">
-                <img :src="resumeAvatarSrc">
+                <img :src="resumeAvatarSrc" >
             </div>
             <h1 v-html="resume.profile.name">
                 {{resume.profile.name}}

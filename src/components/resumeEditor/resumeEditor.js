@@ -8,7 +8,8 @@ export default {
     name: 'resumeEditor',
     data() {
         return {
-            uploadAvatarvisible: false
+            uploadAvatarvisible: false,
+            busEvent: 'resumeAvatar'
         }
     },
     computed: {
@@ -70,10 +71,11 @@ export default {
             this.$store.commit('addResumeField', field);
             changeState(`resume.${field}`, this.$store.state.resume[field]);
         },
-        uploadAvatar(selected) {
+        uploadAvatar(selected, busEvent) {
             this.uploadAvatarvisible = true;
              console.log(selected);
-            bus.$emit('readSelected', selected);
+            
+            bus.$emit('readSelected',  selected, busEvent );
         },
         closeAvatar() {
             this.uploadAvatarvisible = false;

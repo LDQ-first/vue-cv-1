@@ -56,5 +56,15 @@
                 margin-right: 0.5em;
             }
         }
+        .userAvatarSrc {
+            display: inline-block;
+            vertical-align: middle;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            margin: 0 30px;
+            border: 2px solid  #E6AC71;
+            cursor: pointer;
+        }
     }
 }

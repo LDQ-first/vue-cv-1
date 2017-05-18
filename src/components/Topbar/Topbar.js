@@ -32,6 +32,9 @@ export default {
              this.resetPassword();
              bus.$emit('FillinEmail', email);
          })
+         bus.$on('userAvatar', (src) => {
+            changeState('userAvatarSrc', src);
+        })
     },
     computed: {
         user() {
@@ -42,6 +45,9 @@ export default {
         },
         skinColor() {
             return this.$store.state.skinColor;
+        },
+        userAvatarSrc() {
+            return this.$store.state.userAvatarSrc;
         }
     },
     methods: {

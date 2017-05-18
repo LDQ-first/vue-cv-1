@@ -28,7 +28,8 @@ export default {
             canvas: '',
             img: '',
             url: '',
-            selected: ''
+            selected: '',
+            busEvent: ''
         }
     },
     computed: {
@@ -69,21 +70,20 @@ export default {
     props: ['visible', 'parent'],
     created() {
         console.log()
-        bus.$on('readSelected', (selected) => {
-            this.initS(selected);
+        bus.$on('readSelected', (selected, busEvent) => {
+            this.busEvent = busEvent;
+            this.selected = selected;
+            this.initS(selected, busEvent);
         })
     },
     methods: {
         initS(selected) {
             console.log(selected);
-            this.selected = selected;
             if (selected == 'profile') {
                 this.sHeight = 200;
                 this.sWidth = 133;
             }
             else if(selected == 'user') {
-                 /*this.sHeight = 54;
-                 this.sWidth = 54;*/
                  this.sHeight = 120;
                  this.sWidth = 120;
             }
@@ -94,6 +94,7 @@ export default {
         },
         uploadImg(input) {
             if (input.files.length > 0) {
+                this.initS(this.selected);
                 if (input.files[0].type === "image/jpg" ||
                     input.files[0].type === "image/png" ||
                     input.files[0].type === "image/jpeg" ||
@@ -225,11 +226,14 @@ export default {
             const clipContext = clip.getContext('2d');
             const image = new Image();
             image.src = this.imgUrl;
-
+           /* console.log(image);*/
             image.onload = () => {
+                clip.width = this.sWidth;
+                clip.height = this.sHeight;
                 clipContext.drawImage(image, this.sx, this.sy, this.sWidth, this.sHeight,
                     0, 0, this.sWidth, this.sHeight);
-                bus.$emit('resumeAvatar', clip.toDataURL());
+               
+                bus.$emit(`${this.busEvent}`, clip.toDataURL());
             }
         },
         changeRange(e) {

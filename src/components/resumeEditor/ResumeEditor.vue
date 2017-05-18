@@ -37,7 +37,7 @@
                         <!--<input type="text" v-model="resume[item.field][key]">-->
                         <input type="text" :value="value" @input="changeResumeField(`resume.${item.field}.${key}`, $event.target.value)">
                     </div>
-                    <button class="uploadAvatar" v-show="selected === 'profile'" @click="uploadAvatar(selected)">上传头像</button>
+                    <button class="uploadAvatar" v-show="selected === 'profile'" @click="uploadAvatar(selected, busEvent)">上传头像</button>
                     <UploadAvatar :visible="uploadAvatarvisible" @close="closeAvatar" :parent="selected"></UploadAvatar>
                 </li>
             </transition-group>
