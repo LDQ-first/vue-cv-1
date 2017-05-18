@@ -6,16 +6,24 @@
             <div v-if="true" class="resumeAvatar">
                 <img :src="resumeAvatarSrc" >
             </div>
-            <h1 v-html="resume.profile.name">
+            <h1>
                 {{resume.profile.name}}
             </h1>
-            <h2 v-html="resume.profile.title">
+            <h2>
                 {{resume.profile.title}}
             </h2>
-            <p>
-                <small v-html="resume.profile.city">{{resume.profile.city}}</small>
-                <small v-html="resume.profile.birthday">{{resume.profile.birthday}}</small>
-            </p>
+            <h2>
+                <span>求职意向: </span>
+               {{resume.profile.jobIntension}}
+            </h2>
+            <h3>
+                <span>所在地: </span>
+                {{resume.profile.city}}
+            </h3>
+            <h3>
+                {{resume.profile.birthday}}
+            </h3>
+            <a :href="resume.profile.userSite" target="new" style="margin: 10px 0; cursor: pointer">个人博客/网站</a>
         </section>
 
         <section :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}" 

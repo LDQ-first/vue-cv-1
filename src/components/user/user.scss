@@ -24,7 +24,7 @@
                 margin: 0 30px;
                 border: 2px solid  #E6AC71;
             }
-            input {
+            input[type=text] {
                 margin: 4px 0;
                 border: 1px solid #DDD;
                 box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.25);
@@ -47,13 +47,16 @@
                }
             }
             .replenish {
-                resize: vertical;
                 height: 150px;
                 width: 50%;
                 margin: 4px 0;
                 padding: 8px;
                 display: inline-block;
                 vertical-align: top;
+                background: #FFF;
+                word-wrap: break-word;
+                overflow-y: scroll;
+                text-indent: 2em;
             }
         }
         .button {

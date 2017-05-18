@@ -38,14 +38,15 @@
     }
     section[data-name="profile"] {
         position: relative;
-        height: 250px;
+        padding: 20px;
         h1 {
             margin: 0.1em 0;
             font-size: 4em;
         }
+        h2,h3 {
+            margin: 0.3em 0;
+        }
         .resumeAvatar {
-        /*width: 95px;
-        height: 133px;*/
         width: 133px;
         height: 200px;
         position: absolute;

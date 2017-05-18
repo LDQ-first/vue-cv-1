@@ -14,7 +14,6 @@ export default new Vuex.Store({
             id: '',
             username: '',
             email: '',
-            userSite: '',
         },
         resume: {
             config: [
@@ -30,7 +29,9 @@ export default new Vuex.Store({
                 name: '刘某某',
                 city: '广州',
                 title: '前端学习者',
-                birthday: '1995-01-01'
+                jobIntension: '前端工程师',
+                birthday: '1995-01-01',
+                userSite: 'https://github.com',
             },
             workHistory: [
                 {

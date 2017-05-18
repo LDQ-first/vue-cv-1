@@ -33,7 +33,10 @@ export default {
             return this.$store.state.userAvatarSrc;
         },
         userSite() {
-            return this.user.userSite;
+            return this.resume.profile.userSite;
+        },
+        replenish() {
+            return this.resume.others[0].replenish;
         }
     },
     methods: {
