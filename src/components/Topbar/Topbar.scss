@@ -15,6 +15,18 @@
         font-size: 24px;
         color: #000;
     }
+    .icon {
+         display: inline-block;
+         vertical-align: middle;
+         font-size: 44px;
+         cursor: pointer;
+         border-radius: 50%;
+         color: #000;
+         margin: 0 10px;
+         &.active {
+            box-shadow: 0 0 10px #FFF;
+        }
+    }
     .button {
         width: 72px;
         height: 32px;
@@ -65,6 +77,9 @@
             margin: 0 30px;
             border: 2px solid  #E6AC71;
             cursor: pointer;
+            &.active {
+                box-shadow: 0 0 10px #FFF;
+            }
         }
     }
 }

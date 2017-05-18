@@ -6,14 +6,33 @@
                 <div class="menu">
                    <!-- <router-link class="button" to="{path: '/resumePreview'}">简历</router-link>
                     <router-link class="button" to="{path: '/user'}">个人主页</router-link>-->
-                    <span class="button" @click="handleSelect(index)" 
+                   <!-- <span class="button" @click="handleSelect(index)" 
                     v-for="(route, index) in routes" :key="index" v-if="index > 0" 
                     :class="{active: activeIndex === index}">
                         {{route.meta.title}}
+                    </span>-->
+                    <span @click="handleSelect(index)" 
+                    v-for="(route, index) in routes" :key="index" v-if="index == 1" 
+                    :style="{color:skinColor === '#FFF'?'#000':skinColor}">
+                        <svg class="icon" :class="{active: activeIndex === index}">
+                            <use xlink:href="#icon-resumer"></use>
+                        </svg>
                     </span>
-                   <!-- <a class="button" @select="handleSelect">个人主页</a>-->
+
+                    <span @click="handleSelect(index)" 
+                    v-for="(route, index) in routes" :key="index" v-if="index == 2&&!userAvatarSrc" 
+                    :style="{color:skinColor === '#FFF'?'#000':skinColor}">
+                        <svg class="icon" :class="{active: activeIndex === index}">
+                            <use xlink:href="#icon-user"></use>
+                        </svg>
+                    </span>
+                    
+                    <img :src="userAvatarSrc" class="userAvatarSrc" 
+                    v-if="index == 2&&userAvatarSrc" @click="handleSelect(index)" 
+                    v-for="(route, index) in routes" :key="index" 
+                    :class="{active: activeIndex === index}">
                 </div>
-                <img :src="userAvatarSrc" class="userAvatarSrc" v-show="userAvatarSrc">
+                
                 <div v-if="logined" class="userActions">
                     <span class="welcome">你好, {{user.username}}</span>
                     <a href="javascript:;" class="button" @click.prevent="signOut">登出</a>
