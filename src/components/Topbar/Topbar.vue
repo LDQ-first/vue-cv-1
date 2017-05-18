@@ -13,7 +13,7 @@
                     </span>-->
                     <span @click="handleSelect(index)" 
                     v-for="(route, index) in routes" :key="index" v-if="index == 1" 
-                    :style="{color:skinColor === '#FFF'?'#000':skinColor}">
+                    :style="{color:skinColor === '#FFF'?'#000':skinColor}" :title="route.meta.title">
                         <svg class="icon" :class="{active: activeIndex === index}">
                             <use xlink:href="#icon-resumer"></use>
                         </svg>
@@ -21,7 +21,7 @@
 
                     <span @click="handleSelect(index)" 
                     v-for="(route, index) in routes" :key="index" v-if="index == 2&&!userAvatarSrc" 
-                    :style="{color:skinColor === '#FFF'?'#000':skinColor}">
+                    :style="{color:skinColor === '#FFF'?'#000':skinColor}" :title="route.meta.title">
                         <svg class="icon" :class="{active: activeIndex === index}">
                             <use xlink:href="#icon-user"></use>
                         </svg>
@@ -30,7 +30,7 @@
                     <img :src="userAvatarSrc" class="userAvatarSrc" 
                     v-if="index == 2&&userAvatarSrc" @click="handleSelect(index)" 
                     v-for="(route, index) in routes" :key="index" 
-                    :class="{active: activeIndex === index}">
+                    :class="{active: activeIndex === index}" :title="route.meta.title">
                 </div>
                 
                 <div v-if="logined" class="userActions">
