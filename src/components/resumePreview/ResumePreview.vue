@@ -12,18 +12,21 @@
             <h2>
                 {{resume.profile.title}}
             </h2>
-            <h2>
+            <h2 v-if="resume.profile.jobIntension">
                 <span>求职意向: </span>
                {{resume.profile.jobIntension}}
             </h2>
-            <h3>
+            <h3 v-if="resume.profile.city">
                 <span>所在地: </span>
                 {{resume.profile.city}}
             </h3>
             <h3>
                 {{resume.profile.birthday}}
             </h3>
-            <a :href="resume.profile.userSite" target="new" style="margin: 10px 0; cursor: pointer">个人博客/网站</a>
+            <a :href="resume.profile.userSite" target="new" style="margin: 10px 0; cursor: pointer"
+            v-if="resume.profile.userSite">
+                个人博客/网站
+            </a>
         </section>
 
         <section :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}" 

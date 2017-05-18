@@ -13,14 +13,19 @@ export default {
     },
     created() {
         bus.$on('rebuild', ()=> {
-            const resume = this.$store.state.resume;
+            const resume = this.state.resume;
             const resumeConfig = resume.config;
             this.traversalResume(resume, resumeConfig);
+            this.state.resumeAvatarSrc = '';
+            this.state.userAvatarSrc = '';
         })
     },
     computed: {
         skinColor() {
-            return this.$store.state.skinColor;
+            return this.state.skinColor;
+        },
+        state() {
+            return this.$store.state;
         }
         
     },
