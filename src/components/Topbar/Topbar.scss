@@ -21,10 +21,11 @@
          font-size: 44px;
          cursor: pointer;
          border-radius: 50%;
-         color: #000;
+         /*color: #000;*/
          margin: 0 10px;
+         background: #FFF;
          &.active {
-            box-shadow: 0 0 10px #FFF;
+            box-shadow: 0 0 10px 2px #FFF;
         }
     }
     .button {
