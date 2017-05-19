@@ -1,0 +1,15 @@
+.btns {
+    cursor: pointer;
+    margin: 10px;
+    padding: 5px 10px;
+    display: inline-block;   
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: rgb(65, 170, 241);
+    color: #004fa3;
+    box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.3);
+    &:hover {
+        box-shadow: 0 0px 6px 0 rgba(0, 0, 0, 0.3);
+    }
+}

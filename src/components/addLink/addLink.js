@@ -1,5 +1,6 @@
 import bus from '../../lib/bus.js'
 import Close from '../close/close.vue'
+import Buttons from '../button/button.vue'
 
 export default {
     name: 'addLink',
@@ -24,7 +25,8 @@ export default {
         },
     },
     components: {
-        Close
+        Close,
+        Buttons
     },
     methods: {
         confirm(n, i, ikey, field){

@@ -1,6 +1,6 @@
 <template>
-    <div id="topbar">
-        <div class="wrapper" :style="{background:skinColor}">
+    <div id="topbar" :style="{background:skinColor}">
+        <div class="wrapper" >
             <span class="logo">Resumer</span>
             <div class="actions">
                 <div class="menu">
