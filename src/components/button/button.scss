@@ -8,11 +8,11 @@
     outline: none;
     background: rgba(3,169,244 ,1);
     color: #EEE;
-    box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.4);
     position: relative;
     overflow: hidden;
     &:hover {
-        box-shadow: 0 0px 6px 0 rgba(0, 0, 0, 0.4);
+        box-shadow: 0 0px 6px 0 rgba(0, 0, 0, 0.5);
     }
     #canvas {
         opacity: 0.25;

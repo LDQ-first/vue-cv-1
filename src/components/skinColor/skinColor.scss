@@ -17,8 +17,13 @@
         width: 30px;
         height: 30px;
         border-radius: 50%;
-        border: 2px solid #AFD3EB;
         margin: 0 10px;
+        .color {
+            margin: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
 
     }
     .skin-show-enter-active {

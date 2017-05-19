@@ -1,4 +1,5 @@
 import changeState from '../../lib/changeState.js'
+import Buttons from '../button/button.vue'
 
 export default {
     name: 'skinColor',
@@ -24,5 +25,8 @@ export default {
             changeState('skinColor', color);
             
         }
+    },
+    components: {
+        Buttons
     }
 }
