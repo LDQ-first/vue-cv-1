@@ -1,7 +1,8 @@
 <template>
-   <button class="btns" @click="click">
+   <button class="btns" @click="click" ref="btns">
        {{text}}
        <slot></slot>
+       <canvas id="canvas" @click="press" ></canvas>
    </button>
 </template>
 

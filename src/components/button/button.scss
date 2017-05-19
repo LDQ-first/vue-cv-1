@@ -9,7 +9,16 @@
     background: rgb(65, 170, 241);
     color: #004fa3;
     box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
     &:hover {
         box-shadow: 0 0px 6px 0 rgba(0, 0, 0, 0.4);
+    }
+    #canvas {
+        opacity: 0.25;
+        position: absolute;
+        top: 0;
+        left: 0;
+       /* z-index: 2;*/
     }
 }
