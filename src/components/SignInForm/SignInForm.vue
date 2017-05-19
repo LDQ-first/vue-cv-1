@@ -12,7 +12,8 @@
             <div class="actions">
                 <span class="resetPassword btn" v-show="showVerify(errorMessage)" @click="verifyEmail">验证邮箱地址</span>
                 <span class="resetPassword btn" v-show="showRest(errorMessage)" @click="resetPassword">重置密码</span>       
-                <input type="submit" class="submit" value="提交">
+               <!-- <input type="submit" class="submit" value="提交">-->
+                <Buttons class="submit" type="submit" text="提交"></Buttons>
             </div>    
             <span class="errorMessage">{{errorMessage}}</span>
         </form>

@@ -10,11 +10,14 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 16px;
     }
     .logo {
         font-size: 24px;
         color: #000;
+    }
+    .menu {
+        display: flex;
+        align-items: center;
     }
     .icon {
          display: inline-block;
@@ -24,6 +27,7 @@
          border-radius: 50%;
          margin: 0 10px;
          background: #FFF;
+         box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.3);
          &.active {
             box-shadow: 0 0 10px 2px #FFF;
         }
@@ -64,9 +68,18 @@
             }
         }
         .userActions {
-            margin-right: 3em;
+            /*margin-right: 3em;*/
             .welcome {
                 margin-right: 0.5em;
+            }
+            .register,.entry {
+                width: 72px;
+                height: 32px;
+                margin: 10px;
+            }
+            .register {
+                background: #02af5f;
+                color: #FFF;
             }
         }
         .userAvatarSrc {

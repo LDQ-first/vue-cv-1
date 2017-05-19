@@ -3,7 +3,7 @@ import getErrorMessage from '../../lib/getErrorMessage'
 import getAVUser from '../../lib/getAVUser'
 import bus from '../../lib/bus.js'
 import clearData from '../../lib/clearData.js'
-
+import Buttons from '../button/button.vue'
 
 export default {
     name: 'SignUpForm',
@@ -21,6 +21,9 @@ export default {
         bus.$on('clearData', ()=> {
              clearData(this._data);
         })
+    },
+    components: {
+        Buttons
     },
     methods: {
         signUp() {

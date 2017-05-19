@@ -17,12 +17,17 @@
         }
         .infoContent {
             margin-left: 50px;
+            .uploadAvatar {
+                padding: 5px 10px;
+                height: 42px;
+            }
             .userAvatarSrc {
                 display: inline-block;
                 vertical-align: middle;
                 border-radius: 50%;
                 margin: 0 30px;
                 border: 2px solid  #E6AC71;
+                box-shadow: 0 0px 6px 0 rgba(0, 0, 0, 0.5);
             }
             input[type=text] {
                 margin: 4px 0;

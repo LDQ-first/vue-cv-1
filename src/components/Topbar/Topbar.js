@@ -4,10 +4,12 @@ import SignInForm from '../SignInForm/SignInForm.vue'
 import EmailVerify from '../emailVerify/emailVerify.vue'
 import ResetPassword from '../resetPassword/resetPassword.vue'
 import VerifyEmail from '../verifyEmail/verifyEmail.vue'
+import Buttons from '../button/button.vue'
+
+
 import AV from '../../lib/leancloud'
 import bus from '../../lib/bus.js'
 import changeState from '../../lib/changeState.js'
-
 import {router, routes} from '../../router/index.js'
 
 export default {
@@ -106,6 +108,7 @@ export default {
         SignInForm,
         EmailVerify,
         ResetPassword,
-        VerifyEmail
+        VerifyEmail,
+        Buttons
     }
 }

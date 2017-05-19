@@ -3,6 +3,7 @@ import AddLink from '../addLink/addLink.vue'
 import bus from '../../lib/bus.js'
 import changeState from '../../lib/changeState.js'
 import UploadAvatar from '../uploadAvatar/uploadAvatar.vue'
+import Buttons from '../button/button.vue'
 
 export default {
     name: 'resumeEditor',
@@ -47,7 +48,8 @@ export default {
     components: {
         UploadImg,
         AddLink,
-        UploadAvatar
+        UploadAvatar,
+        Buttons
     },
     methods: {
         check(selected, key){

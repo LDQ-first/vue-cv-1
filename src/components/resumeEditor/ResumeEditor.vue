@@ -17,7 +17,7 @@
                             {{item.field}}
                         </div>
                     </div>
-                    <div v-if="resume[item.field] instanceof Array">
+                    <div v-if="resume[item.field] instanceof Array" class="field">
                         <div class="subitem" v-for="(subitem, i) in resume[item.field]" :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}">
                             <div class="resumeField" v-for="(value, key) in subitem">
                                 <label>{{key}}</label>
@@ -28,16 +28,16 @@
                                 <input type="text" :class="`text-${item.field}-${i}-${key}`" :name="`text-${item.field}-${i}-${key}`" :value="value" v-else @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
                                 <UploadImg :ikey="key" :field="item.field" :i="i" v-if="check(selected, key)" text="上传图片"></UploadImg>
                             </div>
-                            <button class="button delete" @click="deleteResumeField(`${item.field}`, `${i}`)">删除</button>
+                            <Buttons class="delete" @click="deleteResumeField(`${item.field}`, `${i}`)" text="删除"></Buttons>
                         </div>
-                        <button class="button add" @click="addResumeField(`${item.field}`)">增加</button>
+                        <Buttons class="add" @click="addResumeField(`${item.field}`)" text="增加"></Buttons>
                     </div>
                     <div v-else class="resumeField profile" v-for="(value, key) in resume[item.field]">
                         <label>{{key}}</label>
-                        <!--<input type="text" v-model="resume[item.field][key]">-->
                         <input type="text" :value="value" @input="changeResumeField(`resume.${item.field}.${key}`, $event.target.value)">
                     </div>
-                    <button class="uploadAvatar" v-show="selected === 'profile'" @click="uploadAvatar(selected, busEvent)">上传头像</button>
+                    <!--<button class="uploadAvatar" v-show="selected === 'profile'" @click="uploadAvatar(selected, busEvent)">上传头像</button>-->
+                    <Buttons class="uploadAvatar" v-show="selected === 'profile'" @click="uploadAvatar(selected, busEvent)" text="上传头像"></Buttons>
                     <UploadAvatar :visible="uploadAvatarvisible" @close="closeAvatar" :parent="selected"></UploadAvatar>
                 </li>
             </transition-group>

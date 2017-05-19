@@ -8,6 +8,7 @@
         &::before,
         &::after {
             background: #ee5715;
+            box-shadow: 0 0px 6px 0 rgba(0, 0, 0, 0.4);
         }
         &::before {
             transform: translate(-50%, -50%) rotateZ(405deg);
@@ -29,6 +30,7 @@
         background: #FFF;
         transition: all 0.8s ease-in-out;
         border-radius: 10px;
+        box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.3);
     }
     &::before {
         transform: translate(-50%, -50%) rotateZ(45deg);

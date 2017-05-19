@@ -1,6 +1,7 @@
 <template>
-   <button class="btns" @click.prevent="click">
+   <button class="btns" @click="click">
        {{text}}
+       <slot></slot>
    </button>
 </template>
 

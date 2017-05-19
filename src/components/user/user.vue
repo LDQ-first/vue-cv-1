@@ -25,7 +25,8 @@
        <section class="info">
            <span class="infoTitle">头像</span>
            <span class="infoContent">
-               <button class="button" @click="uploadAvatar(selected, busEvent)">上传用户头像</button>
+              <!-- <button class="button" @click="uploadAvatar(selected, busEvent)">上传用户头像</button>-->
+               <Buttons class="uploadAvatar" @click="uploadAvatar(selected, busEvent)" text="上传用户头像"></Buttons>
                <img :src="userAvatarSrc" class="userAvatarSrc">
                <UploadAvatar :visible="uploadAvatarvisible" @close="closeAvatar" :parent="selected"></UploadAvatar>
            </span>

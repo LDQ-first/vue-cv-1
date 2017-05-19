@@ -8,20 +8,20 @@
             <div id="imgSide">
                 <div class="control">
                     <canvas id="getImg"></canvas>
-                    <p>
+                    <div>
                         <canvas id="edit" :style="editStyleObject"
                          @mousedown="dragDown"></canvas>
                         <canvas id="clip" :style="clipStyleObject"></canvas> 
-                    </p>
+                    </div>
                 </div>
                 <div class="upload">
-                    <a href="javascript:;" class="uploadImg">上传头像
-                        <input id="photoFileUpload" type="file" accept="image/jpg, image/png, image/jpeg, image/gif"
-                        @change="uploadImg($event.target) ">
-                    </a>
+                    <Buttons class="uploadImg" text="上传头像">
+                        <input id="photoFileUpload" type="file" accept="image/jpg, image/png, image/jpeg, image/gif" 
+                        @change="uploadImg($event.target)" >
+                    </Buttons>
                 </div>
                 <div class="operate">
-                    <button class="saveAvatar" @click="savaAvatar">保存</button>
+                    <Buttons class="saveAvatar" @click="savaAvatar" text="保存"></Buttons>
                     <input type="range"  value="1.0" min="0" max="3.0" step="0.01" class="changeScale" 
                     @mousemove="changeScale($event)" @mousedown="change = true" @mouseup="change = false"
                     @input="changeRange($event)" :style="RangeStyle">

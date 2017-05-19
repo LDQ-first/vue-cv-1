@@ -1,4 +1,4 @@
-
+import Buttons from '../button/button.vue'
 
 export default {
     name: 'uploadImg',
@@ -7,6 +7,9 @@ export default {
         resume(){
             return this.$store.state.resume;
         }
+    },
+    components: {
+        Buttons
     },
     methods: {
         reset(i, field, ikey){

@@ -55,15 +55,14 @@
                 text-align: center;
                 .uploadImg {
                     margin: 10px;
-                    cursor: pointer;
                     padding: 4px 10px;
-                    display: inline-block;
                     background: #D0EEFF;
-                    border: 1px solid #99D3F5;
+                    color: #0C69CD;
                     border-radius: 4px;
                     position: relative;
+                    box-shadow: 0 0px 3px 0 rgba(27, 18, 42, 0.3);
                     &:hover {
-                        text-decoration: none;
+                        box-shadow: 0 0px 6px 0 rgba(27, 18, 42, 0.4);
                     }
                     input[type=file] {
                         position: absolute;

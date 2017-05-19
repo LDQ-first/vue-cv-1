@@ -4,13 +4,6 @@
             <span class="logo">Resumer</span>
             <div class="actions">
                 <div class="menu">
-                   <!-- <router-link class="button" to="{path: '/resumePreview'}">简历</router-link>
-                    <router-link class="button" to="{path: '/user'}">个人主页</router-link>-->
-                   <!-- <span class="button" @click="handleSelect(index)" 
-                    v-for="(route, index) in routes" :key="index" v-if="index > 0" 
-                    :class="{active: activeIndex === index}">
-                        {{route.meta.title}}
-                    </span>-->
                     <span @click="handleSelect(index)" 
                     v-for="(route, index) in routes" :key="index" v-if="index == 1" 
                     :style="{color: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '#000' : skinColor.replace(/\sl[^\)]+\)/, ''))}" 
@@ -36,12 +29,12 @@
                 </div>
                 
                 <div v-if="logined" class="userActions">
-                    <span class="welcome">你好, {{user.username}}</span>
-                    <a href="javascript:;" class="button" @click.prevent="signOut">登出</a>
+                    <span class="welcome">你好 {{user.username}}</span>
+                    <Buttons @click="signOut" text="登出"></Buttons>
                 </div>
                 <div v-else class="userActions">
-                    <a href="javascript:;" class="button primary" @click.prevent="signUpDialogVisible = true">注册</a>
-                    <a href="javascript:;" class="button" @click.prevent="signInDialogVisible = true">登录</a>
+                    <Buttons class="register" @click="signUpDialogVisible = true" text="注册"></Buttons>
+                    <Buttons class="entry" @click="signInDialogVisible = true" text="登录"></Buttons>
                 </div>
             </div>
             <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">

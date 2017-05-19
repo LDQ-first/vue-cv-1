@@ -4,6 +4,7 @@ import ResetPassword from '../resetPassword/resetPassword.vue'
 import UploadAvatar from '../uploadAvatar/uploadAvatar.vue'
 import bus from '../../lib/bus.js'
 import changeState from '../../lib/changeState.js'
+import Buttons from '../button/button.vue'
 
 export default {
     name: 'user',
@@ -57,6 +58,7 @@ export default {
     },
     components: {
         ResetPassword,
-        UploadAvatar
+        UploadAvatar,
+        Buttons
     } 
 }
