@@ -4,7 +4,7 @@ import ResumePreview from '../components/resumePreview/resumePreview.vue'
 import icons from '../assets/icons'
 import Rebuild from '../components/rebuild/rebuild.vue'
 import Message from '../components/message/message.vue'
-
+import BeginLoading from '../components/beginLoading/beginLoading.vue'
 
 import store from '../store/index'
 import AV from '../lib/leancloud'
@@ -13,7 +13,7 @@ import getRadomImg from '../lib/getRadomImg.js'
 import bus from '../lib/bus.js'
 
 
-import {router, routes} from '../router/index.js'
+import { router, routes } from '../router/index.js'
 
 export default {
     name: 'app',
@@ -25,16 +25,24 @@ export default {
             type: '',
             message: '',
             event: '',
+            BeginLoading: true,
         }
     },
     store,
     router,
-    components: {Topbar, ResumeEditor, ResumePreview, Rebuild, Message},
-    created(){
+    components: { 
+        Topbar,
+        ResumeEditor, 
+        ResumePreview, 
+        Rebuild, 
+        Message,
+        BeginLoading
+    },
+    created() {
         document.body.insertAdjacentHTML('afterbegin', icons);
-        Object.assign(this.defaultState , this.$store.state);
+        Object.assign(this.defaultState, this.$store.state);
         let user = localStorage.getItem('user');
-        if(user) {
+        if (user) {
             user = JSON.parse(user);
             this.$store.commit('setUser', user);
             this.$store.commit('fetchResume');
@@ -52,16 +60,16 @@ export default {
             this.message = message;
             this.event = event;
         })
-       /* console.log(this.$route);*/
-        
+        /* console.log(this.$route);*/
+
         /*let state = localStorage.getItem('state');
         if(state) {
         state = JSON.parse(state);
         this.$store.commit('initState', state);
         }*/
-        
+
     },
     mounted() {
-         getRadomImg();
+        getRadomImg();
     }
 }

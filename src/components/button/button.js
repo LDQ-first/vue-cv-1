@@ -39,6 +39,7 @@ export default {
             this.context = '';
             this.width = 0;
             this.height = 0;
+            
             window.requestAnimFrame = (function(){
             return  window.requestAnimationFrame       ||
                     window.webkitRequestAnimationFrame ||

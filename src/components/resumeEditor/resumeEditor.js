@@ -75,7 +75,6 @@ export default {
         uploadAvatar(selected, busEvent) {
             this.uploadAvatarvisible = true;
              console.log(selected);
-            
             bus.$emit('readSelected',  selected, busEvent );
         },
         closeAvatar() {

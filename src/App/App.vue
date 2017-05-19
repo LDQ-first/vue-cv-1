@@ -1,5 +1,6 @@
 <template>
 <div>
+  <BeginLoading v-show="BeginLoading" @BeginLoading="BeginLoading=false"></BeginLoading>
   <div class="page">
     <header>
       <Topbar :defaultState="this.defaultState"/>
