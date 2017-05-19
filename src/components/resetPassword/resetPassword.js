@@ -3,7 +3,7 @@ import getErrorMessage from '../../lib/getErrorMessage'
 import emailMap from '../../lib/emailMap.js'
 import clearData from '../../lib/clearData.js'
 import bus from '../../lib/bus.js'
-
+import Buttons from '../button/button.vue'
 
 export default {
     name: 'resetPassword',
@@ -25,6 +25,9 @@ export default {
         bus.$on('FillinEmail', (email) => {
             this.setEmail(email);
         })
+    },
+    components: {
+        Buttons
     },
     methods: {
         resetPassword(email) {

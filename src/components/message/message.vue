@@ -8,8 +8,11 @@
             </header>
             <p>{{message}}</p>
             <div class="messageControl" v-show="type==='confirm'">
-                <button class="cancle button"  @click="close">取消</button>
-                <button class="confirm button" @click="confirm(event)">确认</button>
+                <!--<button class="cancle button"  @click="close">取消</button>
+                <button class="confirm button" @click="confirm(event)">确认</button>-->
+               <Buttons class="cancle" @click="close" text="取消"></Buttons>
+               <Buttons class="confirm" @click="confirm(event)" text="确认"></Buttons>
+                
             </div>
         </div>
     </div>

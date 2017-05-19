@@ -29,9 +29,7 @@
             justify-content: space-between;
             height: 30px;
             margin: 10px 0;
-            h3 {
-                
-            }
+            
         }
         p{
              margin: 10px 0;
@@ -42,30 +40,17 @@
             margin: 10px 0;
             display: flex;
             justify-content: flex-end;
-            .button {
-                width: 72px;
-                height: 32px;
-                margin: 0 10px;
-                border-radius: 4px;
-                border: none;
-                cursor: pointer;
-                font-size: 18px;
-                background: #6DCBA0;
-                color: #222;
-                display: inline-flex;
-                justify-content: center;
-                align-items: center;
-                vertical-align: center;
+            justify-content: flex-end;
+            .confirm,.cancle {
+                 margin: 0 10px;   
+                 font-size: 18px;
                  color: #FFF;
-                &:hover {
-                    
-                }
-                &.confirm {
-                    background: #EB3200;
-                }
-            }
+                 width: 72px;
+                 height: 32px;
+            } 
+            .confirm {
+                background: #EB3200;
+            }                                       
         }
     }
-    
-
 }
