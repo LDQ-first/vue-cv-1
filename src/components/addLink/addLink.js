@@ -1,4 +1,5 @@
 import bus from '../../lib/bus.js'
+import Close from '../close/close.vue'
 
 export default {
     name: 'addLink',
@@ -17,7 +18,13 @@ export default {
     computed: {
         resume(){
             return this.$store.state.resume;
-        }
+        },
+        skinColor() { 
+            return this.$store.state.skinColor;
+        },
+    },
+    components: {
+        Close
     },
     methods: {
         confirm(n, i, ikey, field){
@@ -48,5 +55,8 @@ export default {
             }
             
         },
+        close() {
+            this.LinkDialogVisible = false;
+        }
     }
 }

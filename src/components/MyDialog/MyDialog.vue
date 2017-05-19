@@ -5,7 +5,7 @@
             <div id="rightSide">
                  <header>
                     {{title}}
-                    <span class="close" @click="close"></span>
+                    <Close @close="close"></Close>
                 </header>
                 <main>
                     <slot></slot>

@@ -43,7 +43,6 @@ export default {
             loading.style.width = (percent / 100).toFixed(2) * window.getComputedStyle(loader).width.replace(/px/,'') + 'px';
             loadingValue.innerText = percent.toFixed(2) + '%';
         })
-        
     },
     components: {
         UploadImg,

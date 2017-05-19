@@ -3,7 +3,7 @@
         <div class="avatar">
             <header>
                 上传头像
-                <span class="close" @click="close"></span>
+                <Close @close="close"></Close>
             </header>
             <div id="imgSide">
                 <div class="control">

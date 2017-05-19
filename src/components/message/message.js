@@ -1,5 +1,6 @@
 
 import bus from '../../lib/bus.js'
+import Close from '../close/close.vue'
 
 export default {
     name: 'message',
@@ -10,10 +11,7 @@ export default {
         }
     },
     created() {
-       /* console.log(this.messageWrapperStyle);
-        console.log(this.messageWrapperStyle ? '' : this.messageWrapperStyle);
-        console.log(this.messageWrapperStyle);*/
-
+     
     },
     computed:{
         messageWrapperStyle() {
@@ -23,9 +21,6 @@ export default {
                         return {
                             background: 'hsla(0, 0%, 0%, 0.4)',
                             zIndex: 20,
-                          /*  display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center'*/
                         };
                 }
         },
@@ -72,6 +67,9 @@ export default {
             this.close();
         }
 
-    }
+    },
+    components: {
+        Close
+    },
 
 }

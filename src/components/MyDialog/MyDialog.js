@@ -1,4 +1,5 @@
 import bus from '../../lib/bus.js'
+import Close from '../close/close.vue'
 
 export default {
     name: 'MyDialog',
@@ -8,5 +9,8 @@ export default {
             this.$emit('close');
             bus.$emit('clearData');
         }
-    }
+    },
+     components: {
+        Close
+    },
 }

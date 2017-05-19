@@ -1,4 +1,5 @@
 import bus from '../../lib/bus.js'
+import Close from '../close/close.vue'
 
 export default {
     name: 'uploadAvatar',
@@ -75,6 +76,9 @@ export default {
             this.selected = selected;
             this.initS(selected, busEvent);
         })
+    },
+    components: {
+        Close
     },
     methods: {
         initS(selected) {

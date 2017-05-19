@@ -1,8 +1,11 @@
 <template>
     <div id="addLink">
         <button class="btn link" @click.prevent="LinkDialogVisible = true">添加链接</button>
-        <div id="LinkDialog" v-show="LinkDialogVisible">
-            <h3>添加链接</h3>
+        <div id="LinkDialog" v-show="LinkDialogVisible" :style="{background: (skinColor === '#FFF' ? '#CCC': skinColor)}">
+            <header>
+                <h3>添加链接</h3>
+                <Close @close="close"></Close>
+            </header>
             <input type="text" class="link-url" :placeholder="addData.linkPlaceholder" v-model.trim="addData.link">
             <input type="text" class="link-title" :placeholder="addData.titlePlaceholder" v-model.trim="addData.title">
             <div class="controls">
