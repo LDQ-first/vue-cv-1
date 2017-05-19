@@ -1,7 +1,7 @@
 import changeState from '../../lib/changeState.js'
 import Message from '../message/message.vue'
 import bus from '../../lib/bus.js'
-
+import Buttons from '../button/button.vue'
 
 export default {
     name: 'rebuild',
@@ -68,6 +68,7 @@ export default {
         },
     },
     components: {
-        Message
+        Message,
+        Buttons
     }
 }

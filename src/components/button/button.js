@@ -20,7 +20,16 @@ export default {
             setTimeout(()=>{
                 this.$emit('click');
             },800);
-            
+        },
+        mouseenter() {
+            setTimeout(()=>{
+                this.$emit('mouseenter');
+            },0);
+        },
+        mouseleave() {
+            setTimeout(()=>{
+                this.$emit('mouseleave');
+            },0);
         },
         init() {   
             this.ex = 0;
