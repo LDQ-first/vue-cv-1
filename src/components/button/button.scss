@@ -6,8 +6,8 @@
     border-radius: 5px;
     border: none;
     outline: none;
-    background: rgb(65, 170, 241);
-    color: #004fa3;
+    background: rgba(3,169,244 ,1);
+    color: #EEE;
     box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.3);
     position: relative;
     overflow: hidden;
@@ -19,6 +19,5 @@
         position: absolute;
         top: 0;
         left: 0;
-       /* z-index: 2;*/
     }
 }

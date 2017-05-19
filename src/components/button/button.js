@@ -9,7 +9,7 @@ export default {
             ex: 0,
             ey: 0,
             radius: 0,
-            backgroundColor: '#FFF',
+            backgroundColor: '#EAF5FE',
             context: '',
             width: 0,
             height: 0,
@@ -19,10 +19,17 @@ export default {
         click() {
             setTimeout(()=>{
                 this.$emit('click');
-            },2000);
+            },800);
             
         },
         init() {   
+            this.ex = 0;
+            this.ey = 0;
+            this.radius = 0;
+            this.backgroundColor = '#EAF5FE';
+            this.context = '';
+            this.width = 0;
+            this.height = 0;
             window.requestAnimFrame = (function(){
             return  window.requestAnimationFrame       ||
                     window.webkitRequestAnimationFrame ||
@@ -36,7 +43,6 @@ export default {
         },
         press(e) {
             this.init();
-            console.log(e);
             const btns = this.$refs.btns;
             const canvas = e.target;
             const context = canvas.getContext('2d');
@@ -44,13 +50,12 @@ export default {
             this.height = canvas.height = btns.offsetHeight;
             this.context = context;
             
-            console.log(window.getComputedStyle(btns).backgroundColor);
-            this.backgroundColor = window.getComputedStyle(btns).backgroundColor;
+           /* console.log(window.getComputedStyle(btns).backgroundColor);*/
             
             this.ex = e.offsetX;
             this.ey = e.offsetY;
-            console.log('ex: ' + this.ex, 'ey: ' + this.ey);
             context.clearRect(0, 0, this.width, this.height);
+            
             
             this.draw();
         },
@@ -62,6 +67,11 @@ export default {
             this.radius += 2;
             if(this.radius < this.width) {
                requestAnimFrame(this.draw);
+            }
+            else {
+                 setTimeout(()=>{
+                    this.context.clearRect(0, 0, this.width, this.height);
+                },1600);    
             }
         }
     }
