@@ -3,6 +3,11 @@ import Buttons from '../button/button.vue'
 
 export default {
     name: 'skinColor',
+    data() {
+        return {
+            isActive: false
+        }
+    },
     computed: {
         showSkin() {
             return this.$store.state.showSkin;
@@ -21,9 +26,15 @@ export default {
 
             changeState('showSkin', value);
         },
-        changeSkinColor(skinColor, color){
+        changeSkinColor(color){
             changeState('skinColor', color);
-            
+        },
+        bounce(e) {
+            const btn = e.target.parentNode;
+            for(let i of this.$refs.color) {
+                i.$el.style.animation = '';
+            }
+            btn.style.animation = 'bounce .8s';
         }
     },
     components: {
