@@ -6,6 +6,9 @@
             </div>
             <canvas id="canvas" width="200" height="200"  ref="canvasLoading"></canvas>
         </div>
+        <canvas  id="particles"></canvas>
+        <!--<Particles></Particles>-->
+        
     </div>
 </template>
 

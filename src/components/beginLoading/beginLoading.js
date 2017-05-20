@@ -1,3 +1,7 @@
+/*import '../../lib/particles/particles.min.js'
+import '../../lib/particles/app.js'*/
+/*import Particles from '../particles/particles.vue'*/
+import particles from '../../lib/particles.js'
 
 export default {
     name: 'beginLoading',
@@ -14,7 +18,11 @@ export default {
         }
     },
     mounted() {
+        particles("particles");
         this.init();
+    },
+    components: {
+       /*Particles*/
     },
     methods: {
         init() {
