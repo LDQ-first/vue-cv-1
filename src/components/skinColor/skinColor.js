@@ -34,7 +34,7 @@ export default {
             for(let i of this.$refs.color) {
                 i.$el.style.animation = '';
             }
-            btn.style.animation = 'bounce .8s';
+            btn.style.animation = 'bounce .8s linear';
         }
     },
     components: {
