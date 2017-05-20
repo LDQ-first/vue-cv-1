@@ -17,13 +17,13 @@
   }
   #resumeEditor {
       min-width: 35%;
-      background: #444;
+      background: #444;          
     }
   #resumePreview {
     width: 61.66667%;
     background: #777;
     flex-grow: 1;
-    margin-left: 16px;
+    margin-left: 16px;       
   }
   svg.icon {
     height: 1em;
@@ -60,5 +60,20 @@
   .message-leave-active {
     transition: all 0.8s ease-in-out;
     transform: translateY(-100%);
+    opacity: 0;
+  }
+  .loading-enter-active{
+    transition: all 0.8s ease-in-out;
+    transform: translateZ(0);
+    opacity: 1;
+  }
+  .loading-enter{
+    transition: all 0.8s ease-in-out;
+    transform: translateZ(-100%);
+    opacity: 0;
+  }
+  .loading-leave-active {
+    transition: all 0.8s ease-in-out;
+    transform: translateZ(-100%);
     opacity: 0;
   }

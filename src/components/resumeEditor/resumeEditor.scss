@@ -8,7 +8,7 @@
 }
 #resumeEditor {
     background: #EFE8DE;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0px 4px 1px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: row;
     nav {
@@ -119,14 +119,43 @@
                     margin: 4px 0;
                     padding: 8px;
                 }
-                input[type=text] {
-                    margin: 4px 0;
-                    border: 1px solid #DDD;
-                    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+                /*.text {
+                    display: inline-block;
                     width: 100%;
                     height: 40px;
-                    padding: 0 8px;
+                    margin: 4px 0;
+                    position: relative;
+                    overflow: hidden;
+                    .textBottom {
+                        display: inline-block;
+                        width: 100%;
+                        height: 4px;
+                        position: absolute;
+                        bottom: 0;
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 4px;
+                            border-bottom: 4px solid rgba(0, 170, 255, 1);
+                            transform: translate3d(-200%, 0, 0);
+                            transition: transform 0.3s;
+                        }
+                    }
                 }
+                input[type=text] {
+                    outline: none;
+                    border: none;
+                    width: 100%;
+                    height: 100%;
+                    padding: 0 8px;
+                    border-bottom: 2px solid #B9C1CA;
+                    &:focus+.textBottom::after{
+                        transform: translate3d(0, 0, 0);
+                    }
+                }*/
             }
             .uploadAvatar {
                 margin: 10px 24px;

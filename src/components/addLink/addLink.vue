@@ -7,8 +7,17 @@
                 <h3>添加链接</h3>
                 <Close @close="close"></Close>
             </header>
-            <input type="text" class="link-url" :placeholder="addData.linkPlaceholder" v-model.trim="addData.link">
-            <input type="text" class="link-title" :placeholder="addData.titlePlaceholder" v-model.trim="addData.title">
+            <span class="text">
+                <input type="text" class="link-url" :placeholder="addData.linkPlaceholder" v-model.trim="addData.link">
+                <span class="textBottom"></span>
+            </span>
+            <span class="text">
+                <input type="text" class="link-title" :placeholder="addData.titlePlaceholder" v-model.trim="addData.title">
+                <span class="textBottom"></span>
+            </span>
+
+           <!-- <input type="text" class="link-url" :placeholder="addData.linkPlaceholder" v-model.trim="addData.link">
+            <input type="text" class="link-title" :placeholder="addData.titlePlaceholder" v-model.trim="addData.title">-->
             <div class="controls">
                <!-- <button class="btn cancle" @click="LinkDialogVisible = false">取消</button>
                 <button class="btn confirm" @click="confirm(n,i,ikey, field)">确认</button>-->

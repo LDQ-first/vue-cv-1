@@ -4,8 +4,9 @@
     margin-left: 16px;
     padding: 2em;
     overflow-y: scroll; 
-     display: flex;
-     flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0px 4px 1px rgba(0, 0, 0, 0.5);
     .info {
         margin-top: 10px;
         padding: 10px;

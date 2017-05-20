@@ -22,10 +22,13 @@
                             <div class="resumeField" v-for="(value, key) in subitem">
                                 <label>{{key}}</label>
                                 <AddLink :ikey="key" :field="item.field" :i="i"></AddLink>
-                                <textarea :class="`text-${item.field}-${i}-${key}`" type="text" :value="value" v-if="check(selected, key)"
+                                <textarea :class="`text-${item.field}-${i}-${key}`" class="textarea" type="text" :value="value" v-if="check(selected, key)"
                                     @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
                                 </textarea>
-                                <input type="text" :class="`text-${item.field}-${i}-${key}`" :name="`text-${item.field}-${i}-${key}`" :value="value" v-else @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
+                                <span class="text" v-else>
+                                    <input type="text" :class="`text-${item.field}-${i}-${key}`" :name="`text-${item.field}-${i}-${key}`" :value="value"  @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
+                                    <span class="textBottom"></span>
+                                </span>
                                 <UploadImg :ikey="key" :field="item.field" :i="i" v-if="check(selected, key)" text="上传图片"></UploadImg>
                             </div>
                             <Buttons class="delete" @click="deleteResumeField(`${item.field}`, `${i}`)" text="删除"></Buttons>
@@ -34,7 +37,10 @@
                     </div>
                     <div v-else class="resumeField profile" v-for="(value, key) in resume[item.field]">
                         <label>{{key}}</label>
-                        <input type="text" :value="value" @input="changeResumeField(`resume.${item.field}.${key}`, $event.target.value)">
+                        <span class="text">
+                            <input type="text" :value="value" @input="changeResumeField(`resume.${item.field}.${key}`, $event.target.value)">
+                            <span class="textBottom"></span>
+                        </span>
                     </div>
                     <!--<button class="uploadAvatar" v-show="selected === 'profile'" @click="uploadAvatar(selected, busEvent)">上传头像</button>-->
                     <Buttons class="uploadAvatar" v-show="selected === 'profile'" @click="uploadAvatar(selected, busEvent)" text="上传头像"></Buttons>
