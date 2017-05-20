@@ -22,10 +22,12 @@
                         </svg>
                     </span>
                     
-                    <img :src="userAvatarSrc" class="userAvatarSrc" 
-                    v-if="index == 2&&userAvatarSrc" @click="handleSelect(index)" 
-                    v-for="(route, index) in routes" :key="index" 
-                    :class="{active: activeIndex === index}" :title="route.meta.title">
+                    <span v-if="index == 2&&userAvatarSrc" v-for="(route, index) in routes" class="userAvatarSrc" 
+                         @click="handleSelect(index)" 
+                         :key="index" 
+                        :class="{active: activeIndex === index}" :title="route.meta.title">
+                        <img :src="userAvatarSrc">
+                    </span>
                 </div>
                 
                 <div v-if="logined" class="userActions">

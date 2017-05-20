@@ -89,10 +89,35 @@
             height: 44px;
             border-radius: 50%;
             margin: 0 30px;
-            border: 2px solid  #E6AC71;
             cursor: pointer;
+            position: relative;
+            img {
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                margin: 0;
+            }
             &.active {
                 box-shadow: 0 0 10px #FFF;
+            }
+            &::after {
+                content: '';
+                position: absolute; 
+                top: 0px;
+                left: 0px;
+                width: 44px;
+                height: 44px;
+                border-radius: 50%;
+                border-top: 4px solid  rgba(245,127,23 ,1);
+                border-left: 4px solid  rgba(245,127,23 ,1);
+                border-right: 4px solid  rgba(0,230,118 ,1);
+                border-bottom: 4px solid  rgba(0,230,118 ,1);
+                transition: all 0.8s ease;
+            }
+            &:hover {
+                &::after {
+                    transform: rotate(360deg);
+                }
             }
         }
     }

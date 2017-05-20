@@ -1,4 +1,4 @@
-
+import particles from '../../lib/particles.js'
 
 import ResetPassword from '../resetPassword/resetPassword.vue'
 import UploadAvatar from '../uploadAvatar/uploadAvatar.vue'
@@ -13,12 +13,16 @@ export default {
             uploadAvatarvisible: false,
             selected: 'user',
             busEvent: 'userAvatar',
+            isActive: false
         }
     },
-    created() {
+    created() {   
         bus.$on('userAvatar', (src) => {
             changeState('userAvatarSrc', src);
         })
+    },
+    mounted() {
+        particles("userParticles");
     },
     computed: {
         skinColor() {
@@ -36,9 +40,6 @@ export default {
         userSite() {
             return this.resume.profile.userSite;
         },
-        replenish() {
-            return this.resume.others[0].replenish;
-        }
     },
     methods: {
         showResetPassword() {
