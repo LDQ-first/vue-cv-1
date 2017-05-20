@@ -60,7 +60,7 @@ export default {
             if(this.speed > 100) {
                 this.speed = 0;
                 cancelAnimationFrame(this.timer);                
-               this.$emit('BeginLoading');
+            //this.$emit('BeginLoading');
             }
             else {
                 this.speed += 0.2;
@@ -79,8 +79,12 @@ export default {
             this.context.save();
             this.context.strokeStyle = '#FFF';
             this.context.font = '30px Arial';
-            this.context.strokeText(this.speed.toFixed(0) + '%', 
-                this.centerX - 25, this.centerY + 10);
+            const text = this.speed.toFixed(0) + '%';
+            const textWidth = this.context.measureText(text).width;
+            const translateWidth = (textWidth/2).toFixed(0);
+             this.context.strokeText(text, 
+                this.centerX - translateWidth + 5, this.centerY + 10);
+
             this.context.stroke();
             this.context.restore();
         },
