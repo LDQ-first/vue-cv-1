@@ -34,7 +34,6 @@ export default {
         bus.$on('addLink', (data, key, field, i) => {
             const addArea = document.querySelector(`.text-${field}-${i}-${key}`);
             addArea.value += data;
-            console.log(addArea);
             changeState(`resume.${field}.${i}.${key}`, addArea.value);
         })
         bus.$on('imgLoading', (percent, field, i, key) => {

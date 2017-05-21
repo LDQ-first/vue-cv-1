@@ -5,11 +5,7 @@ import objectPath from 'object-path'
 
 export default () => {
     return {
-        /*initState(state, payload){
-            Object.assign(state, payload);
-        },*/
         editResume(state, {path, value}){
-            console.log( {path, value});
             objectPath.set(state, path, value);
         },
         switchTab(state, playload) {
@@ -17,11 +13,9 @@ export default () => {
         },
         setUser(state, user) {
             Object.assign(state.user, user);
-            console.log(state.user);
         },
         saveResume(state, {path, value}) {
             objectPath.set(state, path, value);
-            console.log(state);
             var SaveObject = AV.Object.extend('SaveObject');
             var saveObject = new SaveObject();
 
@@ -32,9 +26,7 @@ export default () => {
             saveObject.set('content', state);
             saveObject.setACL(acl);
             saveObject.save().then((todo) => {
-                console.log(todo.id);
                 state.id = todo.id;
-                console.log(state.id);
                 console.log('保存成功');
             }, (error) => {
                 alert('保存失败');
@@ -42,7 +34,6 @@ export default () => {
         },
         updateResume(state, {path, value}) {
             objectPath.set(state, path, value);
-            console.log(state);
             var todo = AV.Object.createWithoutData('SaveObject', state.id);
             todo.set('content', state);
             todo.save().then(() => {
@@ -55,9 +46,9 @@ export default () => {
             if (state.user.id) {
                 var query = new AV.Query('SaveObject');
                 query.find().then((todo) => {
-                    console.log(todo);
                     Object.assign(state, todo[0].attributes.content);
                     state.id = todo[0].id;
+                    console.log('fetch success');
                 }, (error) => {
                     console.log('fetch fail');
                 })
@@ -77,7 +68,6 @@ export default () => {
             const resumeField = objectPath.get(state.resume, field);
             if (resumeField instanceof Array) {
                 let newField = JSON.parse(JSON.stringify(resumeField[0]));
-                console.log(newField);
                 for (let i in newField) {
                     newField[i] = '';
                 }

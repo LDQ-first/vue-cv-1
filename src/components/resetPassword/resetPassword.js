@@ -40,8 +40,6 @@ export default {
                 }, (error) => {
                      this.message = getErrorMessage(error);
             });
-
-            console.log(this._data);
         },
         skip(target, email){
             clearData(this._data);
@@ -51,7 +49,6 @@ export default {
             this.$emit('returnSignIn');
         },
         setEmail(email) {
-            console.log('setEmail');
             this.email = email;
         }
     }

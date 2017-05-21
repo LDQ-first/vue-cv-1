@@ -23,10 +23,11 @@
                                 <label>{{key}}</label>
                                 <AddLink :ikey="key" :field="item.field" :i="i"></AddLink>
                                 <textarea :class="`text-${item.field}-${i}-${key}`" class="textarea" type="text" :value="value" v-if="check(selected, key)"
-                                    @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
+                                    @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)" >
                                 </textarea>
                                 <span class="text" v-else>
-                                    <input type="text" :class="`text-${item.field}-${i}-${key}`" :name="`text-${item.field}-${i}-${key}`" :value="value"  @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
+                                    <input type="text" :class="`text-${item.field}-${i}-${key}`" :name="`text-${item.field}-${i}-${key}`" :value="value" 
+                                     @input="changeResumeField(`resume.${item.field}.${i}.${key}`,$event.target.value)">
                                     <span class="textBottom"></span>
                                 </span>
                                 <UploadImg :ikey="key" :field="item.field" :i="i" v-if="check(selected, key)" text="上传图片"></UploadImg>
@@ -42,7 +43,6 @@
                             <span class="textBottom"></span>
                         </span>
                     </div>
-                    <!--<button class="uploadAvatar" v-show="selected === 'profile'" @click="uploadAvatar(selected, busEvent)">上传头像</button>-->
                     <Buttons class="uploadAvatar" v-show="selected === 'profile'" @click="uploadAvatar(selected, busEvent)" text="上传头像"></Buttons>
                     <UploadAvatar :visible="uploadAvatarvisible" @close="closeAvatar" :parent="selected"></UploadAvatar>
                 </li>

@@ -21,9 +21,6 @@ export default {
     },
     methods: {
         changeShowSkin(showSkin, value) {
-           console.log(showSkin);
-           console.log(value);
-
             changeState('showSkin', value);
         },
         changeSkinColor(color){

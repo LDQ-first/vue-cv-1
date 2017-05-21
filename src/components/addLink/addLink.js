@@ -41,6 +41,7 @@ export default {
                         this.addData.link = link.replace(linkReg, `<a href='$1$2' target='new'>${title}</a>`);
                     }    
                     const data = '\n' + this.addData.link + '\n';
+                   
                     bus.$emit(`addLink`, data, ikey, field, i);
                 }
                 this.LinkDialogVisible = false;

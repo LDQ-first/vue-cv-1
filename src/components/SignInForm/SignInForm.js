@@ -26,7 +26,6 @@ export default {
     },
     methods: {
         signIn() {
-           
             let {username, password} = this.formData;
             AV.User.logIn(username, password).then((res) => {
                 const user = Object.assign(getAVUser(), {email: res._serverData.email});
@@ -35,8 +34,6 @@ export default {
             }, (error) => {
                 this.errorMessage = getErrorMessage(error);
             });
-           
-           // console.log(this._data);
         },
         resetPassword() {
             clearData(this._data);

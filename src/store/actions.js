@@ -24,9 +24,9 @@ export default () => {
                 // 文件保存成功
                /* console.log(file.id);*/
                 const img = `<div class="imgWrapper">
-                            <img class="smallImg" src="${url}" title="${localFile.name}" alt="${localFile.name}">
-                        <a class="bigImg" href="${Url}" target="new">点击看大图</a>
-                      </div>`;
+                                    <img class="smallImg" src="${url}" title="${localFile.name}" alt="${localFile.name}">
+                                <a class="bigImg" href="${Url}" target="new">点击看大图</a>
+                            </div>`;
 
                 console.log(img);
                 console.log(textarea);

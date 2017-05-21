@@ -23,9 +23,7 @@ export default {
         }
     },
     created() {
-        console.log(this.resume);
         bus.$on('resumeAvatar', (src) => {
-            console.log('resumeAvatar');
             changeState('resumeAvatarSrc', src);
         })
         

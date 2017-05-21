@@ -27,8 +27,14 @@ export default {
                 input.files[0].type === "image/jpeg" ||
                 input.files[0].type === "image/gif") {
                     console.log(input.files);
-                    console.log(input.files[0].name);
-                    this.$store.dispatch('uploadImg', {input, path, field, i, ikey});
+                    console.log(input.files[0].size);
+                    if(input.files[0].size <= 20000000) {
+                        this.$store.dispatch('uploadImg', {input, path, field, i, ikey});
+                    }
+                    else {
+                        console.log('图片太大了');
+                    }
+                    
                 }
             }
         }

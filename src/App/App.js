@@ -48,8 +48,8 @@ export default {
             this.$store.commit('fetchResume');
         }
         bus.$on('changeUrl', (key) => {
-            console.log(key);
-            this.$router.push(this.routes[key]);
+            const routesObj = Object.assign(this.routes[key], {params: {userId: this.$store.state.user.username || 'userId'}})
+            this.$router.push(routesObj);
         })
         bus.$on('showMessage', ({type, message, event}) => {
             console.log(type);
