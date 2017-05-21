@@ -28,7 +28,7 @@ export default {
             this.centerX = canvas.width/2;
             this.centerY = canvas.height/2;
             this.rad = 2*Math.PI/100;
-            this.speed = 0.1;
+            this.speed = 0.2;
 
              window.requestAnimFrame = (function(){
             return  window.requestAnimationFrame       ||

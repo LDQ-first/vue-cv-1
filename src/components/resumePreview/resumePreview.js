@@ -2,6 +2,7 @@ import SkinColor from '../skinColor/skinColor.vue'
 import bus from '../../lib/bus.js'
 import changeState from '../../lib/changeState.js'
 
+
 export default {
     name: 'resumePreview',
     computed: {
@@ -27,11 +28,12 @@ export default {
             console.log('resumeAvatar');
             changeState('resumeAvatarSrc', src);
         })
+        
     },
     components:{
-        SkinColor
+        SkinColor,
     },
     methods: {
-        
+    
     }
 }

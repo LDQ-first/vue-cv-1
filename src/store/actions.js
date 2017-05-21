@@ -11,23 +11,27 @@ export default () => {
             const file = new AV.File(localFile.name, localFile);
             const loader =  document.querySelector(`.loader-${field}-${i}-${ikey}`);
             loader.style.display = 'inline-block';
-            console.log(localFile);
-            console.log(file);
+          //  console.log(localFile);
+          //   console.log(file);
             file.save({
                 onprogress:function (e)  {             
                     bus.$emit('imgLoading', e.percent, field, i, ikey);
                 },
             }).then(function(file) {
-                var url = file.thumbnailURL(300,400);
+                let Url = file.url();
+                let url = file.thumbnailURL(300,400);
                 const textarea = document.querySelector(`.text-${field}-${i}-${ikey}`);
                 // 文件保存成功
-                console.log(file.url());
-                console.log(file.id);
-                url = `<img src="${url}" title="${localFile.name}" alt="${localFile.name}">`;
-                console.log(url);
+               /* console.log(file.id);*/
+                const img = `<div class="imgWrapper">
+                            <img class="smallImg" src="${url}" title="${localFile.name}" alt="${localFile.name}">
+                        <a class="bigImg" href="${Url}" target="new">点击看大图</a>
+                      </div>`;
+
+                console.log(img);
                 console.log(textarea);
 
-                textarea.value += '\n' + url + '\n';
+                textarea.value += '\n' + img + '\n';
 
 
                 let value = textarea.value;

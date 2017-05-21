@@ -11,10 +11,27 @@
         font-variant: normal;
         font-weight: normal;
     }
-    img {
-        border: 5px solid #74BBFF;
-        box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.5);
+    .imgWrapper {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        .smallImg {
+            display: inline-block;
+            border: 5px solid #74BBFF;
+            box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.5);
+        }
+        .bigImg {
+            background: #FF801F;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            color: #FFF;
+            &:hover {
+                text-decoration: none;
+            }
+        }
     }
+    
     section + section {
         margin-top: 2em;
     }
@@ -110,10 +127,11 @@
             margin-left: 30px;
             background: #72D678;
             width: 90%;
-            padding: 0.5em 2em;
+            padding: 0.5em 1em;
             font-size: 20px;
         }
     }
+    
     .timeaxis {
         padding-left: 30px;
         position: relative;
