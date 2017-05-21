@@ -1,18 +1,20 @@
 <template>
-    <div class="dialogWrapper" v-show="visible">
-        <div class="dialog">
-            <div id="leftSide"></div>
-            <div id="rightSide">
-                 <header>
-                    {{title}}
-                    <Close @close="close"></Close>
-                </header>
-                <main>
-                    <slot></slot>
-                </main>
+    <transition name="dislog">
+        <div class="dialogWrapper" v-show="visible">
+            <div class="dialog">
+                <div id="leftSide"></div>
+                <div id="rightSide">
+                    <header>
+                        {{title}}
+                        <Close @close="close"></Close>
+                    </header>
+                    <main>
+                        <slot></slot>
+                    </main>
+                </div>
             </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>

@@ -17,10 +17,10 @@ export default {
     },
     methods: {
         click() {
-            /*setTimeout(()=>{
+            setTimeout(()=>{
                 this.$emit('click');
-            },800);*/
-            this.$emit('click');
+            },800);
+            /*this.$emit('click');*/
         },
         mouseenter() {
             setTimeout(()=>{

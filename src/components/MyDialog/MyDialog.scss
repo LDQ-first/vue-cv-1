@@ -54,3 +54,18 @@
         }
     }
 }
+.dislog-enter-active{
+    transition: all 0.8s ease-in-out;
+    transform: scale(1);
+    opacity: 1;
+}
+.dislog-enter{
+    transition: all 0.8s ease-in-out;
+    transform: scale(0);
+    opacity: 0;
+}
+.dislog-leave-active {
+    transition: all 0.8s ease-in-out;
+    transform: scale(0);
+    opacity: 0;
+}

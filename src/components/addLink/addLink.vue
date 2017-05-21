@@ -2,6 +2,7 @@
     <div id="addLink">
         <!--<button class="btn link" @click.prevent="LinkDialogVisible = true">添加链接</button>-->
         <Buttons class="link" @click="LinkDialogVisible = true" text="添加链接"></Buttons>
+        <transition name="link" mode="in-out">
         <div id="LinkDialog" v-show="LinkDialogVisible" :style="{background: (skinColor === '#FFF' ? '#CCC': skinColor)}">
             <header>
                 <h3>添加链接</h3>
@@ -25,6 +26,7 @@
                 <Buttons class="confirm" @click="confirm(n,i,ikey, field)" text="确认"></Buttons>
             </div>
         </div>
+        </transition>
         <div class="link-mark" v-show="LinkDialogVisible"></div>
     </div>
 </template>
