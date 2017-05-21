@@ -32,8 +32,8 @@
         <section :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}" 
         data-name="workHistory" v-show="resume.workHistory">
             <h2 :style="{background:skinColor}">工作经历</h2>
-            <ol>
-                <li v-for="item in resume.workHistory" v-show="item.company">
+            <ol class="timeaxis">
+                <li v-for="item in resume.workHistory" v-show="item.company" class="time">
                     <h3 v-html="item.company">{{item.company}}</h3>
                     <p v-show="item.content" v-html="item.content">{{item.content}}</p>
                 </li>
@@ -43,8 +43,8 @@
         <section :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}" 
         data-name="education" v-show="resume.education">
             <h2 :style="{background:skinColor}">毕业院校</h2>
-            <ol>
-                <li v-for="item in resume.education" v-show="item.school">
+            <ol class="timeaxis">
+                <li v-for="item in resume.education" v-show="item.school" class="time">
                     <h3 v-html="item.school">{{item.school}}</h3>
                     <h3 v-show="item.content">-</h3>
                     <h3 v-show="item.content" v-html="item.content">{{item.content}}</h3>
@@ -55,8 +55,8 @@
         <section :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}" 
         data-name="projects" v-show="resume.projects">
             <h2 :style="{background:skinColor}">项目情况</h2>
-            <ol>
-                <li v-for="item in resume.projects" v-show="item.name">
+            <ol class="timeaxis">
+                <li v-for="item in resume.projects" v-show="item.name" class="time">
                     <h3 v-html="item.name">{{item.name}}</h3>
                     <p v-show="item.content" v-html="item.content"> {{item.content}} </p>
                 </li>
@@ -66,8 +66,8 @@
         <section :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}" 
         data-name="awards" v-show="resume.awards">
             <h2 :style="{background:skinColor}">获奖情况</h2>
-            <ol>
-                <li v-for="item in resume.awards" v-show="item.name">
+            <ol class="timeaxis">
+                <li v-for="item in resume.awards" v-show="item.name" class="time">
                     <h3 v-html="item.name">{{item.name}}</h3>
                     <p v-show="item.content" v-html="item.content"> {{item.content}} </p>
                 </li>
