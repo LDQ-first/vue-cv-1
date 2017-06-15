@@ -1,4 +1,3 @@
-//import axios from 'axios'
 
 export default () => {
     const leftSide = document.querySelectorAll('#leftSide');
