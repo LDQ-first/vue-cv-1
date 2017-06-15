@@ -1,4 +1,4 @@
-import particles from '../../lib/particles.js'
+
 
 import ResetPassword from '../resetPassword/resetPassword.vue'
 import UploadAvatar from '../uploadAvatar/uploadAvatar.vue'
@@ -20,9 +20,6 @@ export default {
         bus.$on('userAvatar', (src) => {
             changeState('userAvatarSrc', src);
         })
-    },
-    mounted() {
-        particles("userParticles");
     },
     computed: {
         skinColor() {

@@ -62,10 +62,10 @@ export default {
             if(this.speed > 100) {
                 this.speed = 0;
                 cancelAnimationFrame(this.timer);                
-            this.$emit('BeginLoading');
+                this.$emit('BeginLoading');
             }
             else {
-                this.speed += 0.2;
+                this.speed += 1;
             }
         },
         whiteCircle() {

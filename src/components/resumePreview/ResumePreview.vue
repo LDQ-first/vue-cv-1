@@ -25,17 +25,18 @@
             </h3>
             <a :href="resume.profile.userSite" target="new" style="margin: 10px 0; cursor: pointer"
             v-if="resume.profile.userSite">
-                个人博客/网站
+                个人博客/网站/GitHub
             </a>
         </section>
 
+
         <section :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}" 
-        data-name="workHistory" v-show="resume.workHistory">
-            <h2 :style="{background:skinColor}">工作经历</h2>
+        data-name="projects" v-show="resume.projects">
+            <h2 :style="{background:skinColor}">项目情况</h2>
             <ol class="timeaxis">
-                <li v-for="item in resume.workHistory" v-show="item.company" class="time">
-                    <h3 v-html="item.company">{{item.company}}</h3>
-                    <p v-show="item.content" v-html="item.content">{{item.content}}</p>
+                <li v-for="item in resume.projects" v-show="item.name" class="time">
+                    <h3 v-html="item.name">{{item.name}}</h3>
+                    <p v-show="item.content" v-html="item.content"> {{item.content}} </p>
                 </li>
             </ol>
         </section>
@@ -53,12 +54,12 @@
         </section>
 
         <section :style="{borderColor: (skinColor.replace(/\sl[^\)]+\)/, '') === '#FFF' ? '' : skinColor.replace(/\sl[^\)]+\)/, ''))}" 
-        data-name="projects" v-show="resume.projects">
-            <h2 :style="{background:skinColor}">项目情况</h2>
+        data-name="workHistory" v-show="resume.workHistory">
+            <h2 :style="{background:skinColor}">工作经历</h2>
             <ol class="timeaxis">
-                <li v-for="item in resume.projects" v-show="item.name" class="time">
-                    <h3 v-html="item.name">{{item.name}}</h3>
-                    <p v-show="item.content" v-html="item.content"> {{item.content}} </p>
+                <li v-for="item in resume.workHistory" v-show="item.company" class="time">
+                    <h3 v-html="item.company">{{item.company}}</h3>
+                    <p v-show="item.content" v-html="item.content">{{item.content}}</p>
                 </li>
             </ol>
         </section>

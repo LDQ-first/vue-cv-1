@@ -1,6 +1,5 @@
 <template>
     <div id="user" :style="{background:skinColor}">
-        <canvas  id="userParticles"></canvas>
         <section class="info nav after" :class="{active:isActive}" @click="isActive = !isActive">
           <!-- <span class="infoTitle">头像</span>-->
            <span class="infoContent avatar">

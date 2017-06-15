@@ -1,4 +1,3 @@
-/* 我们组装模块并导出 store 的地方*/
 import Vuex from 'vuex'
 import Vue from 'vue'
 import objectPath from 'object-path'
@@ -18,53 +17,54 @@ export default new Vuex.Store({
         resume: {
             config: [
                 { field: 'profile', icon: 'id' },
-                { field: 'workHistory', icon: 'work' },
-                { field: 'education', icon: 'book' },
                 { field: 'projects', icon: 'heart' },
+                { field: 'education', icon: 'book' },
+                { field: 'workHistory', icon: 'work' },
                 { field: 'awards', icon: 'cup' },
                 { field: 'contacts', icon: 'phone' },
                 { field: 'others', icon: 'add' }
             ],
             profile: {
-                name: '刘某某',
+                name: '刘德铨',
                 city: '广州',
-                title: '前端学习者',
+                title: '前端学习者, 大三在校生',
                 jobIntension: '前端工程师',
-                birthday: '1995-01-01',
-                userSite: 'https://github.com',
+                birthday: '1995-08-25',
+                userSite: 'https://github.com/LDQ-first',
             },
-            workHistory: [
-                {
-                    company: '鸡飞狗跳公司', content: `公司总部设在XXXX区，先后在北京、上海成立分公司。专注于移动XXX领域，主打产品XXXXX，它将资讯、报纸、杂志、图片、微信等众多内容，按照用户意愿聚合到一起，实现深度个性化 定制。
-                我的主要工作如下:
-                1. 完成既定产品需求。
-                2. 修复 bug。`
-                },
-                {
-                    company: '狗急跳墙责任有限公司', content: `公司总部设在XXXX区，先后在北京、上海成立分公司。专注于移动XXX领域，主打产品XXXXX，它将资讯、报纸、杂志、图片、微信等众多内容，按照用户意愿聚合到一起，实现深度个性化 定制。
-                我的主要工作如下:
-                1. 完成既定产品需求。
-                2. 修复 bug`
-                },
+            projects: [
+                { name: 'Vue版CNode社区', content: "<a href='https://ldq-first.github.io/vue-CNode-1/dist/' target='new'>Vue版CNode社区</a>" },
+                { name: 'Vue版简历编辑器', content: "<a href='https://ldq-first.github.io/vue-cv-1/dist/#/' target='new'>Vue版简历编辑器</a>" },
+                { name: 'Vue版动态简历', content: "<a href='https://ldq-first.github.io/vue-animating-resume-1/dist/' target='new'>Vue版动态简历</a>" },
+                { name: 'React版动态简历', content: "<a href='https://ldq-first.github.io/react-animating-resume-1/build/' target='new'>React版动态简历</a>" },
+                
             ],
             education: [
-                { school: '黄志诚警官大学', content: '本科' },
-                { school: '韩琛古惑仔高中' },
+                { school: '广东工业大学', content: '本科 英语四级' },
             ],
-            projects: [
-                { name: 'project A', content: '文字' },
-                { name: 'project B', content: '文字' },
+            workHistory: [
+                {
+                    company: '', content: ` `
+                },
             ],
             awards: [
-                { name: 'awards A', content: '文字' },
-                { name: 'awards B', content: '文字' },
+                { name: '', content: '' },
+                { name: '', content: '' },
             ],
             contacts: [
-                { contact: 'phone', content: '13812345678' },
-                { contact: 'qq', content: '12345678' },
+                { contact: 'phone', content: '18826136763' },
+                { contact: 'qq', content: '2320975287' },
             ],
             others: [
-                { replenish: '' }
+                { replenish: `<pre>HTML5       熟悉  <progress value="60" max="100"></progress>
+CSS3        熟悉  <progress value="60" max="100"></progress>
+SCSS        熟悉  <progress value="60" max="100"></progress>
+JavaScript  熟悉  <progress value="50" max="100"></progress>
+jQuery      熟悉  <progress value="70" max="100"></progress>
+Vue         熟悉  <progress value="40" max="100"></progress>
+React       了解  <progress value="20" max="100"></progress>
+Webpack     了解  <progress value="35" max="100"></progress>  
+</pre>` }
             ]
         },
         showSkin: false,
