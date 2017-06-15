@@ -1,0 +1,11 @@
+.git/
+.avoscloud/
+.leancloud/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+test/unit/coverage
+buid/
+config/
+src/
